@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:split_the_bill/generated/l10n.dart';
+import 'package:split_the_bill/res/constants.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -26,13 +28,13 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         actions: [
-          IconButton(
-            onPressed: () {},
+          PopupMenuButton(
+            itemBuilder: (context) => [],
             icon: const Icon(
               Icons.more_vert,
               color: Colors.black54,
             ),
-          )
+          ),
         ],
       ),
       body: Center(
@@ -54,10 +56,11 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           child: Column(
-            children: const [
+            children: [
+              const SizedBox(height: 16),
               Text(
-                'Groups',
-                style: TextStyle(
+                S.of(context).members,
+                style: Constants.robotoTextStyle.copyWith(
                   color: Colors.black54,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
