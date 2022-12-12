@@ -59,6 +59,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Groups`
+  String get groups {
+    return Intl.message(
+      'Groups',
+      name: 'groups',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add new member`
+  String get addMember {
+    return Intl.message(
+      'Add new member',
+      name: 'addMember',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Group`
+  String get addGroup {
+    return Intl.message(
+      'Add Group',
+      name: 'addGroup',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

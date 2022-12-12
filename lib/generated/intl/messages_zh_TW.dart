@@ -21,6 +21,10 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'zh_TW';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) =>
-      <String, Function>{"members": MessageLookupByLibrary.simpleMessage("成員")};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addGroup": MessageLookupByLibrary.simpleMessage("新增群組"),
+        "addMember": MessageLookupByLibrary.simpleMessage("新增成員"),
+        "groups": MessageLookupByLibrary.simpleMessage("群組"),
+        "members": MessageLookupByLibrary.simpleMessage("成員")
+      };
 }

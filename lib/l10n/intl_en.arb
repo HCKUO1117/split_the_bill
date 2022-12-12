@@ -1,3 +1,6 @@
 {
-  "members": "Members"
+  "members": "Members",
+  "groups": "Groups",
+  "addMember": "Add new member",
+  "addGroup": "Add Group"
 }
