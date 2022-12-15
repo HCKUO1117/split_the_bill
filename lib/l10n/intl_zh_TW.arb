@@ -2,5 +2,6 @@
   "members": "成員",
   "groups": "群組",
   "addMember": "新增成員",
-  "addGroup": "新增群組"
+  "addGroup": "新增群組",
+  "addEvent": "新增活動"
 }

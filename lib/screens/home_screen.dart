@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/res/constants.dart';
+import 'package:split_the_bill/screens/add_event_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -205,11 +206,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        heroTag: 'addEvent',
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
             side: const BorderSide(color: Colors.black54, width: 1.5)),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const AddEventPage(),
+            ),
+          );
+        },
         tooltip: 'Increment',
         child: const Icon(
           Icons.add,

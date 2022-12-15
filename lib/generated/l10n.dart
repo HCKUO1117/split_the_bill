@@ -89,6 +89,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Add Event`
+  String get addEvent {
+    return Intl.message(
+      'Add Event',
+      name: 'addEvent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

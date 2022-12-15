@@ -2,5 +2,6 @@
   "members": "Members",
   "groups": "Groups",
   "addMember": "Add new member",
-  "addGroup": "Add Group"
+  "addGroup": "Add Group",
+  "addEvent": "Add Event"
 }
