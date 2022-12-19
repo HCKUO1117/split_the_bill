@@ -3,5 +3,14 @@
   "groups": "Groups",
   "addMember": "Add new member",
   "addGroup": "Add Group",
-  "addEvent": "Add Event"
+  "addEvent": "Add Event",
+  "more": "More",
+  "login": "login",
+  "email": "mailbox",
+  "password": "password",
+  "guestLogin": "Guest Login",
+  "signUp": "Sign Up",
+  "noAccount": "No account",
+  "clickHere": "Please click here",
+  "or": "or"
 }

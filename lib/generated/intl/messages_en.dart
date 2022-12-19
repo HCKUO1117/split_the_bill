@@ -25,7 +25,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "addEvent": MessageLookupByLibrary.simpleMessage("Add Event"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
         "addMember": MessageLookupByLibrary.simpleMessage("Add new member"),
+        "clickHere": MessageLookupByLibrary.simpleMessage("Please click here"),
+        "email": MessageLookupByLibrary.simpleMessage("mailbox"),
         "groups": MessageLookupByLibrary.simpleMessage("Groups"),
-        "members": MessageLookupByLibrary.simpleMessage("Members")
+        "guestLogin": MessageLookupByLibrary.simpleMessage("Guest Login"),
+        "login": MessageLookupByLibrary.simpleMessage("login"),
+        "members": MessageLookupByLibrary.simpleMessage("Members"),
+        "more": MessageLookupByLibrary.simpleMessage("More"),
+        "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
+        "or": MessageLookupByLibrary.simpleMessage("or"),
+        "password": MessageLookupByLibrary.simpleMessage("password"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up")
       };
 }

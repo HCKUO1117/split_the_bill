@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:split_the_bill/generated/l10n.dart';
+import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/screens/home_screen.dart';
+import 'package:split_the_bill/screens/login_screen.dart';
+import 'package:split_the_bill/utils/preferences.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -23,8 +26,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     if (defaultLocale.length > 1) {
       String first = defaultLocale.substring(0, 2);
-      String last = defaultLocale.substring(
-          defaultLocale.length - 2, defaultLocale.length);
+      String last = defaultLocale.substring(defaultLocale.length - 2, defaultLocale.length);
       setState(() {
         locale = Locale(first, last == 'TW' ? 'TW' : '');
       });
@@ -43,8 +45,9 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Split the bill',
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           color: Colors.white,
+          titleTextStyle: Theme.of(context).textTheme.titleMedium,
         ),
       ),
       localizationsDelegates: const [
@@ -65,7 +68,9 @@ class _MyAppState extends State<MyApp> {
         Locale('zh', 'TW'),
       ],
       locale: locale ?? const Locale('en', ''),
-      home: const HomePage(title: 'Flutter Demo Home Page'),
+      home: Preferences.getBool(Constants.isLogin, false)
+          ? const HomePage(title: 'Flutter Demo Home Page')
+          : const LoginScreen(),
     );
   }
 }

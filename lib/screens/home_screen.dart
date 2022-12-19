@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/res/constants.dart';
-import 'package:split_the_bill/screens/add_event_page.dart';
+import 'package:split_the_bill/screens/add_group_page.dart';
+import 'package:split_the_bill/screens/add_member_page.dart';
+import 'package:split_the_bill/screens/more_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -51,30 +53,167 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Scaffold.of(context).openDrawer();
             },
             icon: const Icon(
-              Icons.groups_outlined,
+              Icons.person_outline,
               color: Colors.black54,
             ),
           ),
         ),
         actions: [
-          PopupMenuButton(
-            itemBuilder: (context) => [],
-            icon: const Icon(
-              Icons.more_vert,
-              color: Colors.black54,
+          Hero(
+            tag: Constants.more,
+            child: Material(
+              child: IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MorePage(),
+                    ),
+                  );
+                },
+                icon: const Icon(
+                  Icons.more_vert,
+                  color: Colors.black54,
+                ),
+              ),
             ),
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: const <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+      body: ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          const SizedBox(height: 16),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Text(
+          //       S.of(context).members,
+          //       style: Constants.robotoTextStyle.copyWith(
+          //         color: Colors.black54,
+          //         fontSize: 20,
+          //         fontWeight: FontWeight.bold,
+          //       ),
+          //     )
+          //   ],
+          // ),
+          // const Divider(),
+          iconTitle(
+            icon: Icons.person_add_alt,
+            title: S.of(context).addMember,
+            heroTag: Constants.addMember,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddMemberPage(),
+                ),
+              );
+            },
+          ),
+          iconTitle(
+            icon: Icons.group_add_outlined,
+            title: S.of(context).addGroup,
+            heroTag: Constants.addGroup,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AddGroupPage(),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 16),
+          InkWell(
+            onTap: () {
+              if (groupExpand) {
+                groupController.reverse();
+                groupExpand = !groupExpand;
+              } else {
+                groupController.forward();
+                groupExpand = !groupExpand;
+              }
+            },
+            child: Row(
+              children: [
+                const SizedBox(width: 16),
+                Text(
+                  S.of(context).groups + ' (0)',
+                  style: const TextStyle(color: Colors.grey),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Container(
+                    color: Colors.grey,
+                    height: 1,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                RotationTransition(
+                  turns: Tween(begin: 0.0, end: -0.5).animate(groupAnimation),
+                  child: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(width: 16),
+              ],
             ),
-          ],
-        ),
+          ),
+          SizeTransition(
+            sizeFactor: groupAnimation,
+            axis: Axis.vertical,
+            axisAlignment: -1,
+            child: const Center(
+              child: FlutterLogo(size: 200.0),
+            ),
+          ),
+          InkWell(
+            onTap: () {
+              if (memberExpand) {
+                memberController.reverse();
+                memberExpand = !memberExpand;
+              } else {
+                memberController.forward();
+                memberExpand = !memberExpand;
+              }
+            },
+            child: Row(
+              children: [
+                const SizedBox(width: 16),
+                Text(
+                  S.of(context).members + ' (0)',
+                  style: const TextStyle(color: Colors.grey),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Container(
+                    color: Colors.grey,
+                    height: 1,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                RotationTransition(
+                  turns: Tween(begin: 0.0, end: -0.5).animate(memberAnimation),
+                  child: const Icon(
+                    Icons.arrow_drop_down,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(width: 16),
+              ],
+            ),
+          ),
+          SizeTransition(
+            sizeFactor: memberAnimation,
+            axis: Axis.vertical,
+            axisAlignment: -1,
+            child: const Center(
+              child: FlutterLogo(size: 200.0),
+            ),
+          ),
+        ],
       ),
       drawer: SafeArea(
         child: Drawer(
@@ -84,146 +223,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               bottomRight: Radius.circular(30),
             ),
           ),
-          child: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    S.of(context).members,
-                    style: Constants.robotoTextStyle.copyWith(
-                      color: Colors.black54,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-              const Divider(),
-              iconTitle(
-                icon: Icons.person_add_alt,
-                title: S.of(context).addMember,
-                onTap: () {},
-              ),
-              iconTitle(
-                icon: Icons.group_add_outlined,
-                title: S.of(context).addGroup,
-                onTap: () {},
-              ),
-              InkWell(
-                onTap: () {
-                  if (groupExpand) {
-                    groupController.reverse();
-                    groupExpand = !groupExpand;
-                  } else {
-                    groupController.forward();
-                    groupExpand = !groupExpand;
-                  }
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(width: 16),
-                    Text(
-                      S.of(context).groups + ' (0)',
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Container(
-                        color: Colors.grey,
-                        height: 1,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    RotationTransition(
-                      turns: Tween(begin: 0.0, end: -0.5).animate(groupAnimation),
-                      child: const Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                  ],
-                ),
-              ),
-              SizeTransition(
-                sizeFactor: groupAnimation,
-                axis: Axis.vertical,
-                axisAlignment: -1,
-                child: const Center(
-                  child: FlutterLogo(size: 200.0),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  if (memberExpand) {
-                    memberController.reverse();
-                    memberExpand = !memberExpand;
-                  } else {
-                    memberController.forward();
-                    memberExpand = !memberExpand;
-                  }
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(width: 16),
-                    Text(
-                      S.of(context).members + ' (0)',
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Container(
-                        color: Colors.grey,
-                        height: 1,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    RotationTransition(
-                      turns: Tween(begin: 0.0, end: -0.5).animate(memberAnimation),
-                      child: const Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                  ],
-                ),
-              ),
-              SizeTransition(
-                sizeFactor: memberAnimation,
-                axis: Axis.vertical,
-                axisAlignment: -1,
-                child: const Center(
-                  child: FlutterLogo(size: 200.0),
-                ),
-              ),
-            ],
-          ),
+          child: Container(),
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'addEvent',
-        backgroundColor: Colors.white,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: const BorderSide(color: Colors.black54, width: 1.5)),
-        onPressed: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AddEventPage(),
-            ),
-          );
-        },
-        tooltip: 'Increment',
-        child: const Icon(
-          Icons.add,
-          color: Colors.black54,
-        ),
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: FloatingActionButton(
+      //   heroTag: Constants.addEvent,
+      //   backgroundColor: Colors.white,
+      //   shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(10),
+      //       side: const BorderSide(color: Colors.black54, width: 1.5)),
+      //   onPressed: () {
+      //     Navigator.of(context).push(
+      //       MaterialPageRoute(
+      //         builder: (context) => const AddEventPage(),
+      //       ),
+      //     );
+      //   },
+      //   tooltip: 'Increment',
+      //   child: const Icon(
+      //     Icons.add,
+      //     color: Colors.black54,
+      //   ),
+      // ),
     );
   }
 
@@ -231,19 +253,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     required IconData icon,
     required String title,
     required Function() onTap,
+    required String heroTag,
   }) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Row(
-          children: [
-            const SizedBox(width: 16),
-            Icon(icon),
-            const SizedBox(width: 8),
-            Text(title),
-            const SizedBox(width: 16),
-          ],
+    return Hero(
+      tag: heroTag,
+      child: Material(
+        child: InkWell(
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8),
+            child: Row(
+              children: [
+                const SizedBox(width: 16),
+                Icon(icon),
+                const SizedBox(width: 8),
+                Text(title),
+                const SizedBox(width: 16),
+              ],
+            ),
+          ),
         ),
       ),
     );

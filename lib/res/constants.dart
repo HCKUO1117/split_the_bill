@@ -1,7 +1,12 @@
-
 import 'package:flutter/material.dart';
 
 class Constants {
-  static TextStyle robotoTextStyle = const TextStyle(fontFamily: 'RobotoMono');
-  static TextStyle ralewayTextStyle = const TextStyle(fontFamily: 'Raleway');
+  static String roboto = 'RobotoMono';
+  static String raleway = 'Raleway';
+
+  static String addEvent = ' addEvent';
+  static String addMember = 'addMember';
+  static String addGroup = 'addGroup';
+  static String more = 'more';
+  static String isLogin = 'isLogin';
 }

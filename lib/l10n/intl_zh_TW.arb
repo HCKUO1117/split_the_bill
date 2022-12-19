@@ -3,5 +3,14 @@
   "groups": "群組",
   "addMember": "新增成員",
   "addGroup": "新增群組",
-  "addEvent": "新增活動"
+  "addEvent": "新增活動",
+  "more": "更多",
+  "login": "登入",
+  "email": "信箱",
+  "password": "密碼",
+  "guestLogin": "訪客登入",
+  "signUp": "註冊",
+  "noAccount": "沒有帳號",
+  "clickHere": "請點此",
+  "or": "或"
 }

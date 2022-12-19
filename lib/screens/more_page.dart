@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/res/constants.dart';
 
-class AddEventPage extends StatefulWidget {
-  const AddEventPage({Key? key}) : super(key: key);
+class MorePage extends StatefulWidget {
+  const MorePage({Key? key}) : super(key: key);
 
   @override
-  State<AddEventPage> createState() => _AddEventPageState();
+  State<MorePage> createState() => _MorePageState();
 }
 
-class _AddEventPageState extends State<AddEventPage> {
+class _MorePageState extends State<MorePage> {
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: Constants.addEvent,
+      tag: Constants.more,
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -24,7 +24,7 @@ class _AddEventPageState extends State<AddEventPage> {
             icon: const Icon(Icons.arrow_back_ios_new),
           ),
           iconTheme: const IconThemeData(color: Colors.black54),
-          title: Text(S.of(context).addEvent),
+          title: Text(S.of(context).more),
         ),
       ),
     );
