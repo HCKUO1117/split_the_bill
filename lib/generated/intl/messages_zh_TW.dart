@@ -27,14 +27,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "addMember": MessageLookupByLibrary.simpleMessage("新增成員"),
         "clickHere": MessageLookupByLibrary.simpleMessage("請點此"),
         "email": MessageLookupByLibrary.simpleMessage("信箱"),
+        "forgetPassword": MessageLookupByLibrary.simpleMessage("忘記密碼"),
         "groups": MessageLookupByLibrary.simpleMessage("群組"),
         "guestLogin": MessageLookupByLibrary.simpleMessage("訪客登入"),
+        "invalidEmail": MessageLookupByLibrary.simpleMessage("Email格式錯誤"),
         "login": MessageLookupByLibrary.simpleMessage("登入"),
         "members": MessageLookupByLibrary.simpleMessage("成員"),
         "more": MessageLookupByLibrary.simpleMessage("更多"),
         "noAccount": MessageLookupByLibrary.simpleMessage("沒有帳號"),
+        "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
+            "沒有收到信件?請先檢查您的垃圾信箱，若仍沒有收到信件請點擊重新寄送。"),
         "or": MessageLookupByLibrary.simpleMessage("或"),
         "password": MessageLookupByLibrary.simpleMessage("密碼"),
-        "signUp": MessageLookupByLibrary.simpleMessage("註冊")
+        "resend": MessageLookupByLibrary.simpleMessage("重新寄送"),
+        "send": MessageLookupByLibrary.simpleMessage("寄送"),
+        "sendResetEmailInfo": MessageLookupByLibrary.simpleMessage(
+            "我們將寄送一封重設密碼的信件置您的信箱，請重設密碼後再登入。"),
+        "sendSuccess": MessageLookupByLibrary.simpleMessage("寄送成功!"),
+        "signUp": MessageLookupByLibrary.simpleMessage("註冊"),
+        "signUpInfo": MessageLookupByLibrary.simpleMessage(
+            "使用您的信箱進行註冊，不需進行任何驗證。請確保您輸入正確的信箱，信箱將用來接收邀請與找回密碼。"),
+        "unknownError": MessageLookupByLibrary.simpleMessage("未知錯誤"),
+        "userNotFound": MessageLookupByLibrary.simpleMessage("使用者不存在")
       };
 }

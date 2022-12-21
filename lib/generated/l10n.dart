@@ -189,6 +189,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Forgot password`
+  String get forgetPassword {
+    return Intl.message(
+      'Forgot password',
+      name: 'forgetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will send a password reset email to your email address, please reset your password and then login again.`
+  String get sendResetEmailInfo {
+    return Intl.message(
+      'We will send a password reset email to your email address, please reset your password and then login again.',
+      name: 'sendResetEmailInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't receive the Email? Please check your spam folder first, if you still haven't received the Email, please click Resend.`
+  String get notGetMailInfo {
+    return Intl.message(
+      'Didn\'t receive the Email? Please check your spam folder first, if you still haven\'t received the Email, please click Resend.',
+      name: 'notGetMailInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend`
+  String get resend {
+    return Intl.message(
+      'Resend',
+      name: 'resend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User does not exist`
+  String get userNotFound {
+    return Intl.message(
+      'User does not exist',
+      name: 'userNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email format error`
+  String get invalidEmail {
+    return Intl.message(
+      'Email format error',
+      name: 'invalidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown Error`
+  String get unknownError {
+    return Intl.message(
+      'Unknown Error',
+      name: 'unknownError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sent successfully!`
+  String get sendSuccess {
+    return Intl.message(
+      'Sent successfully!',
+      name: 'sendSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use your mailbox to register without any verification. Please make sure you enter the correct mailbox, which will be used to receive invitations and retrieve passwords.`
+  String get signUpInfo {
+    return Intl.message(
+      'Use your mailbox to register without any verification. Please make sure you enter the correct mailbox, which will be used to receive invitations and retrieve passwords.',
+      name: 'signUpInfo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

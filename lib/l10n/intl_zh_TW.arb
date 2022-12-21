@@ -12,5 +12,15 @@
   "signUp": "註冊",
   "noAccount": "沒有帳號",
   "clickHere": "請點此",
-  "or": "或"
+  "or": "或",
+  "forgetPassword": "忘記密碼",
+  "send": "寄送",
+  "sendResetEmailInfo": "我們將寄送一封重設密碼的信件置您的信箱，請重設密碼後再登入。",
+  "notGetMailInfo": "沒有收到信件?請先檢查您的垃圾信箱，若仍沒有收到信件請點擊重新寄送。",
+  "resend": "重新寄送",
+  "userNotFound": "使用者不存在",
+  "invalidEmail": "Email格式錯誤",
+  "unknownError": "未知錯誤",
+  "sendSuccess": "寄送成功!",
+  "signUpInfo": "使用您的信箱進行註冊，不需進行任何驗證。請確保您輸入正確的信箱，信箱將用來接收邀請與找回密碼。"
 }

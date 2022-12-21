@@ -27,14 +27,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "addMember": MessageLookupByLibrary.simpleMessage("Add new member"),
         "clickHere": MessageLookupByLibrary.simpleMessage("Please click here"),
         "email": MessageLookupByLibrary.simpleMessage("mailbox"),
+        "forgetPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot password"),
         "groups": MessageLookupByLibrary.simpleMessage("Groups"),
         "guestLogin": MessageLookupByLibrary.simpleMessage("Guest Login"),
+        "invalidEmail":
+            MessageLookupByLibrary.simpleMessage("Email format error"),
         "login": MessageLookupByLibrary.simpleMessage("login"),
         "members": MessageLookupByLibrary.simpleMessage("Members"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
+        "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
+            "Didn\'t receive the Email? Please check your spam folder first, if you still haven\'t received the Email, please click Resend."),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "password": MessageLookupByLibrary.simpleMessage("password"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up")
+        "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
+        "sendResetEmailInfo": MessageLookupByLibrary.simpleMessage(
+            "We will send a password reset email to your email address, please reset your password and then login again."),
+        "sendSuccess":
+            MessageLookupByLibrary.simpleMessage("Sent successfully!"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "signUpInfo": MessageLookupByLibrary.simpleMessage(
+            "Use your mailbox to register without any verification. Please make sure you enter the correct mailbox, which will be used to receive invitations and retrieve passwords."),
+        "unknownError": MessageLookupByLibrary.simpleMessage("Unknown Error"),
+        "userNotFound":
+            MessageLookupByLibrary.simpleMessage("User does not exist")
       };
 }

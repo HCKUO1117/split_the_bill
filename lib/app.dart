@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
+import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/screens/home_screen.dart';
-import 'package:split_the_bill/screens/login_screen.dart';
+import 'package:split_the_bill/screens/login/login_screen.dart';
 import 'package:split_the_bill/utils/preferences.dart';
 
 class MyApp extends StatefulWidget {
@@ -21,6 +23,8 @@ class _MyAppState extends State<MyApp> {
   Locale? locale;
 
   final String defaultLocale = Platform.localeName;
+
+  final UserProvider userProvider = UserProvider();
 
   @override
   void initState() {
@@ -40,37 +44,42 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      navigatorKey: MyApp.navigatorKey,
-      debugShowCheckedModeBanner: false,
-      title: 'Split the bill',
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          color: Colors.white,
-          titleTextStyle: Theme.of(context).textTheme.titleMedium,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: userProvider),
+      ],
+      child: MaterialApp(
+        navigatorKey: MyApp.navigatorKey,
+        debugShowCheckedModeBanner: false,
+        title: 'Split the bill',
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: Colors.white,
+            titleTextStyle: Theme.of(context).textTheme.titleMedium,
+          ),
         ),
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en', ''),
+          Locale('ko', ''),
+          Locale('ja', ''),
+          Locale('ru', ''),
+          Locale('hi', ''),
+          Locale('vi', ''),
+          Locale('th', ''),
+          Locale('es', ''),
+          Locale('zh', 'TW'),
+        ],
+        locale: locale ?? const Locale('en', ''),
+        home: Preferences.getBool(Constants.isLogin, false)
+            ? const HomePage(title: 'Flutter Demo Home Page')
+            : const LoginScreen(),
       ),
-      localizationsDelegates: const [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en', ''),
-        Locale('ko', ''),
-        Locale('ja', ''),
-        Locale('ru', ''),
-        Locale('hi', ''),
-        Locale('vi', ''),
-        Locale('th', ''),
-        Locale('es', ''),
-        Locale('zh', 'TW'),
-      ],
-      locale: locale ?? const Locale('en', ''),
-      home: Preferences.getBool(Constants.isLogin, false)
-          ? const HomePage(title: 'Flutter Demo Home Page')
-          : const LoginScreen(),
     );
   }
 }
