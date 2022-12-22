@@ -21,6 +21,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
   FocusNode passwordNode = FocusNode();
 
+  bool loginIng = false;
+
+  String? emailError;
+  String? passwordError;
+
   @override
   void dispose() {
     email.dispose();
@@ -62,21 +67,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         S.of(context).email,
-                        style: const TextStyle(color: Colors.black54),
+                        style: const TextStyle(color: Colors.black87),
                       ),
                       const SizedBox(height: 8),
                       OutlineTextField(
                         controller: email,
                         iconData: Icons.email_outlined,
                         textInputAction: TextInputAction.next,
+                        errorText: emailError,
                         onSubmit: (_) {
                           FocusScope.of(context).requestFocus(passwordNode);
+                        },
+                        onChange: (_){
+                          setState(() {
+                            emailError = null;
+                          });
                         },
                       ),
                       const SizedBox(height: 16),
                       Text(
                         S.of(context).password,
-                        style: const TextStyle(color: Colors.black54),
+                        style: const TextStyle(color: Colors.black87),
                       ),
                       const SizedBox(height: 8),
                       OutlineTextField(
@@ -85,6 +96,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         onSubmit: (_) {
                           FocusScope.of(context).unfocus();
                         },
+                        errorText: passwordError,
+                        onChange: (_){
+                          setState(() {
+                            passwordError = null;
+                          });
+                        },
                         iconData: Icons.vpn_key_outlined,
                         obscure: true,
                       ),
@@ -92,8 +109,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Center(
-                  child: loginButton(provider),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Center(
+                    child: loginButton(provider),
+                  ),
                 ),
                 const SizedBox(height: 32),
                 Center(
@@ -146,7 +166,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-
                 Row(
                   children: [
                     Expanded(
@@ -198,10 +217,41 @@ class _LoginScreenState extends State<LoginScreen> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           elevation: 0, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-      onPressed: () {
-        provider.loginByPassword(email: email.text, password: password.text);
+      onPressed: () async {
+        if (loginIng) return;
+        setState(() {
+          loginIng = true;
+        });
+        String? error = await provider.loginByPassword(email: email.text, password: password.text);
+        if(error !=null){
+          setState(() {
+            switch(error){
+              case 'user-not-found':
+                emailError = S.of(context).userNotFound;
+                break;
+              case 'wrong-password':
+                passwordError = S.of(context).passwordWrong;
+                break;
+              default:
+                emailError = error;
+            }
+          });
+        }
+        setState(() {
+          loginIng = false;
+        });
       },
-      child: Text(S.of(context).login),
+      child: Container(
+        padding: const EdgeInsets.all(4),
+        height: 42,
+        child: Center(
+          child: loginIng
+              ? const CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              : Text(S.of(context).login),
+        ),
+      ),
     );
   }
 }

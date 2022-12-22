@@ -140,6 +140,16 @@ class S {
     );
   }
 
+  /// `Confirm Password`
+  String get checkPassword {
+    return Intl.message(
+      'Confirm Password',
+      name: 'checkPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Guest Login`
   String get guestLogin {
     return Intl.message(
@@ -285,6 +295,66 @@ class S {
     return Intl.message(
       'Use your mailbox to register without any verification. Please make sure you enter the correct mailbox, which will be used to receive invitations and retrieve passwords.',
       name: 'signUpInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password is not strong enough, please enter at least 6 digits`
+  String get passwordWeak {
+    return Intl.message(
+      'The password is not strong enough, please enter at least 6 digits',
+      name: 'passwordWeak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email has been used`
+  String get emailUsed {
+    return Intl.message(
+      'Email has been used',
+      name: 'emailUsed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get passwordNotMatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'passwordNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter at least 6-digit password`
+  String get passwordInfo {
+    return Intl.message(
+      'Please enter at least 6-digit password',
+      name: 'passwordInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your password again`
+  String get checkPasswordInfo {
+    return Intl.message(
+      'Enter your password again',
+      name: 'checkPasswordInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Wrong`
+  String get passwordWrong {
+    return Intl.message(
+      'Password Wrong',
+      name: 'passwordWrong',
       desc: '',
       args: [],
     );

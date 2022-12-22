@@ -8,6 +8,7 @@
   "login": "登入",
   "email": "信箱",
   "password": "密碼",
+  "checkPassword": "確認密碼",
   "guestLogin": "訪客登入",
   "signUp": "註冊",
   "noAccount": "沒有帳號",
@@ -22,5 +23,11 @@
   "invalidEmail": "Email格式錯誤",
   "unknownError": "未知錯誤",
   "sendSuccess": "寄送成功!",
-  "signUpInfo": "使用您的信箱進行註冊，不需進行任何驗證。請確保您輸入正確的信箱，信箱將用來接收邀請與找回密碼。"
+  "signUpInfo": "使用您的信箱進行註冊，不需進行任何驗證。請確保您輸入正確的信箱，信箱將用來接收邀請與找回密碼。",
+  "passwordWeak": "密碼強度不足，請至少輸入6位數",
+  "emailUsed": "Email已使用過",
+  "passwordNotMatch": "密碼不相符",
+  "passwordInfo": "請輸入至少6位數密碼",
+  "checkPasswordInfo": "再次輸入您的密碼",
+  "passwordWrong": "密碼錯誤"
 }

@@ -15,14 +15,24 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController passwordSecond = TextEditingController();
 
   FocusNode passwordNode = FocusNode();
+  FocusNode passwordSecondNode = FocusNode();
+
+  String? emailError;
+  String? passwordError;
+  String? passwordSecondError;
+
+  bool signUpIng = false;
 
   @override
   void dispose() {
     email.dispose();
     password.dispose();
+    passwordSecond.dispose();
     passwordNode.dispose();
+    passwordSecondNode.dispose();
     super.dispose();
   }
 
@@ -65,28 +75,76 @@ class _SignUpPageState extends State<SignUpPage> {
                       const SizedBox(height: 16),
                       Text(
                         S.of(context).email,
-                        style: const TextStyle(color: Colors.black54),
+                        style: const TextStyle(color: Colors.black87),
                       ),
                       const SizedBox(height: 8),
                       OutlineTextField(
                         controller: email,
                         iconData: Icons.email_outlined,
                         textInputAction: TextInputAction.next,
+                        errorText: emailError,
                         onSubmit: (_) {
                           FocusScope.of(context).requestFocus(passwordNode);
+                        },
+                        onChange: (_) {
+                          setState(() {
+                            emailError = null;
+                          });
                         },
                       ),
                       const SizedBox(height: 16),
                       Text(
                         S.of(context).password,
-                        style: const TextStyle(color: Colors.black54),
+                        style: const TextStyle(color: Colors.black87),
+                      ),
+                      Text(
+                        S.of(context).passwordInfo,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12,
+                        ),
                       ),
                       const SizedBox(height: 8),
                       OutlineTextField(
                         controller: password,
                         focusNode: passwordNode,
+                        errorText: passwordError,
+                        textInputAction: TextInputAction.next,
+                        onSubmit: (_) {
+                          FocusScope.of(context).requestFocus(passwordSecondNode);
+                        },
+                        onChange: (_) {
+                          setState(() {
+                            passwordError = null;
+                          });
+                        },
+                        iconData: Icons.vpn_key_outlined,
+                        obscure: true,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        S.of(context).checkPassword,
+                        style: const TextStyle(color: Colors.black87),
+                      ),
+                      Text(
+                        S.of(context).checkPasswordInfo,
+                        style: const TextStyle(
+                          color: Colors.black54,
+                          fontSize: 12,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      OutlineTextField(
+                        controller: passwordSecond,
+                        focusNode: passwordSecondNode,
+                        errorText: passwordSecondError,
                         onSubmit: (_) {
                           FocusScope.of(context).unfocus();
+                        },
+                        onChange: (_) {
+                          setState(() {
+                            passwordSecondError = null;
+                          });
                         },
                         iconData: Icons.vpn_key_outlined,
                         obscure: true,
@@ -95,8 +153,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Center(
-                  child: signUpButton(provider),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  child: Center(
+                    child: signUpButton(provider),
+                  ),
                 ),
                 const SizedBox(height: 32),
               ],
@@ -111,10 +172,48 @@ class _SignUpPageState extends State<SignUpPage> {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           elevation: 0, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
-      onPressed: () {
-        provider.createPasswordAccount(email: email.text, password: password.text);
+      onPressed: () async {
+        if (signUpIng) return;
+        setState(() {
+          signUpIng = true;
+        });
+        if (password.text != passwordSecond.text) {
+          setState(() {
+            passwordSecondError = S.of(context).passwordNotMatch;
+          });
+          return;
+        }
+        String? error =
+            await provider.createPasswordAccount(email: email.text, password: password.text);
+        if (error != null) {
+          setState(() {
+            switch (error) {
+              case 'weak-password':
+                passwordError = S.of(context).passwordWeak;
+                break;
+              case 'email-already-in-use':
+                emailError = S.of(context).emailUsed;
+                break;
+              default:
+                emailError = error;
+            }
+          });
+        }
+        setState(() {
+          signUpIng = false;
+        });
       },
-      child: Text(S.of(context).signUp),
+      child: Container(
+        padding: const EdgeInsets.all(4),
+        height: 42,
+        child: Center(
+          child: signUpIng
+              ? const CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              : Text(S.of(context).signUp),
+        ),
+      ),
     );
   }
 }

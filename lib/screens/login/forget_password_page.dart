@@ -58,7 +58,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                         const SizedBox(height: 16),
                         Text(
                           S.of(context).email,
-                          style: const TextStyle(color: Colors.black54),
+                          style: const TextStyle(color: Colors.black87),
                         ),
                         const SizedBox(height: 8),
                         OutlineTextField(

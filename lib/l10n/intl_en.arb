@@ -8,6 +8,7 @@
   "login": "login",
   "email": "mailbox",
   "password": "password",
+  "checkPassword": "Confirm Password",
   "guestLogin": "Guest Login",
   "signUp": "Sign Up",
   "noAccount": "No account",
@@ -22,5 +23,11 @@
   "invalidEmail": "Email format error",
   "unknownError": "Unknown Error",
   "sendSuccess": "Sent successfully!",
-  "signUpInfo": "Use your mailbox to register without any verification. Please make sure you enter the correct mailbox, which will be used to receive invitations and retrieve passwords."
+  "signUpInfo": "Use your mailbox to register without any verification. Please make sure you enter the correct mailbox, which will be used to receive invitations and retrieve passwords.",
+  "passwordWeak": "The password is not strong enough, please enter at least 6 digits",
+  "emailUsed": "Email has been used",
+  "passwordNotMatch": "Passwords do not match",
+  "passwordInfo": "Please enter at least 6-digit password",
+  "checkPasswordInfo": "Enter your password again",
+  "passwordWrong": "Password Wrong"
 }

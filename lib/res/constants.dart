@@ -9,4 +9,5 @@ class Constants {
   static String addGroup = 'addGroup';
   static String more = 'more';
   static String isLogin = 'isLogin';
+  static String uid = 'uid';
 }

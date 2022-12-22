@@ -25,8 +25,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "addEvent": MessageLookupByLibrary.simpleMessage("Add Event"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
         "addMember": MessageLookupByLibrary.simpleMessage("Add new member"),
+        "checkPassword":
+            MessageLookupByLibrary.simpleMessage("Confirm Password"),
+        "checkPasswordInfo":
+            MessageLookupByLibrary.simpleMessage("Enter your password again"),
         "clickHere": MessageLookupByLibrary.simpleMessage("Please click here"),
         "email": MessageLookupByLibrary.simpleMessage("mailbox"),
+        "emailUsed":
+            MessageLookupByLibrary.simpleMessage("Email has been used"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
         "groups": MessageLookupByLibrary.simpleMessage("Groups"),
@@ -41,6 +47,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Didn\'t receive the Email? Please check your spam folder first, if you still haven\'t received the Email, please click Resend."),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "password": MessageLookupByLibrary.simpleMessage("password"),
+        "passwordInfo": MessageLookupByLibrary.simpleMessage(
+            "Please enter at least 6-digit password"),
+        "passwordNotMatch":
+            MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+        "passwordWeak": MessageLookupByLibrary.simpleMessage(
+            "The password is not strong enough, please enter at least 6 digits"),
+        "passwordWrong": MessageLookupByLibrary.simpleMessage("Password Wrong"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendResetEmailInfo": MessageLookupByLibrary.simpleMessage(
