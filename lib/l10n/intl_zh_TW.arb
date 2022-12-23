@@ -29,5 +29,13 @@
   "passwordNotMatch": "密碼不相符",
   "passwordInfo": "請輸入至少6位數密碼",
   "checkPasswordInfo": "再次輸入您的密碼",
-  "passwordWrong": "密碼錯誤"
+  "passwordWrong": "密碼錯誤",
+  "anonymouslyError": "訪客登入無法使用",
+  "logout": "登出",
+  "logoutSuccess": "已登出",
+  "loginSuccess": "登入成功",
+  "cancel": "取消",
+  "confirm": "確認",
+  "anonymouslyLoginInfo": "由於您使用訪客登入，您的個人資料可能會隨著應用程式的刪除而遺失，為避免這種狀況發生，您可以點選側選單的建立帳號來確保帳號不會遺失。",
+  "createAccount": "建立帳號"
 }

@@ -10,4 +10,7 @@ class Constants {
   static String more = 'more';
   static String isLogin = 'isLogin';
   static String uid = 'uid';
+  static String loginType = 'loginType';
+
+  static Color primaryColor = Colors.blue;
 }

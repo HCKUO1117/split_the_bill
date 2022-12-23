@@ -54,6 +54,7 @@ class _MyAppState extends State<MyApp> {
         title: 'Split the bill',
         theme: ThemeData(
           appBarTheme: AppBarTheme(
+            centerTitle: true,
             color: Colors.white,
             titleTextStyle: Theme.of(context).textTheme.titleMedium,
           ),
@@ -76,8 +77,8 @@ class _MyAppState extends State<MyApp> {
           Locale('zh', 'TW'),
         ],
         locale: locale ?? const Locale('en', ''),
-        home: Preferences.getBool(Constants.isLogin, false)
-            ? const HomePage(title: 'Flutter Demo Home Page')
+        home: Preferences.getString(Constants.uid, '').isNotEmpty
+            ? const HomePage()
             : const LoginScreen(),
       ),
     );

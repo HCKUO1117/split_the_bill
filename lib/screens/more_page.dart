@@ -16,13 +16,6 @@ class _MorePageState extends State<MorePage> {
       tag: Constants.more,
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_ios_new),
-          ),
           iconTheme: const IconThemeData(color: Colors.black54),
           title: Text(S.of(context).more),
         ),

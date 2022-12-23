@@ -198,7 +198,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 emailError = error;
             }
           });
+        }else{
+          Navigator.pop(context,true);
         }
+
         setState(() {
           signUpIng = false;
         });

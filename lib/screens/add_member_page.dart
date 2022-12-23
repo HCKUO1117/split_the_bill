@@ -16,13 +16,6 @@ class _AddMemberPageState extends State<AddMemberPage> {
       tag: Constants.addMember,
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back_ios_new),
-          ),
           iconTheme: const IconThemeData(color: Colors.black54),
           title: Text(S.of(context).addMember),
         ),

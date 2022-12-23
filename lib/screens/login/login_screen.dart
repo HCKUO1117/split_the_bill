@@ -3,8 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
+import 'package:split_the_bill/screens/home_screen.dart';
 import 'package:split_the_bill/screens/login/forget_password_page.dart';
 import 'package:split_the_bill/screens/login/sign_up_page.dart';
+import 'package:split_the_bill/utils/preferences.dart';
+import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/google_sign_in_button.dart';
 import 'package:split_the_bill/widgets/outline_text_field.dart';
 
@@ -25,6 +28,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   String? emailError;
   String? passwordError;
+
+  void loginSuccess() {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomePage(
+          firstAnonymous:
+              Preferences.getString(Constants.loginType, '') == LoginType.anonymous.name,
+        ),
+      ),
+    );
+    ShowSnack.show(context, content: S.of(context).loginSuccess);
+  }
 
   @override
   void dispose() {
@@ -78,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onSubmit: (_) {
                           FocusScope.of(context).requestFocus(passwordNode);
                         },
-                        onChange: (_){
+                        onChange: (_) {
                           setState(() {
                             emailError = null;
                           });
@@ -97,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           FocusScope.of(context).unfocus();
                         },
                         errorText: passwordError,
-                        onChange: (_){
+                        onChange: (_) {
                           setState(() {
                             passwordError = null;
                           });
@@ -128,13 +144,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: const TextStyle(fontSize: 14, color: Colors.black54),
                       ),
                       GestureDetector(
-                        onTap: () {
-                          Navigator.push(
+                        onTap: () async {
+                          bool? success = await Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const SignUpPage(),
                             ),
                           );
+                          if (success == true) {
+                            loginSuccess();
+                          }
                         },
                         child: Text(
                           S.of(context).signUp,
@@ -188,14 +207,36 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 32),
                 Center(
                   child: GoogleSignInButton(
-                    signInClick: () {},
-                    isSigningIn: false,
+                    signInClick: () async {
+                      setState(() {
+                        loginIng = true;
+                      });
+                      bool success = await provider.signInWithGoogle(context);
+                      if (success) {
+                        loginSuccess();
+                      }
+                      setState(() {
+                        loginIng = false;
+                      });
+                    },
+                    isSigningIn: loginIng,
                   ),
                 ),
                 const SizedBox(height: 32),
                 Center(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () async {
+                      setState(() {
+                        loginIng = true;
+                      });
+                      bool success = await provider.signInWithAnonymously(context);
+                      if (success) {
+                        loginSuccess();
+                      }
+                      setState(() {
+                        loginIng = false;
+                      });
+                    },
                     child: Text(
                       S.of(context).guestLogin,
                       style: const TextStyle(
@@ -223,9 +264,9 @@ class _LoginScreenState extends State<LoginScreen> {
           loginIng = true;
         });
         String? error = await provider.loginByPassword(email: email.text, password: password.text);
-        if(error !=null){
+        if (error != null) {
           setState(() {
-            switch(error){
+            switch (error) {
               case 'user-not-found':
                 emailError = S.of(context).userNotFound;
                 break;
@@ -236,6 +277,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 emailError = error;
             }
           });
+        } else {
+          loginSuccess();
         }
         setState(() {
           loginIng = false;

@@ -25,11 +25,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "addEvent": MessageLookupByLibrary.simpleMessage("Add Event"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
         "addMember": MessageLookupByLibrary.simpleMessage("Add new member"),
+        "anonymouslyError":
+            MessageLookupByLibrary.simpleMessage("Guest login not available"),
+        "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
+            "Because you use guest login, your personal information may be lost when the application is deleted. To avoid this, you can click Create Account in the side menu to ensure that the account will not be lost."),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "checkPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "checkPasswordInfo":
             MessageLookupByLibrary.simpleMessage("Enter your password again"),
         "clickHere": MessageLookupByLibrary.simpleMessage("Please click here"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
         "email": MessageLookupByLibrary.simpleMessage("mailbox"),
         "emailUsed":
             MessageLookupByLibrary.simpleMessage("Email has been used"),
@@ -40,6 +47,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidEmail":
             MessageLookupByLibrary.simpleMessage("Email format error"),
         "login": MessageLookupByLibrary.simpleMessage("login"),
+        "loginSuccess":
+            MessageLookupByLibrary.simpleMessage("Login successful"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+        "logoutSuccess": MessageLookupByLibrary.simpleMessage("Logged out"),
         "members": MessageLookupByLibrary.simpleMessage("Members"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
