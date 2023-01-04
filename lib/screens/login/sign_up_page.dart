@@ -180,6 +180,7 @@ class _SignUpPageState extends State<SignUpPage> {
         if (password.text != passwordSecond.text) {
           setState(() {
             passwordSecondError = S.of(context).passwordNotMatch;
+            signUpIng = false;
           });
           return;
         }

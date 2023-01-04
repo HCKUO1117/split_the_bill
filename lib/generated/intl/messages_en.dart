@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "clickHere": MessageLookupByLibrary.simpleMessage("Please click here"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
+        "createAccountSuccess": MessageLookupByLibrary.simpleMessage(
+            "Account created successfully!"),
         "email": MessageLookupByLibrary.simpleMessage("mailbox"),
         "emailUsed":
             MessageLookupByLibrary.simpleMessage("Email has been used"),

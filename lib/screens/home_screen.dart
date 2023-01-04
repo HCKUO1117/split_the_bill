@@ -78,7 +78,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             Hero(
               tag: Constants.more,
               child: Material(
+                color: Colors.white,
                 child: IconButton(
+                  color: Colors.white,
                   onPressed: () {
                     ScaffoldMessenger.of(context).removeCurrentSnackBar();
                     Navigator.push(
@@ -250,12 +252,29 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     title: S.of(context).createAccount,
                     onTap: () async {
                       ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                      Navigator.push(
+                      String? type = await Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => const LinkAccountPage(),
                         ),
                       );
+                      if (type == LoginType.email.name) {
+                        Navigator.pop(context);
+                        await Preferences.setString(Constants.loginType, LoginType.email.name);
+                        ShowSnack.show(
+                          context,
+                          content: S.of(context).createAccountSuccess,
+                        );
+                      }
+                      if (type == LoginType.google.name) {
+                        Navigator.pop(context);
+                        await Preferences.setString(Constants.loginType, LoginType.email.name);
+                        ShowSnack.show(
+                          context,
+                          content: S.of(context).createAccountSuccess,
+                        );
+                      }
+                      setState(() {});
                     },
                     heroTag: 'createAccount',
                   ),

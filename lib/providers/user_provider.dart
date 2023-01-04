@@ -132,4 +132,32 @@ class UserProvider extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
   }
+
+  ///匿名帳號轉正
+  Future<String?> linkAnonymousAccount(
+    LoginType type, {
+    String? email,
+    String? password,
+  }) async {
+    ///email
+    if(type == LoginType.email){
+      try {
+        final credential = EmailAuthProvider.credential(
+          email: email!,
+          password: password!,
+        );
+
+        final userCredential = await FirebaseAuth.instance.currentUser
+            ?.linkWithCredential(credential);
+        await Preferences.setString(Constants.uid, userCredential?.user?.uid ?? '');
+        await Preferences.setString(Constants.loginType, LoginType.email.name);
+
+      } on FirebaseAuthException catch (e) {
+        return e.code;
+      } catch (e) {
+        return e.toString();
+      }
+      return null;
+    }
+  }
 }

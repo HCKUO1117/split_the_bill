@@ -28,6 +28,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
+    debugPrint(Preferences.getString(Constants.uid, ''));
     if (defaultLocale.length > 1) {
       String first = defaultLocale.substring(0, 2);
       String last = defaultLocale.substring(defaultLocale.length - 2, defaultLocale.length);

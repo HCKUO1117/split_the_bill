@@ -34,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "clickHere": MessageLookupByLibrary.simpleMessage("請點此"),
         "confirm": MessageLookupByLibrary.simpleMessage("確認"),
         "createAccount": MessageLookupByLibrary.simpleMessage("建立帳號"),
+        "createAccountSuccess": MessageLookupByLibrary.simpleMessage("帳號建立成功!"),
         "email": MessageLookupByLibrary.simpleMessage("信箱"),
         "emailUsed": MessageLookupByLibrary.simpleMessage("Email已使用過"),
         "forgetPassword": MessageLookupByLibrary.simpleMessage("忘記密碼"),

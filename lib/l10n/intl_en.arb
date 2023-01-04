@@ -37,5 +37,6 @@
   "cancel": "Cancel",
   "confirm": "Confirm",
   "anonymouslyLoginInfo": "Because you use guest login, your personal information may be lost when the application is deleted. To avoid this, you can click Create Account in the side menu to ensure that the account will not be lost.",
-  "createAccount": "Create account"
+  "createAccount": "Create account",
+  "createAccountSuccess": "Account created successfully!"
 }

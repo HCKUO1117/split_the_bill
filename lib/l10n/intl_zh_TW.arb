@@ -37,5 +37,6 @@
   "cancel": "取消",
   "confirm": "確認",
   "anonymouslyLoginInfo": "由於您使用訪客登入，您的個人資料可能會隨著應用程式的刪除而遺失，為避免這種狀況發生，您可以點選側選單的建立帳號來確保帳號不會遺失。",
-  "createAccount": "建立帳號"
+  "createAccount": "建立帳號",
+  "createAccountSuccess": "帳號建立成功!"
 }
