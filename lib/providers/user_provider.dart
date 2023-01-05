@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:split_the_bill/generated/l10n.dart';
+import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/utils/preferences.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
@@ -27,6 +28,13 @@ extension LoginTypeEx on LoginType {
 
 class UserProvider extends ChangeNotifier {
   GoogleSignInAccount? googleSignInAccount;
+
+  UserModel user = UserModel();
+
+  ///載入user資料
+  void init(){
+
+  }
 
   ///匿名登入
   Future<bool> signInWithAnonymously(BuildContext context) async {
