@@ -140,18 +140,17 @@ class UserProvider extends ChangeNotifier {
     String? password,
   }) async {
     ///email
-    if(type == LoginType.email){
+    if (type == LoginType.email) {
       try {
         final credential = EmailAuthProvider.credential(
           email: email!,
           password: password!,
         );
 
-        final userCredential = await FirebaseAuth.instance.currentUser
-            ?.linkWithCredential(credential);
+        final userCredential =
+            await FirebaseAuth.instance.currentUser?.linkWithCredential(credential);
         await Preferences.setString(Constants.uid, userCredential?.user?.uid ?? '');
         await Preferences.setString(Constants.loginType, LoginType.email.name);
-
       } on FirebaseAuthException catch (e) {
         return e.code;
       } catch (e) {
@@ -159,5 +158,34 @@ class UserProvider extends ChangeNotifier {
       }
       return null;
     }
+
+    ///google
+    if (type == LoginType.google) {
+      try {
+        final GoogleSignIn googleSignIn = GoogleSignIn();
+
+        googleSignInAccount = await googleSignIn.signIn();
+
+        if (googleSignInAccount != null) {
+          final GoogleSignInAuthentication googleSignInAuthentication =
+              await googleSignInAccount!.authentication;
+
+          final credential = GoogleAuthProvider.credential(
+            idToken: googleSignInAuthentication.idToken,
+            accessToken: googleSignInAuthentication.accessToken,
+          );
+          final userCredential =
+              await FirebaseAuth.instance.currentUser?.linkWithCredential(credential);
+          await Preferences.setString(Constants.uid, userCredential?.user?.uid ?? '');
+          await Preferences.setString(Constants.loginType, LoginType.email.name);
+        }
+      } on FirebaseAuthException catch (e) {
+        return e.code;
+      } catch (e) {
+        return e.toString();
+      }
+      return null;
+    }
+    return null;
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
+import 'package:split_the_bill/widgets/google_sign_in_button.dart';
 import 'package:split_the_bill/widgets/outline_text_field.dart';
 
 class LinkAccountPage extends StatefulWidget {
@@ -24,6 +25,8 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
   String? passwordSecondError;
 
   bool signUpIng = false;
+
+  String? googleError;
 
   @override
   void dispose() {
@@ -149,6 +152,70 @@ class _LinkAccountPageState extends State<LinkAccountPage> {
                       child: signUpButton(provider),
                     ),
                   ),
+                  const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          color: Colors.black54,
+                          height: 1,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(S.of(context).or),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Container(
+                          color: Colors.black54,
+                          height: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
+                  Center(
+                    child: GoogleSignInButton(
+                      signInClick: () async {
+                        setState(() {
+                          signUpIng = true;
+                        });
+                        String? error = await provider.linkAnonymousAccount(LoginType.google);
+                        if (error != null) {
+                          setState(() {
+                            debugPrint(error);
+                            switch (error) {
+                              case "provider-already-linked":
+                              case "invalid-credential":
+                              case "credential-already-in-use":
+                              case "email-already-in-use":
+                                googleError = S.of(context).emailUsed;
+                                break;
+                              case 'weak-password':
+                                passwordError = S.of(context).passwordWeak;
+                                break;
+                              default:
+                                googleError = error;
+                            }
+                          });
+                        } else {
+                          Navigator.pop(context, LoginType.google.name);
+                        }
+                        setState(() {
+                          signUpIng = false;
+                        });
+                      },
+                      isSigningIn: signUpIng,
+                    ),
+                  ),
+                  if (googleError != null) ...[
+                    const SizedBox(height: 16),
+                    Center(
+                      child: Text(
+                        googleError!,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 32),
                 ],
               ),
