@@ -27,6 +27,16 @@ class _PersonalPageState extends State<PersonalPage> {
             ),
           ),
           Text(userProvider.user.name),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.edit),
+              ),
+              const SizedBox(width: 16),
+            ],
+          )
         ],
       ),
     );
