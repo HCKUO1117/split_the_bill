@@ -20,6 +20,7 @@ dependencies:
   rive: ^0.9.1
   intl: ^0.17.0
   shared_preferences: ^2.0.15
+  awesome_bottom_bar: ^1.2.1
 
 
   #firebase

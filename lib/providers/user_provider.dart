@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -31,9 +32,32 @@ class UserProvider extends ChangeNotifier {
 
   UserModel user = UserModel();
 
-  ///載入user資料
-  void init(){
+  CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+  ///載入user資料
+  void init() {
+    user.uid = Preferences.getString(Constants.uid, '');
+    users.doc(user.uid).get().then(
+      (DocumentSnapshot documentSnapshot) {
+        if (documentSnapshot.exists) {
+          Map<String,dynamic> data = documentSnapshot.data() as Map<String,dynamic>;
+          user.name = data['name'];
+          user.photoUrl = data['profile'];
+          user.backgroundImage = data['background'];
+          user.intro = data['intro'];
+          print(data['name']);
+          print('Document exists on the database');
+        } else {
+          users.doc(user.uid).set({
+            'name': '',
+            'profile': '',
+            'background': '',
+            'intro': '',
+          });
+        }
+        notifyListeners();
+      },
+    );
   }
 
   ///匿名登入

@@ -22,9 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account": MessageLookupByLibrary.simpleMessage("account"),
         "addEvent": MessageLookupByLibrary.simpleMessage("Add Event"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
-        "addMember": MessageLookupByLibrary.simpleMessage("Add new member"),
+        "addMember": MessageLookupByLibrary.simpleMessage("Add new friend"),
         "anonymouslyError":
             MessageLookupByLibrary.simpleMessage("Guest login not available"),
         "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
@@ -53,7 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login successful"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "logoutSuccess": MessageLookupByLibrary.simpleMessage("Logged out"),
-        "members": MessageLookupByLibrary.simpleMessage("Members"),
+        "members": MessageLookupByLibrary.simpleMessage("Friends"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
@@ -76,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "signUpInfo": MessageLookupByLibrary.simpleMessage(
             "Use your mailbox to register without any verification. Please make sure you enter the correct mailbox, which will be used to receive invitations and retrieve passwords."),
+        "statistics": MessageLookupByLibrary.simpleMessage("statistics"),
         "unknownError": MessageLookupByLibrary.simpleMessage("Unknown Error"),
         "userNotFound":
             MessageLookupByLibrary.simpleMessage("User does not exist")

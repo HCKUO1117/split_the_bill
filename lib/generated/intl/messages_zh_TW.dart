@@ -22,9 +22,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "account": MessageLookupByLibrary.simpleMessage("帳戶"),
         "addEvent": MessageLookupByLibrary.simpleMessage("新增活動"),
         "addGroup": MessageLookupByLibrary.simpleMessage("新增群組"),
-        "addMember": MessageLookupByLibrary.simpleMessage("新增成員"),
+        "addMember": MessageLookupByLibrary.simpleMessage("新增好友"),
         "anonymouslyError": MessageLookupByLibrary.simpleMessage("訪客登入無法使用"),
         "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
             "由於您使用訪客登入，您的個人資料可能會隨著應用程式的刪除而遺失，為避免這種狀況發生，您可以點選側選單的建立帳號來確保帳號不會遺失。"),
@@ -45,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginSuccess": MessageLookupByLibrary.simpleMessage("登入成功"),
         "logout": MessageLookupByLibrary.simpleMessage("登出"),
         "logoutSuccess": MessageLookupByLibrary.simpleMessage("已登出"),
-        "members": MessageLookupByLibrary.simpleMessage("成員"),
+        "members": MessageLookupByLibrary.simpleMessage("好友"),
         "more": MessageLookupByLibrary.simpleMessage("更多"),
         "noAccount": MessageLookupByLibrary.simpleMessage("沒有帳號"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
@@ -64,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUp": MessageLookupByLibrary.simpleMessage("註冊"),
         "signUpInfo": MessageLookupByLibrary.simpleMessage(
             "使用您的信箱進行註冊，不需進行任何驗證。請確保您輸入正確的信箱，信箱將用來接收邀請與找回密碼。"),
+        "statistics": MessageLookupByLibrary.simpleMessage("統計"),
         "unknownError": MessageLookupByLibrary.simpleMessage("未知錯誤"),
         "userNotFound": MessageLookupByLibrary.simpleMessage("使用者不存在")
       };

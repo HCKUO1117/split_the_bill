@@ -1,7 +1,7 @@
 {
-  "members": "Members",
+  "members": "Friends",
   "groups": "Groups",
-  "addMember": "Add new member",
+  "addMember": "Add new friend",
   "addGroup": "Add Group",
   "addEvent": "Add Event",
   "more": "More",
@@ -38,5 +38,7 @@
   "confirm": "Confirm",
   "anonymouslyLoginInfo": "Because you use guest login, your personal information may be lost when the application is deleted. To avoid this, you can click Create Account in the side menu to ensure that the account will not be lost.",
   "createAccount": "Create account",
-  "createAccountSuccess": "Account created successfully!"
+  "createAccountSuccess": "Account created successfully!",
+  "statistics": "statistics",
+  "account": "account"
 }

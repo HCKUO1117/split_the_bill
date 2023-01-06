@@ -1,7 +1,7 @@
 {
-  "members": "成員",
+  "members": "好友",
   "groups": "群組",
-  "addMember": "新增成員",
+  "addMember": "新增好友",
   "addGroup": "新增群組",
   "addEvent": "新增活動",
   "more": "更多",
@@ -38,5 +38,7 @@
   "confirm": "確認",
   "anonymouslyLoginInfo": "由於您使用訪客登入，您的個人資料可能會隨著應用程式的刪除而遺失，為避免這種狀況發生，您可以點選側選單的建立帳號來確保帳號不會遺失。",
   "createAccount": "建立帳號",
-  "createAccountSuccess": "帳號建立成功!"
+  "createAccountSuccess": "帳號建立成功!",
+  "statistics": "統計",
+  "account": "帳戶"
 }

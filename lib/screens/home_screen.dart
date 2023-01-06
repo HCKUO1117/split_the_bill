@@ -1,13 +1,17 @@
+
+import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
+import 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
-import 'package:split_the_bill/screens/add_group_page.dart';
-import 'package:split_the_bill/screens/add_member_page.dart';
+import 'package:split_the_bill/screens/chart/chart_page.dart';
+import 'package:split_the_bill/screens/group/group_n_friend_page.dart';
 import 'package:split_the_bill/screens/login/link_account_page.dart';
 import 'package:split_the_bill/screens/login/login_screen.dart';
 import 'package:split_the_bill/screens/more_page.dart';
+import 'package:split_the_bill/screens/person/personal_page.dart';
 import 'package:split_the_bill/utils/preferences.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/custom_dialog.dart';
@@ -22,31 +26,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  late final AnimationController memberController = AnimationController(
-    duration: const Duration(milliseconds: 200),
-    vsync: this,
-  );
-  late final Animation<double> memberAnimation = CurvedAnimation(
-    parent: memberController,
-    curve: Curves.fastOutSlowIn,
-  );
-  bool memberExpand = true;
+  int currentIndex = 0;
 
-  late final AnimationController groupController = AnimationController(
-    duration: const Duration(milliseconds: 200),
-    vsync: this,
-  );
-  late final Animation<double> groupAnimation = CurvedAnimation(
-    parent: groupController,
-    curve: Curves.fastOutSlowIn,
-  );
-
-  bool groupExpand = true;
+  late TabController tabController;
 
   @override
   void initState() {
-    groupController.forward();
-    memberController.forward();
+    context.read<UserProvider>().init();
+    tabController = TabController(length: 3, vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       if (widget.firstAnonymous) {
         showDialog(
@@ -55,6 +42,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         );
       }
     });
+
     super.initState();
   }
 
@@ -63,178 +51,52 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     return Consumer<UserProvider>(
       builder: (BuildContext context, UserProvider provider, _) {
         return Scaffold(
-          appBar: AppBar(
-            leading: Builder(
-              builder: (context) => IconButton(
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-                icon: const Icon(
-                  Icons.person_outline,
-                  color: Colors.black54,
-                ),
-              ),
-            ),
-            actions: [
-              Hero(
-                tag: Constants.more,
-                child: Material(
-                  color: Colors.white,
-                  child: IconButton(
-                    color: Colors.white,
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const MorePage(),
-                        ),
-                      );
-                    },
-                    icon: const Icon(
-                      Icons.more_vert,
-                      color: Colors.black54,
+          appBar: currentIndex == 2
+              ? null
+              : AppBar(
+                  leading: Builder(
+                    builder: (context) => IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                      icon: const Icon(
+                        Icons.person_outline,
+                        color: Colors.black54,
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ],
-          ),
-          body: ListView(
-            physics: const BouncingScrollPhysics(),
-            children: [
-              const SizedBox(height: 16),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Text(
-              //       S.of(context).members,
-              //       style: Constants.robotoTextStyle.copyWith(
-              //         color: Colors.black54,
-              //         fontSize: 20,
-              //         fontWeight: FontWeight.bold,
-              //       ),
-              //     )
-              //   ],
-              // ),
-              // const Divider(),
-              iconTitle(
-                icon: Icons.person_add_alt,
-                title: S.of(context).addMember,
-                heroTag: Constants.addMember,
-                onTap: () {
-                  ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AddMemberPage(),
-                    ),
-                  );
-                },
-              ),
-              iconTitle(
-                icon: Icons.group_add_outlined,
-                title: S.of(context).addGroup,
-                heroTag: Constants.addGroup,
-                onTap: () {
-                  ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const AddGroupPage(),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 16),
-              InkWell(
-                onTap: () {
-                  if (groupExpand) {
-                    groupController.reverse();
-                    groupExpand = !groupExpand;
-                  } else {
-                    groupController.forward();
-                    groupExpand = !groupExpand;
-                  }
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(width: 16),
-                    Text(
-                      S.of(context).groups + ' (0)',
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Container(
-                        color: Colors.grey,
-                        height: 1,
+                  actions: [
+                    Hero(
+                      tag: Constants.more,
+                      child: Material(
+                        color: Colors.white,
+                        child: IconButton(
+                          color: Colors.white,
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const MorePage(),
+                              ),
+                            );
+                          },
+                          icon: const Icon(
+                            Icons.more_vert,
+                            color: Colors.black54,
+                          ),
+                        ),
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    RotationTransition(
-                      turns: Tween(begin: 0.0, end: -0.5).animate(groupAnimation),
-                      child: const Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
                   ],
                 ),
-              ),
-              SizeTransition(
-                sizeFactor: groupAnimation,
-                axis: Axis.vertical,
-                axisAlignment: -1,
-                child: const Center(
-                  child: FlutterLogo(size: 200.0),
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  if (memberExpand) {
-                    memberController.reverse();
-                    memberExpand = !memberExpand;
-                  } else {
-                    memberController.forward();
-                    memberExpand = !memberExpand;
-                  }
-                },
-                child: Row(
-                  children: [
-                    const SizedBox(width: 16),
-                    Text(
-                      S.of(context).members + ' (0)',
-                      style: const TextStyle(color: Colors.grey),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: Container(
-                        color: Colors.grey,
-                        height: 1,
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    RotationTransition(
-                      turns: Tween(begin: 0.0, end: -0.5).animate(memberAnimation),
-                      child: const Icon(
-                        Icons.arrow_drop_down,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                  ],
-                ),
-              ),
-              SizeTransition(
-                sizeFactor: memberAnimation,
-                axis: Axis.vertical,
-                axisAlignment: -1,
-                child: const Center(
-                  child: FlutterLogo(size: 200.0),
-                ),
-              ),
+          body: TabBarView(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: tabController,
+            children: const [
+              GroupNFriendPage(),
+              ChartPage(),
+              PersonalPage(),
             ],
           ),
           drawer: SafeArea(
@@ -297,6 +159,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ],
               ),
             ),
+          ),
+          bottomNavigationBar: BottomBarInspiredInside(
+            items: [
+              TabItem(icon: Icons.group, title: S.of(context).groups),
+              TabItem(icon: Icons.bar_chart, title: S.of(context).statistics),
+              TabItem(icon: Icons.account_circle, title: S.of(context).account),
+            ],
+            colorSelected: Colors.white,
+            color: Colors.black54,
+            indexSelected: currentIndex,
+            backgroundColor: Colors.white,
+            chipStyle: const ChipStyle(convexBridge: true),
+            itemStyle: ItemStyle.circle,
+            onTap: (index) {
+              tabController.animateTo(index);
+              setState(() {
+                currentIndex = index;
+              });
+            },
           ),
         );
       },

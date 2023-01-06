@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Members`
+  /// `Friends`
   String get members {
     return Intl.message(
-      'Members',
+      'Friends',
       name: 'members',
       desc: '',
       args: [],
@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `Add new member`
+  /// `Add new friend`
   String get addMember {
     return Intl.message(
-      'Add new member',
+      'Add new friend',
       name: 'addMember',
       desc: '',
       args: [],
@@ -445,6 +445,26 @@ class S {
     return Intl.message(
       'Account created successfully!',
       name: 'createAccountSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `statistics`
+  String get statistics {
+    return Intl.message(
+      'statistics',
+      name: 'statistics',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `account`
+  String get account {
+    return Intl.message(
+      'account',
+      name: 'account',
       desc: '',
       args: [],
     );
