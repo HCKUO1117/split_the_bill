@@ -58,6 +58,9 @@ class _MyAppState extends State<MyApp> {
             centerTitle: true,
             color: Colors.white,
             titleTextStyle: Theme.of(context).textTheme.titleMedium,
+            iconTheme: const IconThemeData(
+              color: Colors.black54,
+            ),
           ),
         ),
         localizationsDelegates: const [

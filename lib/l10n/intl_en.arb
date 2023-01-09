@@ -40,5 +40,14 @@
   "createAccount": "Create account",
   "createAccountSuccess": "Account created successfully!",
   "statistics": "statistics",
-  "account": "account"
+  "account": "account",
+  "edit": "edit",
+  "name": "Name",
+  "intro": "Introduction",
+  "profile": "Avatar",
+  "background": "Background",
+  "updateSuccess": "Update successful!",
+  "updateFail": "Update failed",
+  "timeOut": "The network connection is poor, the data will continue to upload after connecting to a stable network",
+  "update": "Update"
 }

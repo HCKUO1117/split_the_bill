@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:split_the_bill/generated/l10n.dart';
@@ -34,29 +37,190 @@ class UserProvider extends ChangeNotifier {
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+  Reference storageRef = FirebaseStorage.instance.ref();
+
   ///載入user資料
   void init() {
     user.uid = Preferences.getString(Constants.uid, '');
+    storageRef = FirebaseStorage.instance.ref(user.uid);
     users.doc(user.uid).get().then(
       (DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {
-          Map<String,dynamic> data = documentSnapshot.data() as Map<String,dynamic>;
+          Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
           user.name = data['name'];
-          user.photoUrl = data['profile'];
+          user.photoUrl = data['avatar'];
           user.backgroundImage = data['background'];
           user.intro = data['intro'];
-          print(data['name']);
-          print('Document exists on the database');
         } else {
           users.doc(user.uid).set({
             'name': '',
-            'profile': '',
+            'avatar': '',
             'background': '',
             'intro': '',
           });
         }
         notifyListeners();
       },
+      onError: (e) {
+        print(e);
+      },
+    );
+  }
+
+  ///更新用戶資料
+  Future<void> updateProfile({
+    required String name,
+    required File? profile,
+    required File? background,
+    required String intro,
+    required Function(void) onSuccess,
+    required Function(dynamic) onError,
+  }) async {
+    String avatarUrl = user.photoUrl;
+    String backgroundUrl = user.backgroundImage;
+    if (profile != null) {
+      bool success = false;
+      final avatarRef = storageRef.child('${user.uid}-avatar.jpg');
+      await avatarRef.putFile(profile).then(
+        (TaskSnapshot taskSnapshot) {
+          success = true;
+        },
+        onError: (e) {},
+      );
+      if (success) {
+        avatarUrl = await avatarRef.getDownloadURL();
+      }
+    }
+    if (background != null) {
+      bool success = false;
+      final backgroundRef = storageRef.child('${user.uid}-background.jpg');
+      await backgroundRef.putFile(background).then(
+        (TaskSnapshot taskSnapshot) {
+          success = true;
+        },
+        onError: (e) {},
+      );
+      if (success) {
+        backgroundUrl = await backgroundRef.getDownloadURL();
+      }
+    }
+
+    await users.doc(user.uid).update({
+      'name': name,
+      'avatar': avatarUrl,
+      'background': backgroundUrl,
+      'intro': intro,
+    }).then(
+      onSuccess,
+      onError: onError,
+    );
+  }
+
+  ///更新名字
+  Future<void> updateName({
+    required String name,
+    required Function(void) onSuccess,
+    required Function(dynamic) onError,
+    required Function onTimeOut,
+  }) async {
+    await users
+        .doc(user.uid)
+        .update({'name': name})
+        .then(
+          onSuccess,
+          onError: onError,
+        )
+        .timeout(
+          const Duration(seconds: 15),
+          onTimeout: () {
+            onTimeOut.call();
+          },
+        );
+  }
+
+  ///更新介紹
+  Future<void> updateIntro({
+    required String intro,
+    required Function(void) onSuccess,
+    required Function(dynamic) onError,
+    required Function onTimeOut,
+  }) async {
+    await users
+        .doc(user.uid)
+        .update({'intro': intro})
+        .then(
+          onSuccess,
+          onError: onError,
+        )
+        .timeout(
+          const Duration(seconds: 15),
+          onTimeout: () {
+            onTimeOut.call();
+          },
+        );
+  }
+
+  ///更新大頭照
+  Future<void> updateAvatar({
+    required File avatar,
+    required Function(void) onSuccess,
+    required Function(dynamic) onError,
+    required Function onTimeOut,
+  }) async {
+    String avatarUrl = user.photoUrl;
+
+    bool success = false;
+    final avatarRef = storageRef.child('${user.uid}-avatar.jpg');
+    await avatarRef.putFile(avatar).then(
+      (TaskSnapshot taskSnapshot) {
+        success = true;
+      },
+      onError: onError,
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        onTimeOut.call();
+      },
+    );
+    if (!success) {
+      return;
+    }
+    avatarUrl = await avatarRef.getDownloadURL();
+    await users.doc(user.uid).update({'avatar': avatarUrl}).then(
+      onSuccess,
+      onError: onError,
+    );
+  }
+
+  ///更新背景照
+  Future<void> updateBackground({
+    required File background,
+    required Function(void) onSuccess,
+    required Function(dynamic) onError,
+    required Function onTimeOut,
+  }) async {
+    String backgroundUrl = user.backgroundImage;
+
+    bool success = false;
+    final avatarRef = storageRef.child('${user.uid}-background.jpg');
+    await avatarRef.putFile(background).then(
+          (TaskSnapshot taskSnapshot) {
+        success = true;
+      },
+      onError: onError,
+    ).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        onTimeOut.call();
+      },
+    );
+    if (!success) {
+      return;
+    }
+    backgroundUrl = await avatarRef.getDownloadURL();
+    await users.doc(user.uid).update({'background': backgroundUrl}).then(
+      onSuccess,
+      onError: onError,
     );
   }
 

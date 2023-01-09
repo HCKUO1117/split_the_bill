@@ -40,5 +40,14 @@
   "createAccount": "建立帳號",
   "createAccountSuccess": "帳號建立成功!",
   "statistics": "統計",
-  "account": "帳戶"
+  "account": "帳戶",
+  "edit": "編輯",
+  "name": "名字",
+  "intro": "介紹",
+  "profile": "頭像",
+  "background": "背景",
+  "updateSuccess": "更新成功!",
+  "updateFail": "更新失敗",
+  "timeOut": "網路連線不佳，資料將於連接上穩定網路後繼續上傳",
+  "update": "更新"
 }

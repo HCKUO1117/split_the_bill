@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Guest login not available"),
         "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
             "Because you use guest login, your personal information may be lost when the application is deleted. To avoid this, you can click Create Account in the side menu to ensure that the account will not be lost."),
+        "background": MessageLookupByLibrary.simpleMessage("Background"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "checkPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
@@ -40,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
         "createAccountSuccess": MessageLookupByLibrary.simpleMessage(
             "Account created successfully!"),
+        "edit": MessageLookupByLibrary.simpleMessage("edit"),
         "email": MessageLookupByLibrary.simpleMessage("mailbox"),
         "emailUsed":
             MessageLookupByLibrary.simpleMessage("Email has been used"),
@@ -47,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot password"),
         "groups": MessageLookupByLibrary.simpleMessage("Groups"),
         "guestLogin": MessageLookupByLibrary.simpleMessage("Guest Login"),
+        "intro": MessageLookupByLibrary.simpleMessage("Introduction"),
         "invalidEmail":
             MessageLookupByLibrary.simpleMessage("Email format error"),
         "login": MessageLookupByLibrary.simpleMessage("login"),
@@ -56,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutSuccess": MessageLookupByLibrary.simpleMessage("Logged out"),
         "members": MessageLookupByLibrary.simpleMessage("Friends"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
             "Didn\'t receive the Email? Please check your spam folder first, if you still haven\'t received the Email, please click Resend."),
@@ -68,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordWeak": MessageLookupByLibrary.simpleMessage(
             "The password is not strong enough, please enter at least 6 digits"),
         "passwordWrong": MessageLookupByLibrary.simpleMessage("Password Wrong"),
+        "profile": MessageLookupByLibrary.simpleMessage("Avatar"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendResetEmailInfo": MessageLookupByLibrary.simpleMessage(
@@ -78,7 +83,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUpInfo": MessageLookupByLibrary.simpleMessage(
             "Use your mailbox to register without any verification. Please make sure you enter the correct mailbox, which will be used to receive invitations and retrieve passwords."),
         "statistics": MessageLookupByLibrary.simpleMessage("statistics"),
+        "timeOut": MessageLookupByLibrary.simpleMessage(
+            "The network connection is poor, the data will continue to upload after connecting to a stable network"),
         "unknownError": MessageLookupByLibrary.simpleMessage("Unknown Error"),
+        "update": MessageLookupByLibrary.simpleMessage("Update"),
+        "updateFail": MessageLookupByLibrary.simpleMessage("Update failed"),
+        "updateSuccess":
+            MessageLookupByLibrary.simpleMessage("Update successful!"),
         "userNotFound":
             MessageLookupByLibrary.simpleMessage("User does not exist")
       };

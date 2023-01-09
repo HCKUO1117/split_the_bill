@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "anonymouslyError": MessageLookupByLibrary.simpleMessage("訪客登入無法使用"),
         "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
             "由於您使用訪客登入，您的個人資料可能會隨著應用程式的刪除而遺失，為避免這種狀況發生，您可以點選側選單的建立帳號來確保帳號不會遺失。"),
+        "background": MessageLookupByLibrary.simpleMessage("背景"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "checkPassword": MessageLookupByLibrary.simpleMessage("確認密碼"),
         "checkPasswordInfo": MessageLookupByLibrary.simpleMessage("再次輸入您的密碼"),
@@ -36,11 +37,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("確認"),
         "createAccount": MessageLookupByLibrary.simpleMessage("建立帳號"),
         "createAccountSuccess": MessageLookupByLibrary.simpleMessage("帳號建立成功!"),
+        "edit": MessageLookupByLibrary.simpleMessage("編輯"),
         "email": MessageLookupByLibrary.simpleMessage("信箱"),
         "emailUsed": MessageLookupByLibrary.simpleMessage("Email已使用過"),
         "forgetPassword": MessageLookupByLibrary.simpleMessage("忘記密碼"),
         "groups": MessageLookupByLibrary.simpleMessage("群組"),
         "guestLogin": MessageLookupByLibrary.simpleMessage("訪客登入"),
+        "intro": MessageLookupByLibrary.simpleMessage("介紹"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Email格式錯誤"),
         "login": MessageLookupByLibrary.simpleMessage("登入"),
         "loginSuccess": MessageLookupByLibrary.simpleMessage("登入成功"),
@@ -48,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "logoutSuccess": MessageLookupByLibrary.simpleMessage("已登出"),
         "members": MessageLookupByLibrary.simpleMessage("好友"),
         "more": MessageLookupByLibrary.simpleMessage("更多"),
+        "name": MessageLookupByLibrary.simpleMessage("名字"),
         "noAccount": MessageLookupByLibrary.simpleMessage("沒有帳號"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
             "沒有收到信件?請先檢查您的垃圾信箱，若仍沒有收到信件請點擊重新寄送。"),
@@ -57,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordNotMatch": MessageLookupByLibrary.simpleMessage("密碼不相符"),
         "passwordWeak": MessageLookupByLibrary.simpleMessage("密碼強度不足，請至少輸入6位數"),
         "passwordWrong": MessageLookupByLibrary.simpleMessage("密碼錯誤"),
+        "profile": MessageLookupByLibrary.simpleMessage("頭像"),
         "resend": MessageLookupByLibrary.simpleMessage("重新寄送"),
         "send": MessageLookupByLibrary.simpleMessage("寄送"),
         "sendResetEmailInfo": MessageLookupByLibrary.simpleMessage(
@@ -66,7 +71,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "signUpInfo": MessageLookupByLibrary.simpleMessage(
             "使用您的信箱進行註冊，不需進行任何驗證。請確保您輸入正確的信箱，信箱將用來接收邀請與找回密碼。"),
         "statistics": MessageLookupByLibrary.simpleMessage("統計"),
+        "timeOut":
+            MessageLookupByLibrary.simpleMessage("網路連線不佳，資料將於連接上穩定網路後繼續上傳"),
         "unknownError": MessageLookupByLibrary.simpleMessage("未知錯誤"),
+        "update": MessageLookupByLibrary.simpleMessage("更新"),
+        "updateFail": MessageLookupByLibrary.simpleMessage("更新失敗"),
+        "updateSuccess": MessageLookupByLibrary.simpleMessage("更新成功!"),
         "userNotFound": MessageLookupByLibrary.simpleMessage("使用者不存在")
       };
 }

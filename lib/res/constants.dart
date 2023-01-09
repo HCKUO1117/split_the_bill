@@ -12,5 +12,8 @@ class Constants {
   static String uid = 'uid';
   static String loginType = 'loginType';
 
+  static String background = 'assets/images/background.jpg';
+  static String avatar = 'assets/images/avatar.png';
+
   static Color primaryColor = Colors.blue;
 }

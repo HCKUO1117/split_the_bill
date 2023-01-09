@@ -469,6 +469,96 @@ class S {
       args: [],
     );
   }
+
+  /// `edit`
+  String get edit {
+    return Intl.message(
+      'edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Introduction`
+  String get intro {
+    return Intl.message(
+      'Introduction',
+      name: 'intro',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Avatar`
+  String get profile {
+    return Intl.message(
+      'Avatar',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Background`
+  String get background {
+    return Intl.message(
+      'Background',
+      name: 'background',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update successful!`
+  String get updateSuccess {
+    return Intl.message(
+      'Update successful!',
+      name: 'updateSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update failed`
+  String get updateFail {
+    return Intl.message(
+      'Update failed',
+      name: 'updateFail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The network connection is poor, the data will continue to upload after connecting to a stable network`
+  String get timeOut {
+    return Intl.message(
+      'The network connection is poor, the data will continue to upload after connecting to a stable network',
+      name: 'timeOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update`
+  String get update {
+    return Intl.message(
+      'Update',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
