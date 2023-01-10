@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:photo_view/photo_view.dart';
 
 class MyPhotoView extends StatelessWidget {
@@ -12,7 +14,10 @@ class MyPhotoView extends StatelessWidget {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              final directory = await getApplicationDocumentsDirectory();
+              Dio().download(url, directory.path + DateTime.now().microsecondsSinceEpoch.toString() + '.jpg');
+            },
             icon: const Icon(Icons.download),
           )
         ],
