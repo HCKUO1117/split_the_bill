@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:split_the_bill/generated/l10n.dart';
@@ -62,7 +63,9 @@ class UserProvider extends ChangeNotifier {
         notifyListeners();
       },
       onError: (e) {
-        print(e);
+        if (kDebugMode) {
+          print(e);
+        }
       },
     );
   }
