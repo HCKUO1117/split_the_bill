@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/screens/my_photo_view.dart';
 
-class ProfilePhoto extends StatelessWidget {
+class ProfilePhoto extends StatefulWidget {
   final String background;
   final String profile;
 
@@ -12,6 +13,11 @@ class ProfilePhoto extends StatelessWidget {
     required this.profile,
   }) : super(key: key);
 
+  @override
+  State<ProfilePhoto> createState() => _ProfilePhotoState();
+}
+
+class _ProfilePhotoState extends State<ProfilePhoto> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -23,24 +29,38 @@ class ProfilePhoto extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                if (background.contains('http')) {
+                if (widget.background.contains('http')) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MyPhotoView(url: background),
+                      builder: (context) => MyPhotoView(url: widget.background),
                     ),
                   );
                 }
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
-                child: background.isEmpty
+                child: widget.background.isEmpty
                     ? Image.asset(Constants.background)
                     : Image.network(
-                        background,
+                        widget.background,
                         height: width / 16 * 9,
                         width: width,
                         fit: BoxFit.cover,
+                        loadingBuilder: (context, child, progress) {
+                          if (progress == null) {
+                            return child;
+                          }
+                          return Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            child: Container(
+                              color: Colors.white,
+                              width: width,
+                              height: width / 16 * 9,
+                            ),
+                          );
+                        },
                       ),
               ),
             ),
@@ -51,11 +71,11 @@ class ProfilePhoto extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            if (profile.contains('http')) {
+            if (widget.profile.contains('http')) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MyPhotoView(url: profile),
+                  builder: (context) => MyPhotoView(url: widget.profile),
                 ),
               );
             }
@@ -76,14 +96,28 @@ class ProfilePhoto extends StatelessWidget {
                 child: SizedBox(
                   height: profileSize,
                   width: profileSize,
-                  child: profile.isEmpty
+                  child: widget.profile.isEmpty
                       ? Image.asset(
                           Constants.avatar,
                           color: Colors.grey,
                         )
                       : Image.network(
-                          profile,
+                          widget.profile,
                           fit: BoxFit.cover,
+                          loadingBuilder: (context, child, progress) {
+                            if (progress == null) {
+                              return child;
+                            }
+                            return Shimmer.fromColors(
+                              baseColor: Colors.grey.shade300,
+                              highlightColor: Colors.grey.shade100,
+                              child: Container(
+                                color: Colors.white,
+                                height: profileSize,
+                                width: profileSize,
+                              ),
+                            );
+                          },
                         ),
                 ),
               )

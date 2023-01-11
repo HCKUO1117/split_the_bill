@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/utils/pick_image.dart';
@@ -208,6 +209,20 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                                         width: 150,
                                         height: 150,
                                         fit: BoxFit.cover,
+                                        loadingBuilder: (context, child, progress) {
+                                          if (progress == null) {
+                                            return child;
+                                          }
+                                          return Shimmer.fromColors(
+                                            baseColor: Colors.grey.shade300,
+                                            highlightColor: Colors.grey.shade100,
+                                            child: Container(
+                                              color: Colors.white,
+                                              width: 150,
+                                              height: 150,
+                                            ),
+                                          );
+                                        },
                                       ),
                           ),
                           Row(
@@ -298,6 +313,22 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                                           height: (MediaQuery.of(context).size.width - 64) / 16 * 9,
                                           width: double.maxFinite,
                                           fit: BoxFit.cover,
+                                          loadingBuilder: (context, child, progress) {
+                                            if (progress == null) {
+                                              return child;
+                                            }
+                                            return Shimmer.fromColors(
+                                              baseColor: Colors.grey.shade300,
+                                              highlightColor: Colors.grey.shade100,
+                                              child: Container(
+                                                color: Colors.white,
+                                                height: (MediaQuery.of(context).size.width - 64) /
+                                                    16 *
+                                                    9,
+                                                width: double.maxFinite,
+                                              ),
+                                            );
+                                          },
                                         ),
                             ),
                           ),
@@ -352,6 +383,7 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Card(
+        elevation: 0,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         color: Colors.blue.shade50,
         child: Padding(
