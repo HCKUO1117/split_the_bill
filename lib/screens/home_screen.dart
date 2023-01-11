@@ -10,7 +10,6 @@ import 'package:split_the_bill/screens/chart/chart_page.dart';
 import 'package:split_the_bill/screens/group/group_n_friend_page.dart';
 import 'package:split_the_bill/screens/login/link_account_page.dart';
 import 'package:split_the_bill/screens/login/login_screen.dart';
-import 'package:split_the_bill/screens/more_page.dart';
 import 'package:split_the_bill/screens/person/personal_page.dart';
 import 'package:split_the_bill/utils/preferences.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
@@ -54,41 +53,41 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           appBar: currentIndex == 2
               ? null
               : AppBar(
-                  leading: Builder(
-                    builder: (context) => IconButton(
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                      icon: const Icon(
-                        Icons.person_outline,
-                        color: Colors.black54,
-                      ),
-                    ),
-                  ),
-                  actions: [
-                    Hero(
-                      tag: Constants.more,
-                      child: Material(
-                        color: Colors.white,
-                        child: IconButton(
-                          color: Colors.white,
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const MorePage(),
-                              ),
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.more_vert,
-                            color: Colors.black54,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  // leading: Builder(
+                  //   builder: (context) => IconButton(
+                  //     onPressed: () {
+                  //       Scaffold.of(context).openDrawer();
+                  //     },
+                  //     icon: const Icon(
+                  //       Icons.person_outline,
+                  //       color: Colors.black54,
+                  //     ),
+                  //   ),
+                  // ),
+                  // actions: [
+                  //   Hero(
+                  //     tag: Constants.more,
+                  //     child: Material(
+                  //       color: Colors.white,
+                  //       child: IconButton(
+                  //         color: Colors.white,
+                  //         onPressed: () {
+                  //           ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                  //           Navigator.push(
+                  //             context,
+                  //             MaterialPageRoute(
+                  //               builder: (context) => const MorePage(),
+                  //             ),
+                  //           );
+                  //         },
+                  //         icon: const Icon(
+                  //           Icons.more_vert,
+                  //           color: Colors.black54,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ],
                 ),
           body: TabBarView(
             physics: const NeverScrollableScrollPhysics(),

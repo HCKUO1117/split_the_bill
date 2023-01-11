@@ -49,5 +49,6 @@
   "updateSuccess": "Update successful!",
   "updateFail": "Update failed",
   "timeOut": "The network connection is poor, the data will continue to upload after connecting to a stable network",
-  "update": "Update"
+  "update": "Update",
+  "error": "Error : "
 }

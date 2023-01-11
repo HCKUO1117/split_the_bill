@@ -273,6 +273,15 @@ class _LoginScreenState extends State<LoginScreen> {
               case 'wrong-password':
                 passwordError = S.of(context).passwordWrong;
                 break;
+              case 'invalid-email':
+                emailError = S.of(context).invalidEmail;
+                break;
+              case 'email-empty':
+                emailError = S.of(context).invalidEmail;
+                break;
+              case 'password-empty':
+                passwordError = S.of(context).passwordWrong;
+                break;
               default:
                 emailError = error;
             }

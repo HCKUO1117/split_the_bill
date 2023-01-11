@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("編輯"),
         "email": MessageLookupByLibrary.simpleMessage("信箱"),
         "emailUsed": MessageLookupByLibrary.simpleMessage("Email已使用過"),
+        "error": MessageLookupByLibrary.simpleMessage("錯誤 : "),
         "forgetPassword": MessageLookupByLibrary.simpleMessage("忘記密碼"),
         "groups": MessageLookupByLibrary.simpleMessage("群組"),
         "guestLogin": MessageLookupByLibrary.simpleMessage("訪客登入"),

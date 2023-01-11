@@ -49,5 +49,6 @@
   "updateSuccess": "更新成功!",
   "updateFail": "更新失敗",
   "timeOut": "網路連線不佳，資料將於連接上穩定網路後繼續上傳",
-  "update": "更新"
+  "update": "更新",
+  "error": "錯誤 : "
 }

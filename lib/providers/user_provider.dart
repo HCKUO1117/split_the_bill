@@ -58,6 +58,9 @@ class UserProvider extends ChangeNotifier {
             'avatar': '',
             'background': '',
             'intro': '',
+            'groups': [],
+            'friends':[],
+            'events':[],
           });
         }
         notifyListeners();
@@ -67,55 +70,6 @@ class UserProvider extends ChangeNotifier {
           print(e);
         }
       },
-    );
-  }
-
-  ///更新用戶資料
-  Future<void> updateProfile({
-    required String name,
-    required File? profile,
-    required File? background,
-    required String intro,
-    required Function(void) onSuccess,
-    required Function(dynamic) onError,
-  }) async {
-    String avatarUrl = user.photoUrl;
-    String backgroundUrl = user.backgroundImage;
-    if (profile != null) {
-      bool success = false;
-      final avatarRef = storageRef.child('${user.uid}-avatar.jpg');
-      await avatarRef.putFile(profile).then(
-        (TaskSnapshot taskSnapshot) {
-          success = true;
-        },
-        onError: (e) {},
-      );
-      if (success) {
-        avatarUrl = await avatarRef.getDownloadURL();
-      }
-    }
-    if (background != null) {
-      bool success = false;
-      final backgroundRef = storageRef.child('${user.uid}-background.jpg');
-      await backgroundRef.putFile(background).then(
-        (TaskSnapshot taskSnapshot) {
-          success = true;
-        },
-        onError: (e) {},
-      );
-      if (success) {
-        backgroundUrl = await backgroundRef.getDownloadURL();
-      }
-    }
-
-    await users.doc(user.uid).update({
-      'name': name,
-      'avatar': avatarUrl,
-      'background': backgroundUrl,
-      'intro': intro,
-    }).then(
-      onSuccess,
-      onError: onError,
     );
   }
 
@@ -240,7 +194,7 @@ class UserProvider extends ChangeNotifier {
           ShowSnack.show(context, content: S.of(context).anonymouslyError);
           break;
         default:
-          ShowSnack.show(context, content: S.of(context).unknownError);
+          ShowSnack.show(context, content: S.of(context).error + e.code);
       }
     }
     return false;
@@ -252,7 +206,12 @@ class UserProvider extends ChangeNotifier {
 
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
-    googleSignInAccount = await googleSignIn.signIn();
+    try{
+      googleSignInAccount = await googleSignIn.signIn();
+    }catch (e){
+      ShowSnack.show(context, content: S.of(context).error + e.toString());
+    }
+
 
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
@@ -312,6 +271,12 @@ class UserProvider extends ChangeNotifier {
     required String email,
     required String password,
   }) async {
+    if(email.isEmpty){
+      return 'email-empty';
+    }
+    if(password.isEmpty){
+      return 'password-empty';
+    }
     try {
       final credential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
