@@ -1,5 +1,5 @@
 {
-  "members": "好友",
+  "friends": "好友",
   "groups": "群組",
   "addMember": "新增好友",
   "addGroup": "新增群組",
@@ -50,5 +50,10 @@
   "updateFail": "更新失敗",
   "timeOut": "網路連線不佳，資料將於連接上穩定網路後繼續上傳",
   "update": "更新",
-  "error": "錯誤 : "
+  "error": "錯誤 : ",
+  "groupName": "群組名稱",
+  "members": "成員",
+  "create": "建立",
+  "nameNotFill": "名稱請勿空白",
+  "createSuccess": "建立成功!"
 }

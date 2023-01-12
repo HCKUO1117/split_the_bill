@@ -43,6 +43,7 @@ class UserProvider extends ChangeNotifier {
   ///載入user資料
   void init() {
     user.uid = Preferences.getString(Constants.uid, '');
+    user.email = Preferences.getString(Constants.email, '');
     storageRef = FirebaseStorage.instance.ref(user.uid);
     users.doc(user.uid).get().then(
       (DocumentSnapshot documentSnapshot) {
@@ -55,12 +56,12 @@ class UserProvider extends ChangeNotifier {
         } else {
           users.doc(user.uid).set({
             'name': '',
+            'email': user.email,
             'avatar': '',
             'background': '',
             'intro': '',
-            'groups': [],
-            'friends':[],
-            'events':[],
+            'real': true,
+            'crateAt': DateTime.now().microsecondsSinceEpoch,
           });
         }
         notifyListeners();
@@ -161,7 +162,7 @@ class UserProvider extends ChangeNotifier {
     bool success = false;
     final avatarRef = storageRef.child('${user.uid}-background.jpg');
     await avatarRef.putFile(background).then(
-          (TaskSnapshot taskSnapshot) {
+      (TaskSnapshot taskSnapshot) {
         success = true;
       },
       onError: onError,
@@ -206,12 +207,11 @@ class UserProvider extends ChangeNotifier {
 
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
-    try{
+    try {
       googleSignInAccount = await googleSignIn.signIn();
-    }catch (e){
+    } catch (e) {
       ShowSnack.show(context, content: S.of(context).error + e.toString());
     }
-
 
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
@@ -225,6 +225,7 @@ class UserProvider extends ChangeNotifier {
       try {
         final UserCredential userCredential = await auth.signInWithCredential(credential);
         await Preferences.setString(Constants.uid, userCredential.user?.uid ?? '');
+        await Preferences.setString(Constants.email, userCredential.user?.email ?? '');
         await Preferences.setString(Constants.loginType, LoginType.google.name);
         return true;
       } on FirebaseAuthException catch (e) {
@@ -253,6 +254,7 @@ class UserProvider extends ChangeNotifier {
         password: password,
       );
       await Preferences.setString(Constants.uid, credential.user?.uid ?? '');
+      await Preferences.setString(Constants.email, credential.user?.email ?? '');
       await Preferences.setString(Constants.loginType, LoginType.email.name);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -271,16 +273,17 @@ class UserProvider extends ChangeNotifier {
     required String email,
     required String password,
   }) async {
-    if(email.isEmpty){
+    if (email.isEmpty) {
       return 'email-empty';
     }
-    if(password.isEmpty){
+    if (password.isEmpty) {
       return 'password-empty';
     }
     try {
       final credential =
           await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       await Preferences.setString(Constants.uid, credential.user?.uid ?? '');
+      await Preferences.setString(Constants.email, credential.user?.email ?? '');
       await Preferences.setString(Constants.loginType, LoginType.email.name);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -293,6 +296,7 @@ class UserProvider extends ChangeNotifier {
   ///登出
   Future<void> signOut() async {
     await Preferences.setString(Constants.uid, '');
+    user = UserModel();
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
   }
@@ -314,6 +318,7 @@ class UserProvider extends ChangeNotifier {
         final userCredential =
             await FirebaseAuth.instance.currentUser?.linkWithCredential(credential);
         await Preferences.setString(Constants.uid, userCredential?.user?.uid ?? '');
+        await Preferences.setString(Constants.email, userCredential?.user?.email ?? '');
         await Preferences.setString(Constants.loginType, LoginType.email.name);
       } on FirebaseAuthException catch (e) {
         return e.code;
@@ -341,6 +346,7 @@ class UserProvider extends ChangeNotifier {
           final userCredential =
               await FirebaseAuth.instance.currentUser?.linkWithCredential(credential);
           await Preferences.setString(Constants.uid, userCredential?.user?.uid ?? '');
+          await Preferences.setString(Constants.email, userCredential?.user?.email ?? '');
           await Preferences.setString(Constants.loginType, LoginType.email.name);
         }
       } on FirebaseAuthException catch (e) {

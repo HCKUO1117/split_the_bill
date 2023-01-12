@@ -10,6 +10,7 @@ class Constants {
   static String more = 'more';
   static String isLogin = 'isLogin';
   static String uid = 'uid';
+  static String email = 'email';
   static String loginType = 'loginType';
 
   static String background = 'assets/images/background.jpg';

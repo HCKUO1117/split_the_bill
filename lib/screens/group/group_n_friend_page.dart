@@ -3,6 +3,7 @@ import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/screens/group/add_group_page.dart';
 import 'package:split_the_bill/screens/group/add_member_page.dart';
+import 'package:split_the_bill/utils/show_snack.dart';
 
 class GroupNFriendPage extends StatefulWidget {
   const GroupNFriendPage({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class GroupNFriendPage extends StatefulWidget {
   State<GroupNFriendPage> createState() => _GroupNFriendPageState();
 }
 
-class _GroupNFriendPageState extends State<GroupNFriendPage>  with TickerProviderStateMixin {
+class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProviderStateMixin {
   late final AnimationController memberController = AnimationController(
     duration: const Duration(milliseconds: 200),
     vsync: this,
@@ -36,7 +37,8 @@ class _GroupNFriendPageState extends State<GroupNFriendPage>  with TickerProvide
   @override
   void initState() {
     groupController.forward();
-    memberController.forward();    super.initState();
+    memberController.forward();
+    super.initState();
   }
 
   @override
@@ -77,14 +79,17 @@ class _GroupNFriendPageState extends State<GroupNFriendPage>  with TickerProvide
           icon: Icons.group_add_outlined,
           title: S.of(context).addGroup,
           heroTag: Constants.addGroup,
-          onTap: () {
+          onTap: () async {
             ScaffoldMessenger.of(context).removeCurrentSnackBar();
-            Navigator.push(
+            bool? success = await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const AddGroupPage(),
               ),
             );
+            if (success == true) {
+              ShowSnack.show(context, content: S.of(context).createSuccess);
+            }
           },
         ),
         const SizedBox(height: 16),
@@ -146,7 +151,7 @@ class _GroupNFriendPageState extends State<GroupNFriendPage>  with TickerProvide
             children: [
               const SizedBox(width: 16),
               Text(
-                S.of(context).members + ' (0)',
+                S.of(context).friends + ' (0)',
                 style: const TextStyle(color: Colors.grey),
               ),
               const SizedBox(width: 8),

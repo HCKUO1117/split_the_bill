@@ -38,9 +38,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your password again"),
         "clickHere": MessageLookupByLibrary.simpleMessage("Please click here"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "create": MessageLookupByLibrary.simpleMessage("Create"),
         "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
         "createAccountSuccess": MessageLookupByLibrary.simpleMessage(
             "Account created successfully!"),
+        "createSuccess":
+            MessageLookupByLibrary.simpleMessage("Create successfully!"),
         "edit": MessageLookupByLibrary.simpleMessage("edit"),
         "email": MessageLookupByLibrary.simpleMessage("mailbox"),
         "emailUsed":
@@ -48,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error : "),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
+        "friends": MessageLookupByLibrary.simpleMessage("Friends"),
+        "groupName": MessageLookupByLibrary.simpleMessage("Group Name"),
         "groups": MessageLookupByLibrary.simpleMessage("Groups"),
         "guestLogin": MessageLookupByLibrary.simpleMessage("Guest Login"),
         "intro": MessageLookupByLibrary.simpleMessage("Introduction"),
@@ -58,9 +63,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Login successful"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "logoutSuccess": MessageLookupByLibrary.simpleMessage("Logged out"),
-        "members": MessageLookupByLibrary.simpleMessage("Friends"),
+        "members": MessageLookupByLibrary.simpleMessage("Members"),
         "more": MessageLookupByLibrary.simpleMessage("More"),
         "name": MessageLookupByLibrary.simpleMessage("Name"),
+        "nameNotFill":
+            MessageLookupByLibrary.simpleMessage("Name must not be blank"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
             "Didn\'t receive the Email? Please check your spam folder first, if you still haven\'t received the Email, please click Resend."),

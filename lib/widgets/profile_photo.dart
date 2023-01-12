@@ -41,7 +41,12 @@ class _ProfilePhotoState extends State<ProfilePhoto> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: widget.background.isEmpty
-                    ? Image.asset(Constants.background)
+                    ? Image.asset(
+                        Constants.background,
+                        height: width / 16 * 9,
+                        width: width,
+                        fit: BoxFit.cover,
+                      )
                     : Image.network(
                         widget.background,
                         height: width / 16 * 9,

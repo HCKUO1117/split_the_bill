@@ -1,5 +1,5 @@
 {
-  "members": "Friends",
+  "friends": "Friends",
   "groups": "Groups",
   "addMember": "Add new friend",
   "addGroup": "Add Group",
@@ -50,5 +50,10 @@
   "updateFail": "Update failed",
   "timeOut": "The network connection is poor, the data will continue to upload after connecting to a stable network",
   "update": "Update",
-  "error": "Error : "
+  "error": "Error : ",
+  "groupName": "Group Name",
+  "members": "Members",
+  "create": "Create",
+  "nameNotFill": "Name must not be blank",
+  "createSuccess": "Create successfully!"
 }

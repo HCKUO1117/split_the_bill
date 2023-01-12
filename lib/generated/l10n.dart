@@ -51,10 +51,10 @@ class S {
   }
 
   /// `Friends`
-  String get members {
+  String get friends {
     return Intl.message(
       'Friends',
-      name: 'members',
+      name: 'friends',
       desc: '',
       args: [],
     );
@@ -565,6 +565,56 @@ class S {
     return Intl.message(
       'Error : ',
       name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Group Name`
+  String get groupName {
+    return Intl.message(
+      'Group Name',
+      name: 'groupName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Members`
+  String get members {
+    return Intl.message(
+      'Members',
+      name: 'members',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get create {
+    return Intl.message(
+      'Create',
+      name: 'create',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name must not be blank`
+  String get nameNotFill {
+    return Intl.message(
+      'Name must not be blank',
+      name: 'nameNotFill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create successfully!`
+  String get createSuccess {
+    return Intl.message(
+      'Create successfully!',
+      name: 'createSuccess',
       desc: '',
       args: [],
     );
