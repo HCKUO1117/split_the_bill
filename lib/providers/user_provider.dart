@@ -55,7 +55,7 @@ class UserProvider extends ChangeNotifier {
           user.intro = data['intro'];
         } else {
           users.doc(user.uid).set({
-            'name': '',
+            'name': user.email,
             'email': user.email,
             'avatar': '',
             'background': '',
