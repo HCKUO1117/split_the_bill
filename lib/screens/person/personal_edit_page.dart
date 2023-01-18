@@ -196,7 +196,7 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                                     height: 150,
                                     fit: BoxFit.cover,
                                   )
-                                : userProvider.user.photoUrl.isEmpty
+                                : userProvider.user.avatar.isEmpty
                                     ? Image.asset(
                                         Constants.avatar,
                                         color: Colors.grey,
@@ -205,7 +205,7 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                                         fit: BoxFit.cover,
                                       )
                                     : Image.network(
-                                        userProvider.user.photoUrl,
+                                        userProvider.user.avatar,
                                         width: 150,
                                         height: 150,
                                         fit: BoxFit.cover,
@@ -301,7 +301,7 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                                       height: (MediaQuery.of(context).size.width - 64) / 16 * 9,
                                       width: double.maxFinite,
                                     )
-                                  : userProvider.user.backgroundImage.isEmpty
+                                  : userProvider.user.background.isEmpty
                                       ? Image.asset(
                                           Constants.background,
                                           height: (MediaQuery.of(context).size.width - 64) / 16 * 9,
@@ -309,7 +309,7 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                                           fit: BoxFit.cover,
                                         )
                                       : Image.network(
-                                          userProvider.user.backgroundImage,
+                                          userProvider.user.background,
                                           height: (MediaQuery.of(context).size.width - 64) / 16 * 9,
                                           width: double.maxFinite,
                                           fit: BoxFit.cover,

@@ -24,8 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("account"),
         "addEvent": MessageLookupByLibrary.simpleMessage("Add Event"),
+        "addFriend": MessageLookupByLibrary.simpleMessage("Add new friend"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
-        "addMember": MessageLookupByLibrary.simpleMessage("Add new friend"),
         "anonymouslyError":
             MessageLookupByLibrary.simpleMessage("Guest login not available"),
         "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameNotFill":
             MessageLookupByLibrary.simpleMessage("Name must not be blank"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
+        "noResult": MessageLookupByLibrary.simpleMessage("No matching results"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
             "Didn\'t receive the Email? Please check your spam folder first, if you still haven\'t received the Email, please click Resend."),
         "or": MessageLookupByLibrary.simpleMessage("or"),
@@ -82,6 +83,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordWrong": MessageLookupByLibrary.simpleMessage("Password Wrong"),
         "profile": MessageLookupByLibrary.simpleMessage("Avatar"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
+        "results": MessageLookupByLibrary.simpleMessage("result"),
+        "searchFriendInfo": MessageLookupByLibrary.simpleMessage(
+            "Please enter a complete Email"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendResetEmailInfo": MessageLookupByLibrary.simpleMessage(
             "We will send a password reset email to your email address, please reset your password and then login again."),

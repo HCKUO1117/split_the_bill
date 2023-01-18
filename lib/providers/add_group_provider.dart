@@ -61,6 +61,7 @@ class AddGroupProvider with ChangeNotifier {
       'name': groupName.text,
       'admin':Preferences.getString(Constants.uid, ''),
       'createAt':DateTime.now().microsecondsSinceEpoch,
+      'updateAt':DateTime.now().microsecondsSinceEpoch,
     });
     fireStore
         .collection('users')

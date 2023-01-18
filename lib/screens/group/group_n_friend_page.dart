@@ -1,10 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/models/group_model.dart';
 import 'package:split_the_bill/providers/home_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
+import 'package:split_the_bill/screens/group/add_friend_page.dart';
 import 'package:split_the_bill/screens/group/add_group_page.dart';
 import 'package:split_the_bill/screens/group/add_member_page.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
@@ -69,14 +69,14 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
             // const Divider(),
             iconTitle(
               icon: Icons.person_add_alt,
-              title: S.of(context).addMember,
+              title: S.of(context).addFriend,
               heroTag: Constants.addMember,
               onTap: () {
                 ScaffoldMessenger.of(context).removeCurrentSnackBar();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AddMemberPage(),
+                    builder: (context) => const AddFriendPage(),
                   ),
                 );
               },
@@ -113,7 +113,7 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
                 children: [
                   const SizedBox(width: 16),
                   Text(
-                    S.of(context).groups + ' (${provider.groupList.length})',
+                    S.of(context).groups + ' (${provider.groups.length})',
                     style: const TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(width: 8),
@@ -191,8 +191,6 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
     );
   }
 
-  final Stream<QuerySnapshot> _groupsStream =
-      FirebaseFirestore.instance.collection('groups').snapshots();
 
   Widget groups(HomeProvider provider) {
     return ListView.separated(
@@ -223,13 +221,13 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
                 )
               : Image.network(
                   model.photo,
-                  width: 100,
-                  height: 100,
+                  width: 50,
+                  height: 50,
                   fit: BoxFit.cover,
                 ),
         ),
         const SizedBox(width: 8),
-        Expanded(child: Text(model.name + '(${model.members.length})'))
+        Expanded(child: Text(model.name + ' (${model.members.length}) '))
       ],
     );
   }

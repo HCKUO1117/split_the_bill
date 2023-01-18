@@ -71,10 +71,10 @@ class S {
   }
 
   /// `Add new friend`
-  String get addMember {
+  String get addFriend {
     return Intl.message(
       'Add new friend',
-      name: 'addMember',
+      name: 'addFriend',
       desc: '',
       args: [],
     );
@@ -615,6 +615,36 @@ class S {
     return Intl.message(
       'Create successfully!',
       name: 'createSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `result`
+  String get results {
+    return Intl.message(
+      'result',
+      name: 'results',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a complete Email`
+  String get searchFriendInfo {
+    return Intl.message(
+      'Please enter a complete Email',
+      name: 'searchFriendInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No matching results`
+  String get noResult {
+    return Intl.message(
+      'No matching results',
+      name: 'noResult',
       desc: '',
       args: [],
     );

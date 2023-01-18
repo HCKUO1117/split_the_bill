@@ -24,8 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "account": MessageLookupByLibrary.simpleMessage("帳戶"),
         "addEvent": MessageLookupByLibrary.simpleMessage("新增活動"),
+        "addFriend": MessageLookupByLibrary.simpleMessage("新增好友"),
         "addGroup": MessageLookupByLibrary.simpleMessage("新增群組"),
-        "addMember": MessageLookupByLibrary.simpleMessage("新增好友"),
         "anonymouslyError": MessageLookupByLibrary.simpleMessage("訪客登入無法使用"),
         "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
             "由於您使用訪客登入，您的個人資料可能會隨著應用程式的刪除而遺失，為避免這種狀況發生，您可以點選側選單的建立帳號來確保帳號不會遺失。"),
@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("名字"),
         "nameNotFill": MessageLookupByLibrary.simpleMessage("名稱請勿空白"),
         "noAccount": MessageLookupByLibrary.simpleMessage("沒有帳號"),
+        "noResult": MessageLookupByLibrary.simpleMessage("沒有符合的結果"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
             "沒有收到信件?請先檢查您的垃圾信箱，若仍沒有收到信件請點擊重新寄送。"),
         "or": MessageLookupByLibrary.simpleMessage("或"),
@@ -69,6 +70,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordWrong": MessageLookupByLibrary.simpleMessage("密碼錯誤"),
         "profile": MessageLookupByLibrary.simpleMessage("頭像"),
         "resend": MessageLookupByLibrary.simpleMessage("重新寄送"),
+        "results": MessageLookupByLibrary.simpleMessage("結果"),
+        "searchFriendInfo": MessageLookupByLibrary.simpleMessage("請輸入完整Email"),
         "send": MessageLookupByLibrary.simpleMessage("寄送"),
         "sendResetEmailInfo": MessageLookupByLibrary.simpleMessage(
             "我們將寄送一封重設密碼的信件置您的信箱，請重設密碼後再登入。"),

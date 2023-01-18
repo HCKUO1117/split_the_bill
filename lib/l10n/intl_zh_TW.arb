@@ -1,7 +1,7 @@
 {
   "friends": "好友",
   "groups": "群組",
-  "addMember": "新增好友",
+  "addFriend": "新增好友",
   "addGroup": "新增群組",
   "addEvent": "新增活動",
   "more": "更多",
@@ -55,5 +55,8 @@
   "members": "成員",
   "create": "建立",
   "nameNotFill": "名稱請勿空白",
-  "createSuccess": "建立成功!"
+  "createSuccess": "建立成功!",
+  "results": "結果",
+  "searchFriendInfo": "請輸入完整Email",
+  "noResult": "沒有符合的結果"
 }

@@ -25,8 +25,8 @@ class _PersonalPageState extends State<PersonalPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ProfilePhoto(
-                  background: userProvider.user.backgroundImage,
-                  profile: userProvider.user.photoUrl,
+                  background: userProvider.user.background,
+                  profile: userProvider.user.avatar,
                 ),
               ),
               Text(userProvider.user.name),

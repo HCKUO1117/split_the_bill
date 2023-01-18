@@ -1,7 +1,7 @@
 {
   "friends": "Friends",
   "groups": "Groups",
-  "addMember": "Add new friend",
+  "addFriend": "Add new friend",
   "addGroup": "Add Group",
   "addEvent": "Add Event",
   "more": "More",
@@ -55,5 +55,8 @@
   "members": "Members",
   "create": "Create",
   "nameNotFill": "Name must not be blank",
-  "createSuccess": "Create successfully!"
+  "createSuccess": "Create successfully!",
+  "results": "result",
+  "searchFriendInfo": "Please enter a complete Email",
+  "noResult": "No matching results"
 }

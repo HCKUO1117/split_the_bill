@@ -50,8 +50,8 @@ class UserProvider extends ChangeNotifier {
         if (documentSnapshot.exists) {
           Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
           user.name = data['name'];
-          user.photoUrl = data['avatar'];
-          user.backgroundImage = data['background'];
+          user.avatar = data['avatar'];
+          user.background = data['background'];
           user.intro = data['intro'];
         } else {
           users.doc(user.uid).set({
@@ -62,6 +62,7 @@ class UserProvider extends ChangeNotifier {
             'intro': '',
             'real': true,
             'crateAt': DateTime.now().microsecondsSinceEpoch,
+            'updateAt': DateTime.now().microsecondsSinceEpoch,
           });
         }
         notifyListeners();
@@ -125,7 +126,7 @@ class UserProvider extends ChangeNotifier {
     required Function(dynamic) onError,
     required Function onTimeOut,
   }) async {
-    String avatarUrl = user.photoUrl;
+    String avatarUrl = user.avatar;
 
     bool success = false;
     final avatarRef = storageRef.child('${user.uid}-avatar.jpg');
@@ -157,7 +158,7 @@ class UserProvider extends ChangeNotifier {
     required Function(dynamic) onError,
     required Function onTimeOut,
   }) async {
-    String backgroundUrl = user.backgroundImage;
+    String backgroundUrl = user.background;
 
     bool success = false;
     final avatarRef = storageRef.child('${user.uid}-background.jpg');

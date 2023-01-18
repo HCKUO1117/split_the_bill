@@ -12,14 +12,11 @@ class AddMemberPage extends StatefulWidget {
 class _AddMemberPageState extends State<AddMemberPage> {
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: Constants.addMember,
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           iconTheme: const IconThemeData(color: Colors.black54),
-          title: Text(S.of(context).addMember),
+          title: Text(S.of(context).addFriend),
         ),
-      ),
     );
   }
 }

@@ -133,7 +133,7 @@ class _AddGroupPageState extends State<AddGroupPage> {
                       memberModel: MemberModel(
                         id: userProvider.user.uid,
                         name: userProvider.user.name,
-                        avatar: userProvider.user.photoUrl,
+                        avatar: userProvider.user.avatar,
                         role: MemberRole.admin,
                         joined: false,
                         connected: true,
