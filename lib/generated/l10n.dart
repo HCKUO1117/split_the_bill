@@ -649,6 +649,116 @@ class S {
       args: [],
     );
   }
+
+  /// `You`
+  String get you {
+    return Intl.message(
+      'You',
+      name: 'you',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You cannot invite yourself`
+  String get cantInviteYourself {
+    return Intl.message(
+      'You cannot invite yourself',
+      name: 'cantInviteYourself',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already Friend`
+  String get alreadyFriend {
+    return Intl.message(
+      'Already Friend',
+      name: 'alreadyFriend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invitation, you cannot resend invitation`
+  String get alreadyInvited {
+    return Intl.message(
+      'Invitation, you cannot resend invitation',
+      name: 'alreadyInvited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invitation sent`
+  String get inviteSend {
+    return Intl.message(
+      'Invitation sent',
+      name: 'inviteSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Inviting`
+  String get inviting {
+    return Intl.message(
+      'Inviting',
+      name: 'inviting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invite`
+  String get invite {
+    return Intl.message(
+      'Invite',
+      name: 'invite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel Invite`
+  String get cancelInvite {
+    return Intl.message(
+      'Cancel Invite',
+      name: 'cancelInvite',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to cancel the friend invitation?`
+  String get cancelInviteInfo {
+    return Intl.message(
+      'Do you want to cancel the friend invitation?',
+      name: 'cancelInviteInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invitation canceled`
+  String get cancelInviteSuccess {
+    return Intl.message(
+      'Invitation canceled',
+      name: 'cancelInviteSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel invitation failed`
+  String get cancelInviteFail {
+    return Intl.message(
+      'Cancel invitation failed',
+      name: 'cancelInviteFail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

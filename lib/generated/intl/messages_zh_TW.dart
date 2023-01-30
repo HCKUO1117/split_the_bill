@@ -26,11 +26,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "addEvent": MessageLookupByLibrary.simpleMessage("新增活動"),
         "addFriend": MessageLookupByLibrary.simpleMessage("新增好友"),
         "addGroup": MessageLookupByLibrary.simpleMessage("新增群組"),
+        "alreadyFriend": MessageLookupByLibrary.simpleMessage("已加入好友"),
+        "alreadyInvited": MessageLookupByLibrary.simpleMessage("邀請中，您無法重複寄送邀請"),
         "anonymouslyError": MessageLookupByLibrary.simpleMessage("訪客登入無法使用"),
         "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
             "由於您使用訪客登入，您的個人資料可能會隨著應用程式的刪除而遺失，為避免這種狀況發生，您可以點選側選單的建立帳號來確保帳號不會遺失。"),
         "background": MessageLookupByLibrary.simpleMessage("背景"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
+        "cancelInvite": MessageLookupByLibrary.simpleMessage("取消邀請"),
+        "cancelInviteFail": MessageLookupByLibrary.simpleMessage("取消邀請失敗"),
+        "cancelInviteInfo": MessageLookupByLibrary.simpleMessage("是否要取消好友邀請?"),
+        "cancelInviteSuccess": MessageLookupByLibrary.simpleMessage("已取消邀請"),
+        "cantInviteYourself": MessageLookupByLibrary.simpleMessage("您無法邀請您自己"),
         "checkPassword": MessageLookupByLibrary.simpleMessage("確認密碼"),
         "checkPasswordInfo": MessageLookupByLibrary.simpleMessage("再次輸入您的密碼"),
         "clickHere": MessageLookupByLibrary.simpleMessage("請點此"),
@@ -50,6 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "guestLogin": MessageLookupByLibrary.simpleMessage("訪客登入"),
         "intro": MessageLookupByLibrary.simpleMessage("介紹"),
         "invalidEmail": MessageLookupByLibrary.simpleMessage("Email格式錯誤"),
+        "invite": MessageLookupByLibrary.simpleMessage("邀請"),
+        "inviteSend": MessageLookupByLibrary.simpleMessage("已寄送邀請"),
+        "inviting": MessageLookupByLibrary.simpleMessage("邀請中"),
         "login": MessageLookupByLibrary.simpleMessage("登入"),
         "loginSuccess": MessageLookupByLibrary.simpleMessage("登入成功"),
         "logout": MessageLookupByLibrary.simpleMessage("登出"),
@@ -86,6 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "update": MessageLookupByLibrary.simpleMessage("更新"),
         "updateFail": MessageLookupByLibrary.simpleMessage("更新失敗"),
         "updateSuccess": MessageLookupByLibrary.simpleMessage("更新成功!"),
-        "userNotFound": MessageLookupByLibrary.simpleMessage("使用者不存在")
+        "userNotFound": MessageLookupByLibrary.simpleMessage("使用者不存在"),
+        "you": MessageLookupByLibrary.simpleMessage("你")
       };
 }

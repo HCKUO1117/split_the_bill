@@ -71,7 +71,6 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                         userProvider.updateName(
                           name: nameController.text,
                           onSuccess: (_) {
-                            userProvider.init();
                             ShowSnack.show(context, content: S.of(context).updateSuccess);
                             setState(() {
                               loading = false;
@@ -118,7 +117,6 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                         userProvider.updateIntro(
                           intro: introController.text,
                           onSuccess: (_) {
-                            userProvider.init();
                             ShowSnack.show(context, content: S.of(context).updateSuccess);
                             setState(() {
                               loading = false;
@@ -163,7 +161,6 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                         userProvider.updateAvatar(
                           avatar: avatarPicked!,
                           onSuccess: (_) {
-                            userProvider.init();
                             ShowSnack.show(context, content: S.of(context).updateSuccess);
                             setState(() {
                               avatarPicked = null;
@@ -266,7 +263,6 @@ class _PersonalEditPageState extends State<PersonalEditPage> {
                         userProvider.updateBackground(
                           background: backgroundPicked!,
                           onSuccess: (_) {
-                            userProvider.init();
                             ShowSnack.show(context, content: S.of(context).updateSuccess);
                             setState(() {
                               backgroundPicked = null;

@@ -58,5 +58,16 @@
   "createSuccess": "建立成功!",
   "results": "結果",
   "searchFriendInfo": "請輸入完整Email",
-  "noResult": "沒有符合的結果"
+  "noResult": "沒有符合的結果",
+  "you": "你",
+  "cantInviteYourself": "您無法邀請您自己",
+  "alreadyFriend": "已加入好友",
+  "alreadyInvited": "邀請中，您無法重複寄送邀請",
+  "inviteSend": "已寄送邀請",
+  "inviting": "邀請中",
+  "invite": "邀請",
+  "cancelInvite": "取消邀請",
+  "cancelInviteInfo": "是否要取消好友邀請?",
+  "cancelInviteSuccess": "已取消邀請",
+  "cancelInviteFail": "取消邀請失敗"
 }

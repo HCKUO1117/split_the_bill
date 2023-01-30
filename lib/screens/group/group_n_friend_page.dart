@@ -6,8 +6,9 @@ import 'package:split_the_bill/providers/home_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/screens/group/add_friend_page.dart';
 import 'package:split_the_bill/screens/group/add_group_page.dart';
-import 'package:split_the_bill/screens/group/add_member_page.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
+import 'package:split_the_bill/widgets/custom_dialog.dart';
+import 'package:split_the_bill/widgets/friend_title.dart';
 
 class GroupNFriendPage extends StatefulWidget {
   const GroupNFriendPage({Key? key}) : super(key: key);
@@ -71,12 +72,15 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
               icon: Icons.person_add_alt,
               title: S.of(context).addFriend,
               heroTag: Constants.addMember,
-              onTap: () {
+              onTap: () async {
                 ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                Navigator.push(
+                bool? success = await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AddFriendPage(),
+                    builder: (context) => ChangeNotifierProvider.value(
+                      value: provider,
+                      child: const AddFriendPage(),
+                    ),
                   ),
                 );
               },
@@ -155,7 +159,8 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
                 children: [
                   const SizedBox(width: 16),
                   Text(
-                    S.of(context).friends + ' (0)',
+                    S.of(context).friends +
+                        ' (${provider.invitingList.length + provider.friends.length})',
                     style: const TextStyle(color: Colors.grey),
                   ),
                   const SizedBox(width: 8),
@@ -181,16 +186,13 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
               sizeFactor: memberAnimation,
               axis: Axis.vertical,
               axisAlignment: -1,
-              child: const Center(
-                child: FlutterLogo(size: 200.0),
-              ),
+              child: friends(provider),
             ),
           ],
         );
       },
     );
   }
-
 
   Widget groups(HomeProvider provider) {
     return ListView.separated(
@@ -204,6 +206,47 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
         return const SizedBox(height: 8);
       },
       itemCount: provider.groups.length,
+    );
+  }
+
+  Widget friends(HomeProvider provider) {
+    return ListView.separated(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return FriendTitle(
+          model: provider.invitingList[index],
+          action: PopupMenuButton(
+            position: PopupMenuPosition.under,
+            onSelected: (i) async {
+              if (i == 1) {
+                bool? check = await showDialog(
+                  context: context,
+                  builder: (context) => CustomDialog(
+                    content: S.of(context).cancelInviteInfo,
+                  ),
+                );
+                if (check == true) {
+                  provider.cancelInvite(provider.invitingList[index].uid, onSuccess: () {
+                    ShowSnack.show(context, content: S.of(context).cancelInviteSuccess);
+                  }, onError: (e) {
+                    ShowSnack.show(context, content: S.of(context).cancelInviteFail);
+                  });
+                }
+              }
+            },
+            itemBuilder: (BuildContext context) {
+              return [const PopupMenuItem(value: 1, child: Text('取消邀請'))];
+            },
+            child: Text(S.of(context).inviting),
+          ),
+        );
+      },
+      separatorBuilder: (context, index) {
+        return const SizedBox(height: 8);
+      },
+      itemCount: provider.invitingList.length,
     );
   }
 

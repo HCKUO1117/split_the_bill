@@ -45,13 +45,14 @@ class UserProvider extends ChangeNotifier {
     user.uid = Preferences.getString(Constants.uid, '');
     user.email = Preferences.getString(Constants.email, '');
     storageRef = FirebaseStorage.instance.ref(user.uid);
-    users.doc(user.uid).get().then(
+    users.doc(user.uid).snapshots(includeMetadataChanges: true).listen(
       (DocumentSnapshot documentSnapshot) {
         if (documentSnapshot.exists) {
           Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
           user.name = data['name'];
           user.avatar = data['avatar'];
           user.background = data['background'];
+          user.email = data['email'];
           user.intro = data['intro'];
         } else {
           users.doc(user.uid).set({

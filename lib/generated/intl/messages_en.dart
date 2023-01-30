@@ -26,12 +26,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "addEvent": MessageLookupByLibrary.simpleMessage("Add Event"),
         "addFriend": MessageLookupByLibrary.simpleMessage("Add new friend"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
+        "alreadyFriend": MessageLookupByLibrary.simpleMessage("Already Friend"),
+        "alreadyInvited": MessageLookupByLibrary.simpleMessage(
+            "Invitation, you cannot resend invitation"),
         "anonymouslyError":
             MessageLookupByLibrary.simpleMessage("Guest login not available"),
         "anonymouslyLoginInfo": MessageLookupByLibrary.simpleMessage(
             "Because you use guest login, your personal information may be lost when the application is deleted. To avoid this, you can click Create Account in the side menu to ensure that the account will not be lost."),
         "background": MessageLookupByLibrary.simpleMessage("Background"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelInvite": MessageLookupByLibrary.simpleMessage("Cancel Invite"),
+        "cancelInviteFail":
+            MessageLookupByLibrary.simpleMessage("Cancel invitation failed"),
+        "cancelInviteInfo": MessageLookupByLibrary.simpleMessage(
+            "Do you want to cancel the friend invitation?"),
+        "cancelInviteSuccess":
+            MessageLookupByLibrary.simpleMessage("Invitation canceled"),
+        "cantInviteYourself":
+            MessageLookupByLibrary.simpleMessage("You cannot invite yourself"),
         "checkPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "checkPasswordInfo":
@@ -58,6 +70,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "intro": MessageLookupByLibrary.simpleMessage("Introduction"),
         "invalidEmail":
             MessageLookupByLibrary.simpleMessage("Email format error"),
+        "invite": MessageLookupByLibrary.simpleMessage("Invite"),
+        "inviteSend": MessageLookupByLibrary.simpleMessage("Invitation sent"),
+        "inviting": MessageLookupByLibrary.simpleMessage("Inviting"),
         "login": MessageLookupByLibrary.simpleMessage("login"),
         "loginSuccess":
             MessageLookupByLibrary.simpleMessage("Login successful"),
@@ -103,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "updateSuccess":
             MessageLookupByLibrary.simpleMessage("Update successful!"),
         "userNotFound":
-            MessageLookupByLibrary.simpleMessage("User does not exist")
+            MessageLookupByLibrary.simpleMessage("User does not exist"),
+        "you": MessageLookupByLibrary.simpleMessage("You")
       };
 }

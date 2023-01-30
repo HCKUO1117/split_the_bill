@@ -58,5 +58,16 @@
   "createSuccess": "Create successfully!",
   "results": "result",
   "searchFriendInfo": "Please enter a complete Email",
-  "noResult": "No matching results"
+  "noResult": "No matching results",
+  "you": "You",
+  "cantInviteYourself": "You cannot invite yourself",
+  "alreadyFriend": "Already Friend",
+  "alreadyInvited": "Invitation, you cannot resend invitation",
+  "inviteSend": "Invitation sent",
+  "inviting": "Inviting",
+  "invite": "Invite",
+  "cancelInvite": "Cancel Invite",
+  "cancelInviteInfo": "Do you want to cancel the friend invitation?",
+  "cancelInviteSuccess": "Invitation canceled",
+  "cancelInviteFail": "Cancel invitation failed"
 }

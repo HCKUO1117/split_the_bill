@@ -57,6 +57,7 @@ class AddGroupProvider with ChangeNotifier {
       return false;
     }
 
+    //TODO 需要優化(transaction)
     var response = await fireStore.collection('groups').add({
       'name': groupName.text,
       'admin':Preferences.getString(Constants.uid, ''),
