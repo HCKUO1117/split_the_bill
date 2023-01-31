@@ -18,20 +18,20 @@ class FriendTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return  InkWell(
+        onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => UserDetailPage(
+            userModel: model,
+          ),
+        ),
+      );
+    },
+    child: Row(
       children: [
-        GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => UserDetailPage(
-                  userModel: model,
-                ),
-              ),
-            );
-          },
-          child: ClipRRect(
+       ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: model.avatar.isEmpty
                 ? Image.asset(
@@ -60,7 +60,6 @@ class FriendTitle extends StatelessWidget {
                     },
                   ),
           ),
-        ),
         const SizedBox(width: 8),
         Expanded(
           child: Column(
@@ -83,6 +82,6 @@ class FriendTitle extends StatelessWidget {
         ),
         if (action != null) action!
       ],
-    );
+    ));
   }
 }

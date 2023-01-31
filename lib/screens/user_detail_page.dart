@@ -3,7 +3,7 @@ import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/widgets/profile_photo.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class UserDetailPage extends StatelessWidget {
+class UserDetailPage extends StatefulWidget {
   final UserModel userModel;
 
   const UserDetailPage({
@@ -12,23 +12,28 @@ class UserDetailPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<UserDetailPage> createState() => _UserDetailPageState();
+}
+
+class _UserDetailPageState extends State<UserDetailPage> {
+  @override
   Widget build(BuildContext context) {
     return SelectionArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text(userModel.name),
+          title: Text(widget.userModel.name),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
               const SizedBox(height: 16),
               ProfilePhoto(
-                background: userModel.background,
-                profile: userModel.avatar,
+                background: widget.userModel.background,
+                profile: widget.userModel.avatar,
               ),
               const SizedBox(height: 16),
               Text(
-                userModel.name,
+                widget.userModel.name,
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -37,10 +42,10 @@ class UserDetailPage extends StatelessWidget {
               const SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
-                  launchUrl(Uri.parse('mailto:${userModel.email}'));
+                  launchUrl(Uri.parse('mailto:${widget.userModel.email}'));
                 },
                 child: Text(
-                  userModel.email,
+                  widget.userModel.email,
                   style: const TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue,
@@ -48,7 +53,7 @@ class UserDetailPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              Text(userModel.intro),
+              Text(widget.userModel.intro),
             ],
           ),
         ),

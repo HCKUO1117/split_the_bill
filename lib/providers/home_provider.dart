@@ -43,7 +43,25 @@ class HomeProvider with ChangeNotifier {
         .snapshots(includeMetadataChanges: true)
         .listen((event) {
       friends.clear();
-      for (var element in event.docs) {}
+      for (var element in event.docs) {
+        fireStore.collection('users').doc(element.id).get().then((value) {
+          if (value.exists) {
+            final model = UserModel();
+            Map<String, dynamic> data = value.data() as Map<String, dynamic>;
+            model.uid = element.id;
+            model.name = data['name'];
+            model.avatar = data['avatar'];
+            model.email = data['email'];
+            model.background = data['background'];
+            model.intro = data['intro'];
+            if (friends.indexWhere((e) => e.uid == element.id) == -1) {
+              friends.add(model);
+            }
+            // invitingList.toSet().toList();
+            notifyListeners();
+          }
+        });
+      }
       notifyListeners();
     });
     fireStore
@@ -72,6 +90,7 @@ class HomeProvider with ChangeNotifier {
           }
         });
       }
+      notifyListeners();
     });
     fireStore
         .collection('users')
@@ -80,7 +99,25 @@ class HomeProvider with ChangeNotifier {
         .snapshots(includeMetadataChanges: true)
         .listen((event) {
       beInvitedList.clear();
-      for (var element in event.docs) {}
+      for (var element in event.docs) {
+        fireStore.collection('users').doc(element.id).get().then((value) {
+          if (value.exists) {
+            final model = UserModel();
+            Map<String, dynamic> data = value.data() as Map<String, dynamic>;
+            model.uid = element.id;
+            model.name = data['name'];
+            model.avatar = data['avatar'];
+            model.email = data['email'];
+            model.background = data['background'];
+            model.intro = data['intro'];
+            if (beInvitedList.indexWhere((e) => e.uid == element.id) == -1) {
+              beInvitedList.add(model);
+            }
+            // invitingList.toSet().toList();
+            notifyListeners();
+          }
+        });
+      }
       notifyListeners();
     });
     fireStore.collection('groups').snapshots(includeMetadataChanges: true).listen((event) async {
@@ -141,6 +178,85 @@ class HomeProvider with ChangeNotifier {
       onSuccess.call();
     }, onError: (e) {
       loading = false;
+      notifyListeners();
+      onError.call(e.toString());
+    });
+  }
+
+  Future<void> denyInvite(
+    String uid, {
+    required Function onSuccess,
+    required Function(String) onError,
+  }) async {
+    loading = true;
+    notifyListeners();
+    final userRef = fireStore
+        .collection('users')
+        .doc(Preferences.getString(Constants.uid, ''))
+        .collection('beInvited')
+        .doc(uid);
+    final targetRef = fireStore
+        .collection('users')
+        .doc(uid)
+        .collection('inviting')
+        .doc(Preferences.getString(Constants.uid, ''));
+    fireStore.runTransaction(
+      (transaction) async {
+        transaction.delete(userRef);
+        transaction.delete(targetRef);
+      },
+    ).then((value) {
+      loading = false;
+      notifyListeners();
+      onSuccess.call();
+    }, onError: (e) {
+      loading = false;
+      notifyListeners();
+      onError.call(e.toString());
+    });
+  }
+
+  Future<void> acceptInvite(
+    String uid, {
+    required Function onSuccess,
+    required Function(String) onError,
+  }) async {
+    loading = true;
+    notifyListeners();
+    final userRef = fireStore
+        .collection('users')
+        .doc(Preferences.getString(Constants.uid, ''))
+        .collection('beInvited')
+        .doc(uid);
+    final userFriendRef = fireStore
+        .collection('users')
+        .doc(Preferences.getString(Constants.uid, ''))
+        .collection('friends')
+        .doc(uid);
+    final targetRef = fireStore
+        .collection('users')
+        .doc(uid)
+        .collection('inviting')
+        .doc(Preferences.getString(Constants.uid, ''));
+    final targetFriendRef = fireStore
+        .collection('users')
+        .doc(uid)
+        .collection('friends')
+        .doc(Preferences.getString(Constants.uid, ''));
+    fireStore.runTransaction(
+      (transaction) async {
+        transaction.delete(userRef);
+        transaction.delete(targetRef);
+        transaction.set(userFriendRef, {'1': 1});
+        transaction.set(targetFriendRef, {'1': 1});
+      },
+    ).then((value) {
+      loading = false;
+      notifyListeners();
+      onSuccess.call();
+    }, onError: (e) {
+      loading = false;
+      notifyListeners();
       onError.call(e.toString());
     });
   }

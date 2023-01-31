@@ -22,9 +22,14 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "accept": MessageLookupByLibrary.simpleMessage("Accept"),
+        "acceptInviteInfo": MessageLookupByLibrary.simpleMessage(
+            "Do you want to accept the friend invitation?"),
         "account": MessageLookupByLibrary.simpleMessage("account"),
         "addEvent": MessageLookupByLibrary.simpleMessage("Add Event"),
         "addFriend": MessageLookupByLibrary.simpleMessage("Add new friend"),
+        "addFriendSuccess": MessageLookupByLibrary.simpleMessage(
+            "Invitation successfully accepted"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
         "alreadyFriend": MessageLookupByLibrary.simpleMessage("Already Friend"),
         "alreadyInvited": MessageLookupByLibrary.simpleMessage(
@@ -56,6 +61,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account created successfully!"),
         "createSuccess":
             MessageLookupByLibrary.simpleMessage("Create successfully!"),
+        "deny": MessageLookupByLibrary.simpleMessage("Deny"),
+        "denyInviteInfo": MessageLookupByLibrary.simpleMessage(
+            "Do you want to reject the friend invitation?"),
+        "denyInviteSuccess":
+            MessageLookupByLibrary.simpleMessage("Invitation denied"),
         "edit": MessageLookupByLibrary.simpleMessage("edit"),
         "email": MessageLookupByLibrary.simpleMessage("mailbox"),
         "emailUsed":
@@ -84,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameNotFill":
             MessageLookupByLibrary.simpleMessage("Name must not be blank"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
+        "noInvite": MessageLookupByLibrary.simpleMessage("No invitation"),
         "noResult": MessageLookupByLibrary.simpleMessage("No matching results"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
             "Didn\'t receive the Email? Please check your spam folder first, if you still haven\'t received the Email, please click Resend."),

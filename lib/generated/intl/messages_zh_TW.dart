@@ -22,9 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "accept": MessageLookupByLibrary.simpleMessage("接受"),
+        "acceptInviteInfo": MessageLookupByLibrary.simpleMessage("是否要接受好友邀請?"),
         "account": MessageLookupByLibrary.simpleMessage("帳戶"),
         "addEvent": MessageLookupByLibrary.simpleMessage("新增活動"),
         "addFriend": MessageLookupByLibrary.simpleMessage("新增好友"),
+        "addFriendSuccess": MessageLookupByLibrary.simpleMessage("已成功接受邀請"),
         "addGroup": MessageLookupByLibrary.simpleMessage("新增群組"),
         "alreadyFriend": MessageLookupByLibrary.simpleMessage("已加入好友"),
         "alreadyInvited": MessageLookupByLibrary.simpleMessage("邀請中，您無法重複寄送邀請"),
@@ -46,6 +49,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "createAccount": MessageLookupByLibrary.simpleMessage("建立帳號"),
         "createAccountSuccess": MessageLookupByLibrary.simpleMessage("帳號建立成功!"),
         "createSuccess": MessageLookupByLibrary.simpleMessage("建立成功!"),
+        "deny": MessageLookupByLibrary.simpleMessage("拒絕"),
+        "denyInviteInfo": MessageLookupByLibrary.simpleMessage("是否要拒絕好友邀請?"),
+        "denyInviteSuccess": MessageLookupByLibrary.simpleMessage("已拒絕邀請"),
         "edit": MessageLookupByLibrary.simpleMessage("編輯"),
         "email": MessageLookupByLibrary.simpleMessage("信箱"),
         "emailUsed": MessageLookupByLibrary.simpleMessage("Email已使用過"),
@@ -69,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("名字"),
         "nameNotFill": MessageLookupByLibrary.simpleMessage("名稱請勿空白"),
         "noAccount": MessageLookupByLibrary.simpleMessage("沒有帳號"),
+        "noInvite": MessageLookupByLibrary.simpleMessage("沒有邀請"),
         "noResult": MessageLookupByLibrary.simpleMessage("沒有符合的結果"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(
             "沒有收到信件?請先檢查您的垃圾信箱，若仍沒有收到信件請點擊重新寄送。"),

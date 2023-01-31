@@ -759,6 +759,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Accept`
+  String get accept {
+    return Intl.message(
+      'Accept',
+      name: 'accept',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deny`
+  String get deny {
+    return Intl.message(
+      'Deny',
+      name: 'deny',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to reject the friend invitation?`
+  String get denyInviteInfo {
+    return Intl.message(
+      'Do you want to reject the friend invitation?',
+      name: 'denyInviteInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invitation denied`
+  String get denyInviteSuccess {
+    return Intl.message(
+      'Invitation denied',
+      name: 'denyInviteSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to accept the friend invitation?`
+  String get acceptInviteInfo {
+    return Intl.message(
+      'Do you want to accept the friend invitation?',
+      name: 'acceptInviteInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invitation successfully accepted`
+  String get addFriendSuccess {
+    return Intl.message(
+      'Invitation successfully accepted',
+      name: 'addFriendSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No invitation`
+  String get noInvite {
+    return Intl.message(
+      'No invitation',
+      name: 'noInvite',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

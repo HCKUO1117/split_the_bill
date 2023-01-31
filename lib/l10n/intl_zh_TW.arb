@@ -69,5 +69,12 @@
   "cancelInvite": "取消邀請",
   "cancelInviteInfo": "是否要取消好友邀請?",
   "cancelInviteSuccess": "已取消邀請",
-  "cancelInviteFail": "取消邀請失敗"
+  "cancelInviteFail": "取消邀請失敗",
+  "accept": "接受",
+  "deny": "拒絕",
+  "denyInviteInfo": "是否要拒絕好友邀請?",
+  "denyInviteSuccess": "已拒絕邀請",
+  "acceptInviteInfo": "是否要接受好友邀請?",
+  "addFriendSuccess": "已成功接受邀請",
+  "noInvite": "沒有邀請"
 }

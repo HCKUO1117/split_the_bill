@@ -63,7 +63,7 @@ class AddFriendProvider with ChangeNotifier {
       inviting = false;
       searched = false;
       results.clear();
-      search.
+      search.text = '';
       notifyListeners();
       onSuccess.call();
     }, onError: (e) {

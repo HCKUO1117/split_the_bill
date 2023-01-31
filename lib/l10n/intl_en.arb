@@ -69,5 +69,12 @@
   "cancelInvite": "Cancel Invite",
   "cancelInviteInfo": "Do you want to cancel the friend invitation?",
   "cancelInviteSuccess": "Invitation canceled",
-  "cancelInviteFail": "Cancel invitation failed"
+  "cancelInviteFail": "Cancel invitation failed",
+  "accept": "Accept",
+  "deny": "Deny",
+  "denyInviteInfo": "Do you want to reject the friend invitation?",
+  "denyInviteSuccess": "Invitation denied",
+  "acceptInviteInfo": "Do you want to accept the friend invitation?",
+  "addFriendSuccess": "Invitation successfully accepted",
+  "noInvite": "No invitation"
 }

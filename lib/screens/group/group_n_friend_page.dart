@@ -6,6 +6,7 @@ import 'package:split_the_bill/providers/home_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/screens/group/add_friend_page.dart';
 import 'package:split_the_bill/screens/group/add_group_page.dart';
+import 'package:split_the_bill/screens/group/my_invite_page.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/custom_dialog.dart';
 import 'package:split_the_bill/widgets/friend_title.dart';
@@ -69,12 +70,11 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
             // ),
             // const Divider(),
             iconTitle(
-              icon: Icons.person_add_alt,
+              icon: Icons.person_add_alt_1,
               title: S.of(context).addFriend,
-              heroTag: Constants.addMember,
               onTap: () async {
                 ScaffoldMessenger.of(context).removeCurrentSnackBar();
-                bool? success = await Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ChangeNotifierProvider.value(
@@ -86,9 +86,8 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
               },
             ),
             iconTitle(
-              icon: Icons.group_add_outlined,
+              icon: Icons.group_add,
               title: S.of(context).addGroup,
-              heroTag: Constants.addGroup,
               onTap: () async {
                 ScaffoldMessenger.of(context).removeCurrentSnackBar();
                 bool? success = await Navigator.push(
@@ -100,6 +99,23 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
                 if (success == true) {
                   ShowSnack.show(context, content: S.of(context).createSuccess);
                 }
+              },
+            ),
+            iconTitle(
+              icon: Icons.emoji_people_outlined,
+              title: S.of(context).invite,
+              action: Text('( ${provider.beInvitedList.length} )'),
+              onTap: () async {
+                ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChangeNotifierProvider.value(
+                      value: provider,
+                      child: const MyInvitePage(),
+                    ),
+                  ),
+                );
               },
             ),
             const SizedBox(height: 16),
@@ -195,6 +211,9 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
   }
 
   Widget groups(HomeProvider provider) {
+    if (provider.groups.isEmpty) {
+      return const SizedBox();
+    }
     return ListView.separated(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       physics: const NeverScrollableScrollPhysics(),
@@ -210,43 +229,67 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
   }
 
   Widget friends(HomeProvider provider) {
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        return FriendTitle(
-          model: provider.invitingList[index],
-          action: PopupMenuButton(
-            position: PopupMenuPosition.under,
-            onSelected: (i) async {
-              if (i == 1) {
-                bool? check = await showDialog(
-                  context: context,
-                  builder: (context) => CustomDialog(
-                    content: S.of(context).cancelInviteInfo,
-                  ),
-                );
-                if (check == true) {
-                  provider.cancelInvite(provider.invitingList[index].uid, onSuccess: () {
-                    ShowSnack.show(context, content: S.of(context).cancelInviteSuccess);
-                  }, onError: (e) {
-                    ShowSnack.show(context, content: S.of(context).cancelInviteFail);
-                  });
-                }
-              }
+    return Column(
+      children: [
+        if (provider.invitingList.isNotEmpty)
+          ListView.separated(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return FriendTitle(
+                model: provider.invitingList[index],
+                action: PopupMenuButton(
+                  position: PopupMenuPosition.under,
+                  onSelected: (i) async {
+                    if (i == 1) {
+                      bool? check = await showDialog(
+                        context: context,
+                        builder: (context) => CustomDialog(
+                          content: S.of(context).cancelInviteInfo,
+                        ),
+                      );
+                      if (check == true) {
+                        provider.cancelInvite(
+                          provider.invitingList[index].uid,
+                          onSuccess: () {
+                            ShowSnack.show(context, content: S.of(context).cancelInviteSuccess);
+                          },
+                          onError: (e) {
+                            ShowSnack.show(context, content: S.of(context).cancelInviteFail);
+                          },
+                        );
+                      }
+                    }
+                  },
+                  itemBuilder: (BuildContext context) {
+                    return [const PopupMenuItem(value: 1, child: Text('取消邀請'))];
+                  },
+                  child: Text(S.of(context).inviting),
+                ),
+              );
             },
-            itemBuilder: (BuildContext context) {
-              return [const PopupMenuItem(value: 1, child: Text('取消邀請'))];
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: 8);
             },
-            child: Text(S.of(context).inviting),
+            itemCount: provider.invitingList.length,
           ),
-        );
-      },
-      separatorBuilder: (context, index) {
-        return const SizedBox(height: 8);
-      },
-      itemCount: provider.invitingList.length,
+        if (provider.friends.isNotEmpty)
+          ListView.separated(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return FriendTitle(
+                model: provider.friends[index],
+              );
+            },
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: 8);
+            },
+            itemCount: provider.friends.length,
+          ),
+      ],
     );
   }
 
@@ -279,25 +322,25 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
     required IconData icon,
     required String title,
     required Function() onTap,
-    required String heroTag,
+    Widget? action,
   }) {
-    return Hero(
-      tag: heroTag,
-      child: Material(
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              children: [
-                const SizedBox(width: 16),
-                Icon(icon),
-                const SizedBox(width: 8),
-                Text(title),
-                const SizedBox(width: 16),
-              ],
-            ),
-          ),
+    return InkWell(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Row(
+          children: [
+            const SizedBox(width: 16),
+            Icon(icon),
+            const SizedBox(width: 8),
+            Text(title),
+            const SizedBox(width: 16),
+            const Spacer(),
+            if (action != null) ...[
+              action,
+              const SizedBox(width: 16),
+            ]
+          ],
         ),
       ),
     );
