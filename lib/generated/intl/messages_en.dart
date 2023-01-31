@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "acceptInviteInfo": MessageLookupByLibrary.simpleMessage(
             "Do you want to accept the friend invitation?"),
         "account": MessageLookupByLibrary.simpleMessage("account"),
+        "accounting": MessageLookupByLibrary.simpleMessage("Accounting"),
         "addEvent": MessageLookupByLibrary.simpleMessage("Add Event"),
         "addFriend": MessageLookupByLibrary.simpleMessage("Add new friend"),
         "addFriendSuccess": MessageLookupByLibrary.simpleMessage(
@@ -49,6 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invitation canceled"),
         "cantInviteYourself":
             MessageLookupByLibrary.simpleMessage("You cannot invite yourself"),
+        "chat": MessageLookupByLibrary.simpleMessage("Chat"),
         "checkPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "checkPasswordInfo":
@@ -68,6 +70,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Invitation denied"),
         "edit": MessageLookupByLibrary.simpleMessage("edit"),
         "email": MessageLookupByLibrary.simpleMessage("mailbox"),
+        "emailCopied": MessageLookupByLibrary.simpleMessage("Email Copied"),
         "emailUsed":
             MessageLookupByLibrary.simpleMessage("Email has been used"),
         "error": MessageLookupByLibrary.simpleMessage("Error : "),
@@ -108,6 +111,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "The password is not strong enough, please enter at least 6 digits"),
         "passwordWrong": MessageLookupByLibrary.simpleMessage("Password Wrong"),
         "profile": MessageLookupByLibrary.simpleMessage("Avatar"),
+        "removeFriend": MessageLookupByLibrary.simpleMessage("Remove Friend"),
+        "removeFriendInfo": MessageLookupByLibrary.simpleMessage(
+            "Do you want to remove the friend?"),
+        "removeFriendSuccess":
+            MessageLookupByLibrary.simpleMessage("Friend removed"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "results": MessageLookupByLibrary.simpleMessage("result"),
         "searchFriendInfo": MessageLookupByLibrary.simpleMessage(

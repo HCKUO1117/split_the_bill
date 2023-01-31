@@ -76,5 +76,11 @@
   "denyInviteSuccess": "Invitation denied",
   "acceptInviteInfo": "Do you want to accept the friend invitation?",
   "addFriendSuccess": "Invitation successfully accepted",
-  "noInvite": "No invitation"
+  "noInvite": "No invitation",
+  "chat": "Chat",
+  "removeFriend": "Remove Friend",
+  "accounting": "Accounting",
+  "removeFriendInfo": "Do you want to remove the friend?",
+  "removeFriendSuccess": "Friend removed",
+  "emailCopied": "Email Copied"
 }

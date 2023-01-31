@@ -29,6 +29,7 @@ dependencies:
   permission_handler: ^10.2.0
   shimmer: ^2.0.0
   url_launcher: ^6.1.8
+  modal_bottom_sheet: ^2.1.2
 
   #firebase
   firebase_core: ^2.4.0

@@ -829,6 +829,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Chat`
+  String get chat {
+    return Intl.message(
+      'Chat',
+      name: 'chat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove Friend`
+  String get removeFriend {
+    return Intl.message(
+      'Remove Friend',
+      name: 'removeFriend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accounting`
+  String get accounting {
+    return Intl.message(
+      'Accounting',
+      name: 'accounting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to remove the friend?`
+  String get removeFriendInfo {
+    return Intl.message(
+      'Do you want to remove the friend?',
+      name: 'removeFriendInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Friend removed`
+  String get removeFriendSuccess {
+    return Intl.message(
+      'Friend removed',
+      name: 'removeFriendSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Copied`
+  String get emailCopied {
+    return Intl.message(
+      'Email Copied',
+      name: 'emailCopied',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

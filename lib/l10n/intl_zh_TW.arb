@@ -76,5 +76,11 @@
   "denyInviteSuccess": "已拒絕邀請",
   "acceptInviteInfo": "是否要接受好友邀請?",
   "addFriendSuccess": "已成功接受邀請",
-  "noInvite": "沒有邀請"
+  "noInvite": "沒有邀請",
+  "chat": "聊天",
+  "accounting": "帳務",
+  "removeFriend": "刪除好友",
+  "removeFriendInfo": "是否要刪除好友?",
+  "removeFriendSuccess": "已刪除好友",
+  "emailCopied": "已複製Email"
 }
