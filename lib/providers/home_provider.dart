@@ -54,6 +54,7 @@ class HomeProvider with ChangeNotifier {
             model.email = data['email'];
             model.background = data['background'];
             model.intro = data['intro'];
+            model.chatId = element.data()['chat'];
             if (friends.indexWhere((e) => e.uid == element.id) == -1) {
               friends.add(model);
             }
@@ -243,12 +244,21 @@ class HomeProvider with ChangeNotifier {
         .doc(uid)
         .collection('friends')
         .doc(Preferences.getString(Constants.uid, ''));
+    final chatRef = fireStore.collection('chats');
+
     fireStore.runTransaction(
       (transaction) async {
+        var result = await chatRef.add({'lastMessage': '', 'lastSender': '', 'lastSendTime': 0});
+        chatRef
+            .doc(result.id)
+            .collection('users')
+            .doc(Preferences.getString(Constants.uid, ''))
+            .set({'read': true});
+        chatRef.doc(result.id).collection('users').doc(uid).set({'read': true});
         transaction.delete(userRef);
         transaction.delete(targetRef);
-        transaction.set(userFriendRef, {'1': 1});
-        transaction.set(targetFriendRef, {'1': 1});
+        transaction.set(userFriendRef, {'chat': result.id});
+        transaction.set(targetFriendRef, {'chat': result.id});
       },
     ).then((value) {
       loading = false;

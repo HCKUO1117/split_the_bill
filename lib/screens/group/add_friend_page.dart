@@ -101,6 +101,13 @@ class _AddFriendPageState extends State<AddFriendPage> {
                                               return FriendTitle(
                                                 model: provider.results[index],
                                                 action: action(provider.results[index]),
+                                                isFriend: context
+                                                        .read<HomeProvider>()
+                                                        .friends
+                                                        .indexWhere((element) =>
+                                                            provider.results[index].uid ==
+                                                            element.uid) !=
+                                                    -1,
                                               );
                                             },
                                             separatorBuilder: (context, index) {
@@ -131,6 +138,7 @@ class _AddFriendPageState extends State<AddFriendPage> {
       return Text(S.of(context).you);
     }
     if (homeProvider.friends.indexWhere((element) => element.uid == model.uid) != -1) {
+      model.chatId = homeProvider.friends.firstWhere((element) => element.uid == model.uid).chatId;
       return Text(S.of(context).friends);
     }
     if (homeProvider.invitingList.indexWhere((element) => element.uid == model.uid) != -1) {

@@ -7,5 +7,6 @@ class UserModel{
   String avatar = '';
   String background = '';
   String intro = '';
+  String chatId = '';
 
 }

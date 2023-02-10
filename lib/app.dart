@@ -55,6 +55,7 @@ class _MyAppState extends State<MyApp> {
         title: 'Split the bill',
         theme: ThemeData(
           appBarTheme: AppBarTheme(
+            elevation: 0,
             centerTitle: true,
             color: Colors.white,
             titleTextStyle: Theme.of(context).textTheme.titleMedium,
@@ -62,6 +63,7 @@ class _MyAppState extends State<MyApp> {
               color: Colors.black54,
             ),
           ),
+          scaffoldBackgroundColor: Colors.white
         ),
         localizationsDelegates: const [
           S.delegate,

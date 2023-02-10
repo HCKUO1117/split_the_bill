@@ -11,7 +11,7 @@ class UserDetailProvider with ChangeNotifier {
   UserModel userModel = UserModel();
 
   UserDetailProvider({required this.userModel}) {
-    fireStore.collection('users').doc(userModel.uid).snapshots().listen((event) {
+    fireStore.collection('users').doc(userModel.uid).snapshots().listen((event) async {
       if (event.exists) {
         final data = event.data() as Map<String, dynamic>;
         userModel.name = data['name'];
@@ -34,6 +34,11 @@ class UserDetailProvider with ChangeNotifier {
         .doc(userModel.uid);
     final targetFriendRef = fireStore
         .collection('users')
+        .doc(userModel.uid)
+        .collection('friends')
+        .doc(Preferences.getString(Constants.uid, ''));
+    final chatRef = fireStore
+        .collection('chat')
         .doc(userModel.uid)
         .collection('friends')
         .doc(Preferences.getString(Constants.uid, ''));

@@ -267,6 +267,13 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
                   },
                   child: Text(S.of(context).inviting),
                 ),
+                isFriend: context
+                    .read<HomeProvider>()
+                    .friends
+                    .indexWhere((element) =>
+                provider.invitingList[index].uid ==
+                    element.uid) !=
+                    -1,
               );
             },
             separatorBuilder: (context, index) {
@@ -282,6 +289,13 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
             itemBuilder: (context, index) {
               return FriendTitle(
                 model: provider.friends[index],
+                isFriend: context
+                    .read<HomeProvider>()
+                    .friends
+                    .indexWhere((element) =>
+                provider.friends[index].uid ==
+                    element.uid) !=
+                    -1,
               );
             },
             separatorBuilder: (context, index) {

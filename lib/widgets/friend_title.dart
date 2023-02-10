@@ -8,12 +8,13 @@ class FriendTitle extends StatelessWidget {
   final UserModel model;
   final bool you;
   final Widget? action;
+  final bool isFriend;
 
   const FriendTitle({
     Key? key,
     required this.model,
     this.you = false,
-    this.action,
+    this.action, required this.isFriend,
   }) : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class FriendTitle extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => UserDetailPage(
-            userModel: model,
+            userModel: model, isFriend: isFriend,
           ),
         ),
       );

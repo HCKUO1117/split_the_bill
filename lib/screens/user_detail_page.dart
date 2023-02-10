@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/providers/user_detail_provider.dart';
+import 'package:split_the_bill/screens/chat_page.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/custom_dialog.dart';
 import 'package:split_the_bill/widgets/profile_photo.dart';
@@ -12,10 +12,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 class UserDetailPage extends StatefulWidget {
   final UserModel userModel;
+  final bool isFriend;
 
   const UserDetailPage({
     Key? key,
     required this.userModel,
+    required this.isFriend,
   }) : super(key: key);
 
   @override
@@ -26,7 +28,9 @@ class _UserDetailPageState extends State<UserDetailPage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => UserDetailProvider(userModel: widget.userModel),
+      create: (context) => UserDetailProvider(
+        userModel: widget.userModel,
+      ),
       child: Consumer<UserDetailProvider>(
         builder: (BuildContext context, UserDetailProvider provider, _) {
           return SelectionArea(
@@ -34,38 +38,41 @@ class _UserDetailPageState extends State<UserDetailPage> {
               appBar: AppBar(
                 title: Text(provider.userModel.name),
                 actions: [
-                  PopupMenuButton(
-                    position: PopupMenuPosition.under,
-                    onSelected: (value) async {
-                      if (value == 'remove') {
-                        bool? success = await showDialog(
-                          context: context,
-                          builder: (context) =>
-                              CustomDialog(content: S.of(context).removeFriendInfo),
-                        );
-                        if (success == true) {
-                          provider.removeFriend(
-                            onSuccess: () {
-                              Navigator.pop(context, 'removed');
-                              ShowSnack.show(context, content: S.of(context).removeFriendSuccess);
-                            },
-                            onError: (e) {
-                              ShowSnack.show(context, content: S.of(context).error + ' : ' + e);
-                            },
+                  if (widget.isFriend)
+                    PopupMenuButton(
+                      position: PopupMenuPosition.under,
+                      onSelected: (value) async {
+                        Navigator.pop(context,'123');
+                        Navigator.of(context).pop('123');
+                        if (value == 'remove') {
+                          bool? success = await showDialog(
+                            context: context,
+                            builder: (context) =>
+                                CustomDialog(content: S.of(context).removeFriendInfo),
                           );
+                          if (success == true) {
+                            provider.removeFriend(
+                              onSuccess: () {
+                                Navigator.pop(context, 'removed');
+                                ShowSnack.show(context, content: S.of(context).removeFriendSuccess);
+                              },
+                              onError: (e) {
+                                ShowSnack.show(context, content: S.of(context).error + ' : ' + e);
+                              },
+                            );
+                          }
                         }
-                      }
-                    },
-                    itemBuilder: (context) => [
-                      PopupMenuItem(
-                        value: 'remove',
-                        child: Text(
-                          S.of(context).removeFriend,
-                          style: const TextStyle(color: Colors.red),
+                      },
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          value: 'remove',
+                          child: Text(
+                            S.of(context).removeFriend,
+                            style: const TextStyle(color: Colors.red),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                 ],
               ),
               body: SingleChildScrollView(
@@ -127,48 +134,58 @@ class _UserDetailPageState extends State<UserDetailPage> {
                             const Text('Email'),
                           ],
                         ),
-                        Column(
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.all(16),
-                                backgroundColor: Colors.white,
-                                foregroundColor: Colors.black87,
-                                elevation: 2,
-                                shape: const CircleBorder(),
+                        if (widget.isFriend)
+                          Column(
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.all(16),
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black87,
+                                  elevation: 2,
+                                  shape: const CircleBorder(),
+                                ),
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    backgroundColor: Colors.transparent,
+                                    builder: (context) => Container(
+                                      height: MediaQuery.of(context).size.height * 0.85,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(30.0),
+                                        ),
+                                      ),
+                                      child: ChatPage(userModel: provider.userModel,),
+                                    ),
+                                  );
+                                },
+                                child: const Icon(Icons.chat_bubble_outline),
                               ),
-                              onPressed: () {
-                                showModalBottomSheet(
-                                  constraints: BoxConstraints(
-                                    minHeight: 100
-                                        ,maxHeight: 100
-                                  ),
-                                  backgroundColor: Colors.transparent,
-                                    context: context, builder: (context) => Column(children: [Expanded(child: Container(color: Colors.white,))],),);
-                              },
-                              child: const Icon(Icons.chat_bubble_outline),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(S.of(context).chat),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.all(16),
-                                backgroundColor: Colors.white,
-                                foregroundColor: Colors.black87,
-                                elevation: 2,
-                                shape: const CircleBorder(),
+                              const SizedBox(height: 8),
+                              Text(S.of(context).chat),
+                            ],
+                          ),
+                        if (widget.isFriend)
+                          Column(
+                            children: [
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.all(16),
+                                  backgroundColor: Colors.white,
+                                  foregroundColor: Colors.black87,
+                                  elevation: 2,
+                                  shape: const CircleBorder(),
+                                ),
+                                onPressed: () {},
+                                child: const Icon(Icons.list),
                               ),
-                              onPressed: () {},
-                              child: const Icon(Icons.list),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(S.of(context).accounting),
-                          ],
-                        ),
+                              const SizedBox(height: 8),
+                              Text(S.of(context).accounting),
+                            ],
+                          ),
                       ],
                     )
                   ],

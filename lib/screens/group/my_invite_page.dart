@@ -89,6 +89,13 @@ class _MyInvitePageState extends State<MyInvitePage> {
                           ),
                         ],
                       ),
+                      isFriend: context
+                          .read<HomeProvider>()
+                          .friends
+                          .indexWhere((element) =>
+                      provider.beInvitedList[index].uid ==
+                          element.uid) !=
+                          -1,
                     );
                   },
                   separatorBuilder: (context, index) {
