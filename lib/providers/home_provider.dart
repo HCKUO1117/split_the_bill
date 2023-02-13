@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:split_the_bill/models/group_model.dart';
 import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/res/constants.dart';
@@ -22,9 +26,15 @@ class HomeProvider with ChangeNotifier {
 
   List<UserModel> beInvitedList = [];
 
+  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? groupSubscribe;
+  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? friendSubscribe;
+  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? invitingSubscribe;
+  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? beInvitedSubscribe;
+  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>? bigGroupSubscribe;
+
   HomeProvider() {
     String uid = Preferences.getString(Constants.uid, '');
-    fireStore
+    groupSubscribe = fireStore
         .collection('users')
         .doc(uid)
         .collection('groups')
@@ -36,7 +46,7 @@ class HomeProvider with ChangeNotifier {
       }
       notifyListeners();
     });
-    fireStore
+    friendSubscribe = fireStore
         .collection('users')
         .doc(uid)
         .collection('friends')
@@ -65,7 +75,7 @@ class HomeProvider with ChangeNotifier {
       }
       notifyListeners();
     });
-    fireStore
+    invitingSubscribe = fireStore
         .collection('users')
         .doc(uid)
         .collection('inviting')
@@ -93,7 +103,7 @@ class HomeProvider with ChangeNotifier {
       }
       notifyListeners();
     });
-    fireStore
+    beInvitedSubscribe = fireStore
         .collection('users')
         .doc(uid)
         .collection('beInvited')
@@ -121,7 +131,7 @@ class HomeProvider with ChangeNotifier {
       }
       notifyListeners();
     });
-    fireStore.collection('groups').snapshots(includeMetadataChanges: true).listen((event) async {
+    bigGroupSubscribe = fireStore.collection('groups').snapshots(includeMetadataChanges: true).listen((event) async {
       groups = [];
       for (var element in event.docs) {
         Map<String, dynamic> data = element.data();
@@ -248,17 +258,19 @@ class HomeProvider with ChangeNotifier {
 
     fireStore.runTransaction(
       (transaction) async {
-        var result = await chatRef.add({'lastMessage': '', 'lastSender': '', 'lastSendTime': 0});
-        chatRef
-            .doc(result.id)
-            .collection('users')
-            .doc(Preferences.getString(Constants.uid, ''))
-            .set({'read': true});
-        chatRef.doc(result.id).collection('users').doc(uid).set({'read': true});
+        ///聊天室用套件做
+        // var result = await chatRef.add({'lastMessage': '', 'lastSender': '', 'lastSendTime': 0});
+        // chatRef
+        //     .doc(result.id)
+        //     .collection('users')
+        //     .doc(Preferences.getString(Constants.uid, ''))
+        //     .set({'read': true});
+        // chatRef.doc(result.id).collection('users').doc(uid).set({'read': true});
+        var room = await FirebaseChatCore.instance.createRoom(User(id: uid));
         transaction.delete(userRef);
         transaction.delete(targetRef);
-        transaction.set(userFriendRef, {'chat': result.id});
-        transaction.set(targetFriendRef, {'chat': result.id});
+        transaction.set(userFriendRef, {'chat': room.id});
+        transaction.set(targetFriendRef, {'chat': room.id});
       },
     ).then((value) {
       loading = false;
@@ -269,5 +281,16 @@ class HomeProvider with ChangeNotifier {
       notifyListeners();
       onError.call(e.toString());
     });
+
+  }
+
+  @override
+  void dispose() {
+    groupSubscribe?.cancel();
+    friendSubscribe?.cancel();
+    invitingSubscribe?.cancel();
+    beInvitedSubscribe?.cancel();
+    bigGroupSubscribe?.cancel();
+    super.dispose();
   }
 }

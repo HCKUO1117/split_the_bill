@@ -38,14 +38,13 @@ class UserDetailProvider with ChangeNotifier {
         .collection('friends')
         .doc(Preferences.getString(Constants.uid, ''));
     final chatRef = fireStore
-        .collection('chat')
-        .doc(userModel.uid)
-        .collection('friends')
-        .doc(Preferences.getString(Constants.uid, ''));
+        .collection('chats')
+        .doc(userModel.chatId);
     fireStore.runTransaction(
       (transaction) async {
         transaction.delete(userFriendRef);
         transaction.delete(targetFriendRef);
+        transaction.delete(chatRef);
       },
     ).then((value) {
       loading = false;

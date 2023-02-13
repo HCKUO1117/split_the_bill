@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/providers/user_detail_provider.dart';
+import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:split_the_bill/screens/chat_page.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/custom_dialog.dart';
 import 'package:split_the_bill/widgets/profile_photo.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'flyer_chat_page.dart';
 
 class UserDetailPage extends StatefulWidget {
   final UserModel userModel;
@@ -42,8 +46,6 @@ class _UserDetailPageState extends State<UserDetailPage> {
                     PopupMenuButton(
                       position: PopupMenuPosition.under,
                       onSelected: (value) async {
-                        Navigator.pop(context,'123');
-                        Navigator.of(context).pop('123');
                         if (value == 'remove') {
                           bool? success = await showDialog(
                             context: context,
@@ -151,15 +153,39 @@ class _UserDetailPageState extends State<UserDetailPage> {
                                     isScrollControlled: true,
                                     backgroundColor: Colors.transparent,
                                     builder: (context) => Container(
-                                      height: MediaQuery.of(context).size.height * 0.85,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(30.0),
+                                        height: MediaQuery.of(context).size.height * 0.85,
+                                        decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(30.0),
+                                          ),
                                         ),
-                                      ),
-                                      child: ChatPage(userModel: provider.userModel,),
-                                    ),
+                                        child: FlyChatPage(
+                                          room: Room(
+                                              id: provider.userModel.chatId,
+                                              type: RoomType.direct,
+                                              users: [
+                                                User(
+                                                  id: context.read<UserProvider>().user.uid,
+                                                  firstName: context.read<UserProvider>().user.name,
+                                                  imageUrl:
+                                                      context.read<UserProvider>().user.avatar,
+                                                ),
+                                                User(
+                                                  id: provider.userModel.uid,
+                                                  firstName: provider.userModel.name,
+                                                  imageUrl: provider.userModel.avatar,
+                                                )
+                                              ]),
+                                        )
+                                        // ChatPage(
+                                        //   chatId: provider.userModel.chatId,
+                                        //   users: [
+                                        //     context.read<UserProvider>().user,
+                                        //     provider.userModel,
+                                        //   ],
+                                        // ),
+                                        ),
                                   );
                                 },
                                 child: const Icon(Icons.chat_bubble_outline),

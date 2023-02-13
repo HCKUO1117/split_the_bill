@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -40,13 +41,20 @@ class UserProvider extends ChangeNotifier {
 
   Reference storageRef = FirebaseStorage.instance.ref();
 
+  StreamSubscription<DocumentSnapshot>? subscribe;
+
   ///載入user資料
   void init() {
     user.uid = Preferences.getString(Constants.uid, '');
+    print('uid123' + user.uid);
     user.email = Preferences.getString(Constants.email, '');
     storageRef = FirebaseStorage.instance.ref(user.uid);
-    users.doc(user.uid).snapshots(includeMetadataChanges: true).listen(
+    if(subscribe != null){
+      subscribe?.cancel();
+    }
+    subscribe = users.doc(user.uid).snapshots(includeMetadataChanges: true).listen(
       (DocumentSnapshot documentSnapshot) {
+        print('654'+ documentSnapshot.exists.toString());
         if (documentSnapshot.exists) {
           Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
           user.name = data['name'];
@@ -298,6 +306,8 @@ class UserProvider extends ChangeNotifier {
   ///登出
   Future<void> signOut() async {
     await Preferences.setString(Constants.uid, '');
+    await Preferences.setString(Constants.email, '');
+    await Preferences.setString(Constants.loginType, '');
     user = UserModel();
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();

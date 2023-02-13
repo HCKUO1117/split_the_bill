@@ -1,11 +1,20 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:split_the_bill/models/chat_model.dart';
 import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/providers/chat_provider.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
 class ChatPage extends StatefulWidget {
-  final UserModel userModel;
+  final String chatId;
+  final List<UserModel> users;
 
-  const ChatPage({Key? key, required this.userModel}) : super(key: key);
+  const ChatPage({
+    Key? key,
+    required this.chatId,
+    required this.users,
+  }) : super(key: key);
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -16,7 +25,7 @@ class _ChatPageState extends State<ChatPage> {
 
   @override
   void initState() {
-    chatProvider = ChatProvider(userModel: widget.userModel);
+    chatProvider = ChatProvider(chatId: widget.chatId);
     super.initState();
   }
 
@@ -36,7 +45,7 @@ class _ChatPageState extends State<ChatPage> {
                 Expanded(
                   child: Center(
                     child: Text(
-                      widget.userModel.name,
+                      'Chat',
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -55,24 +64,41 @@ class _ChatPageState extends State<ChatPage> {
             Expanded(
               child: StreamBuilder(
                 stream: chatProvider.getChatContents,
-                builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-                  return NotificationListener<ScrollNotification>(
-                    onNotification: (ScrollNotification scrollInfo){
-                      if(scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent){
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+                  List<ChatModel> list = [];
+                  snapshot.data?.docs.forEach((element) {
+                    MessageType type =
+                        element.data()['type'] == 'text' ? MessageType.text : MessageType.image;
+                    print(element.metadata.hasPendingWrites);
+                    print(element.data()['message']);
+                    list.add(
+                      ChatModel(
+                        message: element.data()['message'],
+                        time: DateTime.fromMillisecondsSinceEpoch(element.data()['time']),
+                        senderId: element.data()['sender'],
+                        type: type,
+                        cache: element.metadata.hasPendingWrites,
+                      ),
+                    );
+                  });
 
-                      }
+                  return NotificationListener<ScrollNotification>(
+                    onNotification: (ScrollNotification scrollInfo) {
+                      if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent) {}
                       return true;
                     },
                     child: ListView.separated(
+                      reverse: true,
                       itemBuilder: (context, index) {
-                        return SizedBox();
+                        return Text(list[index].message);
                       },
                       separatorBuilder: (context, index) {
-                        return SizedBox(
+                        return const SizedBox(
                           height: 4,
                         );
                       },
-                      itemCount: 0,
+                      itemCount: list.length,
                     ),
                   );
                 },
@@ -114,7 +140,9 @@ class _ChatPageState extends State<ChatPage> {
               ),
               child: TextField(
                 controller: chatProvider.input,
-                onChanged: (String text) {},
+                onChanged: (String text) {
+                  setState(() {});
+                },
                 minLines: 1,
                 maxLines: 4,
                 decoration: const InputDecoration(
@@ -133,7 +161,7 @@ class _ChatPageState extends State<ChatPage> {
               onTap: chatProvider.input.text.isEmpty
                   ? null
                   : () {
-                      //TODO send
+                      chatProvider.sendMessage(context, MessageType.text);
                     },
               child: Icon(
                 Icons.send,
