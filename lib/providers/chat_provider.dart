@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:provider/provider.dart';
 import 'package:split_the_bill/models/chat_model.dart';
-import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 

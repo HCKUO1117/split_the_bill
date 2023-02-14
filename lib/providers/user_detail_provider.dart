@@ -38,7 +38,7 @@ class UserDetailProvider with ChangeNotifier {
         .collection('friends')
         .doc(Preferences.getString(Constants.uid, ''));
     final chatRef = fireStore
-        .collection('chats')
+        .collection('rooms')
         .doc(userModel.chatId);
     fireStore.runTransaction(
       (transaction) async {

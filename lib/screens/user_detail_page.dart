@@ -6,7 +6,6 @@ import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/providers/user_detail_provider.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
-import 'package:split_the_bill/screens/chat_page.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/custom_dialog.dart';
 import 'package:split_the_bill/widgets/profile_photo.dart';
