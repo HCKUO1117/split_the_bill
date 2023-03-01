@@ -82,5 +82,6 @@
   "accounting": "Accounting",
   "removeFriendInfo": "Do you want to remove the friend?",
   "removeFriendSuccess": "Friend removed",
-  "emailCopied": "Email Copied"
+  "emailCopied": "Email Copied",
+  "join": "Join"
 }

@@ -889,6 +889,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Join`
+  String get join {
+    return Intl.message(
+      'Join',
+      name: 'join',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -86,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invite": MessageLookupByLibrary.simpleMessage("Invite"),
         "inviteSend": MessageLookupByLibrary.simpleMessage("Invitation sent"),
         "inviting": MessageLookupByLibrary.simpleMessage("Inviting"),
+        "join": MessageLookupByLibrary.simpleMessage("Join"),
         "login": MessageLookupByLibrary.simpleMessage("login"),
         "loginSuccess":
             MessageLookupByLibrary.simpleMessage("Login successful"),

@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invite": MessageLookupByLibrary.simpleMessage("邀請"),
         "inviteSend": MessageLookupByLibrary.simpleMessage("已寄送邀請"),
         "inviting": MessageLookupByLibrary.simpleMessage("邀請中"),
+        "join": MessageLookupByLibrary.simpleMessage("加入"),
         "login": MessageLookupByLibrary.simpleMessage("登入"),
         "loginSuccess": MessageLookupByLibrary.simpleMessage("登入成功"),
         "logout": MessageLookupByLibrary.simpleMessage("登出"),

@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
-import 'package:split_the_bill/models/group_model.dart';
 import 'package:split_the_bill/providers/add_group_provider.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
+import 'package:split_the_bill/screens/group/friend_list_page.dart';
 import 'package:split_the_bill/utils/pick_image.dart';
-import 'package:split_the_bill/widgets/Member_title.dart';
+import 'package:split_the_bill/utils/show_snack.dart';
+import 'package:split_the_bill/widgets/friend_title.dart';
 import 'package:split_the_bill/widgets/loading_cover.dart';
 import 'package:split_the_bill/widgets/outline_text_field.dart';
 
@@ -41,17 +42,6 @@ class _AddGroupPageState extends State<AddGroupPage> {
                 appBar: AppBar(
                   iconTheme: const IconThemeData(color: Colors.black54),
                   title: Text(S.of(context).addGroup),
-                  actions: [
-                    TextButton(
-                      onPressed: () async {
-                        bool success = await provider.addGroupToDataBase(context);
-                        if (success) {
-                          Navigator.pop(context, true);
-                        }
-                      },
-                      child: Text(S.of(context).create),
-                    )
-                  ],
                 ),
                 body: ListView(
                   padding: const EdgeInsets.all(16),
@@ -129,20 +119,43 @@ class _AddGroupPageState extends State<AddGroupPage> {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    MemberTitle(
-                      memberModel: MemberModel(
-                        id: userProvider.user.uid,
-                        name: userProvider.user.name,
-                        avatar: userProvider.user.avatar,
-                        role: MemberRole.admin,
-                        joined: false,
-                        connected: true,
-                      ),
+                    FriendTitle(
+                      model: userProvider.user,
+                      isFriend: false,
+                      you: true,
                     ),
-                    for (var element in addGroupProvider.members) MemberTitle(memberModel: element),
+                    for (var element in addGroupProvider.members)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 4),
+                        child: FriendTitle(
+                          model: element,
+                          isFriend: true,
+                          action: IconButton(
+                            onPressed: () {
+                              addGroupProvider.removeMember(element);
+                            },
+                            icon: const Icon(
+                              Icons.cancel,
+                              color: Colors.redAccent,
+                            ),
+                          ),
+                        ),
+                      ),
                     const SizedBox(height: 32),
                     InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        final result = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FriendListPage(
+                              addedList: addGroupProvider.members,
+                            ),
+                          ),
+                        );
+                        setState(() {
+                          addGroupProvider.members = result;
+                        });
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.grey),
@@ -150,11 +163,29 @@ class _AddGroupPageState extends State<AddGroupPage> {
                         ),
                         child: const Icon(
                           Icons.add,
-                          size: 36,
+                          size: 30,
                         ),
                       ),
                     )
                   ],
+                ),
+                bottomNavigationBar: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                      fixedSize: const Size(double.maxFinite, kBottomNavigationBarHeight),
+                      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.zero)),
+                  onPressed: () async {
+                    bool success = await provider.addGroupToDataBase(
+                      context,
+                      onError: () {
+                        ShowSnack.show(context, content: S.of(context).unknownError);
+                      },
+                    );
+                    if (success) {
+                      Navigator.pop(context, true);
+                    }
+                  },
+                  child: Text(S.of(context).create),
                 ),
               ),
             );

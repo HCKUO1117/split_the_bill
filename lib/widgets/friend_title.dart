@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/screens/user_detail_page.dart';
@@ -14,25 +15,27 @@ class FriendTitle extends StatelessWidget {
     Key? key,
     required this.model,
     this.you = false,
-    this.action, required this.isFriend,
+    this.action,
+    required this.isFriend,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
-        onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => UserDetailPage(
-            userModel: model, isFriend: isFriend,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => UserDetailPage(
+              userModel: model,
+              isFriend: isFriend,
+            ),
           ),
-        ),
-      );
-    },
-    child: Row(
-      children: [
-       ClipRRect(
+        );
+      },
+      child: Row(
+        children: [
+          ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: model.avatar.isEmpty
                 ? Image.asset(
@@ -61,28 +64,34 @@ class FriendTitle extends StatelessWidget {
                     },
                   ),
           ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                model.name,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 4),
-              if (model.intro.isNotEmpty)
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
                 Text(
-                  model.intro,
+                  model.name,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.grey),
                 ),
-            ],
+                const SizedBox(height: 4),
+                if (model.intro.isNotEmpty)
+                  Text(
+                    model.intro,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(color: Colors.grey),
+                  ),
+              ],
+            ),
           ),
-        ),
-        if (action != null) action!
-      ],
-    ));
+          if (action != null) action!,
+          if (you) ...[
+            const SizedBox(width: 16),
+            Text(S.of(context).you),
+            const SizedBox(width: 16),
+          ],
+        ],
+      ),
+    );
   }
 }

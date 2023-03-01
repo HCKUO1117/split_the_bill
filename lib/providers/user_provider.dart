@@ -46,7 +46,6 @@ class UserProvider extends ChangeNotifier {
   ///載入user資料
   void init() {
     user.uid = Preferences.getString(Constants.uid, '');
-    print('uid123' + user.uid);
     user.email = Preferences.getString(Constants.email, '');
     storageRef = FirebaseStorage.instance.ref(user.uid);
     if(subscribe != null){
@@ -54,7 +53,6 @@ class UserProvider extends ChangeNotifier {
     }
     subscribe = users.doc(user.uid).snapshots(includeMetadataChanges: true).listen(
       (DocumentSnapshot documentSnapshot) {
-        print('654'+ documentSnapshot.exists.toString());
         if (documentSnapshot.exists) {
           Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
           user.name = data['name'];

@@ -5,6 +5,7 @@ import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/providers/add_friend_provider.dart';
 import 'package:split_the_bill/providers/home_provider.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
+import 'package:split_the_bill/screens/home_screen.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/friend_title.dart';
 import 'package:split_the_bill/widgets/loading_cover.dart';
@@ -101,7 +102,7 @@ class _AddFriendPageState extends State<AddFriendPage> {
                                               return FriendTitle(
                                                 model: provider.results[index],
                                                 action: action(provider.results[index]),
-                                                isFriend: context
+                                                isFriend: HomePage.navigatorKey.currentContext!
                                                         .read<HomeProvider>()
                                                         .friends
                                                         .indexWhere((element) =>
@@ -132,7 +133,7 @@ class _AddFriendPageState extends State<AddFriendPage> {
 
   Widget action(UserModel model) {
     UserProvider userProvider = context.read<UserProvider>();
-    HomeProvider homeProvider = context.read<HomeProvider>();
+    HomeProvider homeProvider = HomePage.navigatorKey.currentContext!.read<HomeProvider>();
 
     if (model.uid == userProvider.user.uid) {
       return Text(S.of(context).you);

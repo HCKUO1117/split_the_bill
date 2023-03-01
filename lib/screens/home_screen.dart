@@ -15,6 +15,9 @@ class HomePage extends StatefulWidget {
 
   const HomePage({Key? key, this.firstAnonymous = false}) : super(key: key);
 
+  static GlobalKey<NavigatorState> navigatorKey =
+  GlobalKey<NavigatorState>();
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -51,6 +54,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       child: Consumer2<UserProvider, HomeProvider>(
         builder: (BuildContext context, UserProvider provider, HomeProvider homeProvider, _) {
           return Scaffold(
+            key: HomePage.navigatorKey,
             appBar: currentIndex == 3
                 ? null
                 : AppBar(
