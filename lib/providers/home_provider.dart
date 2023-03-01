@@ -39,11 +39,40 @@ class HomeProvider with ChangeNotifier {
         .doc(uid)
         .collection('groups')
         .snapshots(includeMetadataChanges: true)
-        .listen((event) {
+        .listen((event) async {
       groupList.clear();
       for (var element in event.docs) {
         groupList.add(element.id);
       }
+      var groupRef = await fireStore.collection('groups').get();
+      groups = [];
+      for (var element in groupRef.docs) {
+        if (groupList.contains(element.id) &&
+            groups.indexWhere((e) => e.id == element.id) == -1) {
+          Map<String, dynamic> data = element.data();
+          List<String> member = [];
+          await element.reference.collection('members').get().then((value) {
+            for (var element in value.docs) {
+              member.add(element.id);
+            }
+          });
+          if (groups.indexWhere((e) => e.id == element.id) == -1) {
+            groups.add(
+              GroupModel(
+                id: element.id,
+                name: data['name'] ?? '',
+                intro: data['intro'] ?? '',
+                photo: data['avatar'] ?? '',
+                host: data['admin'] ?? '',
+                createAt:
+                    DateTime.fromMicrosecondsSinceEpoch(data['createAt'] ?? 0),
+                members: member,
+              ),
+            );
+          }
+        }
+      }
+      groups.toSet().toList();
       notifyListeners();
     });
     friendSubscribe = fireStore
@@ -131,29 +160,36 @@ class HomeProvider with ChangeNotifier {
       }
       notifyListeners();
     });
-    bigGroupSubscribe = fireStore.collection('groups').snapshots(includeMetadataChanges: true).listen((event) async {
+    bigGroupSubscribe = fireStore
+        .collection('groups')
+        .snapshots(includeMetadataChanges: true)
+        .listen((event) async {
       groups = [];
       for (var element in event.docs) {
-        Map<String, dynamic> data = element.data();
-        List<String> member = [];
-        await element.reference.collection('members').get().then((value) {
-          for (var element in value.docs) {
-            member.add(element.id);
-          }
-        });
+        if (groupList.contains(element.id) &&
+            groups.indexWhere((e) => e.id == element.id) == -1) {
+          Map<String, dynamic> data = element.data();
+          List<String> member = [];
+          await element.reference.collection('members').get().then((value) {
+            for (var element in value.docs) {
+              member.add(element.id);
+            }
+          });
 
-        if (groupList.contains(element.id) && groups.indexWhere((e) => e.id == element.id) == -1) {
-          groups.add(
-            GroupModel(
-              id: element.id,
-              name: data['name'] ?? '',
-              intro: data['intro'] ?? '',
-              photo: data['avatar'] ?? '',
-              host: data['admin'] ?? '',
-              createAt: DateTime.fromMicrosecondsSinceEpoch(data['createAt'] ?? 0),
-              members: member,
-            ),
-          );
+          if (groups.indexWhere((e) => e.id == element.id) == -1) {
+            groups.add(
+              GroupModel(
+                id: element.id,
+                name: data['name'] ?? '',
+                intro: data['intro'] ?? '',
+                photo: data['avatar'] ?? '',
+                host: data['admin'] ?? '',
+                createAt:
+                    DateTime.fromMicrosecondsSinceEpoch(data['createAt'] ?? 0),
+                members: member,
+              ),
+            );
+          }
         }
       }
       groups.toSet().toList();
@@ -281,7 +317,6 @@ class HomeProvider with ChangeNotifier {
       notifyListeners();
       onError.call(e.toString());
     });
-
   }
 
   @override

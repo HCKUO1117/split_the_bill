@@ -75,6 +75,7 @@ class AddGroupProvider with ChangeNotifier {
         notifyListeners();
       },
     );
+    if(!success) return false;
     var userGroupRef = fireStore
         .collection('users')
         .doc(Preferences.getString(Constants.uid, ''))
@@ -99,18 +100,18 @@ class AddGroupProvider with ChangeNotifier {
       }
     });
 
-    // fireStore
-    //     .collection('users')
-    //     .doc(Preferences.getString(Constants.uid, ''))
-    //     .collection('groups')
-    //     .doc(response.id)
-    //     .set({});
-    // fireStore
-    //     .collection('groups')
-    //     .doc(response.id)
-    //     .collection('members')
-    //     .doc(Preferences.getString(Constants.uid, ''))
-    //     .set({});
+    fireStore
+        .collection('users')
+        .doc(Preferences.getString(Constants.uid, ''))
+        .collection('groups')
+        .doc(response.id)
+        .set({});
+    fireStore
+        .collection('groups')
+        .doc(response.id)
+        .collection('members')
+        .doc(Preferences.getString(Constants.uid, ''))
+        .set({});
     if (photo != null) {
       bool success = false;
       final avatarRef =

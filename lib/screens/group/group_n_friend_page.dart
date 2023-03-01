@@ -55,20 +55,6 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
           physics: const BouncingScrollPhysics(),
           children: [
             const SizedBox(height: 16),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Text(
-            //       S.of(context).members,
-            //       style: Constants.robotoTextStyle.copyWith(
-            //         color: Colors.black54,
-            //         fontSize: 20,
-            //         fontWeight: FontWeight.bold,
-            //       ),
-            //     )
-            //   ],
-            // ),
-            // const Divider(),
             iconTitle(
               icon: Icons.person_add_alt_1,
               title: S.of(context).addFriend,

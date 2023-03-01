@@ -218,6 +218,7 @@ class UserProvider extends ChangeNotifier {
     try {
       googleSignInAccount = await googleSignIn.signIn();
     } catch (e) {
+      print(e);
       ShowSnack.show(context, content: S.of(context).error + e.toString());
     }
 
