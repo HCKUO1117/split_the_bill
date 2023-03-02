@@ -899,6 +899,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Add to computer friends`
+  String get addRobot {
+    return Intl.message(
+      'Add to computer friends',
+      name: 'addRobot',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

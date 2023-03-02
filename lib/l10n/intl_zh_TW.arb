@@ -83,5 +83,6 @@
   "removeFriendInfo": "是否要刪除好友?",
   "removeFriendSuccess": "已刪除好友",
   "emailCopied": "已複製Email",
-  "join": "加入"
+  "join": "加入",
+  "addRobot": "加入電腦好友"
 }

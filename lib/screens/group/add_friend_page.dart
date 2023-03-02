@@ -8,6 +8,7 @@ import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:split_the_bill/screens/home_screen.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/friend_title.dart';
+import 'package:split_the_bill/widgets/icon_title.dart';
 import 'package:split_the_bill/widgets/loading_cover.dart';
 import 'package:split_the_bill/widgets/outline_text_field.dart';
 
@@ -43,6 +44,11 @@ class _AddFriendPageState extends State<AddFriendPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      IconTitle(
+                        icon: Icons.smart_toy_outlined,
+                        title: S.of(context).addRobot,
+                        onTap: () {},
+                      ),
                       Text(
                         S.of(context).searchFriendInfo,
                         style: const TextStyle(color: Colors.grey),

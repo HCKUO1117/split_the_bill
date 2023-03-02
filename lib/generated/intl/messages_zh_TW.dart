@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addFriend": MessageLookupByLibrary.simpleMessage("新增好友"),
         "addFriendSuccess": MessageLookupByLibrary.simpleMessage("已成功接受邀請"),
         "addGroup": MessageLookupByLibrary.simpleMessage("新增群組"),
+        "addRobot": MessageLookupByLibrary.simpleMessage("加入電腦好友"),
         "alreadyFriend": MessageLookupByLibrary.simpleMessage("已加入好友"),
         "alreadyInvited": MessageLookupByLibrary.simpleMessage("邀請中，您無法重複寄送邀請"),
         "anonymouslyError": MessageLookupByLibrary.simpleMessage("訪客登入無法使用"),

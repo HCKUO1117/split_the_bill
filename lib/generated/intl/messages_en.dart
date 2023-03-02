@@ -32,6 +32,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addFriendSuccess": MessageLookupByLibrary.simpleMessage(
             "Invitation successfully accepted"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
+        "addRobot":
+            MessageLookupByLibrary.simpleMessage("Add to computer friends"),
         "alreadyFriend": MessageLookupByLibrary.simpleMessage("Already Friend"),
         "alreadyInvited": MessageLookupByLibrary.simpleMessage(
             "Invitation, you cannot resend invitation"),

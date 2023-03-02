@@ -83,5 +83,6 @@
   "removeFriendInfo": "Do you want to remove the friend?",
   "removeFriendSuccess": "Friend removed",
   "emailCopied": "Email Copied",
-  "join": "Join"
+  "join": "Join",
+  "addRobot": "Add to computer friends"
 }
