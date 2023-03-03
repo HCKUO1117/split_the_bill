@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addFriendSuccess": MessageLookupByLibrary.simpleMessage("已成功接受邀請"),
         "addGroup": MessageLookupByLibrary.simpleMessage("新增群組"),
         "addRobot": MessageLookupByLibrary.simpleMessage("加入電腦好友"),
+        "addRobotInfo": MessageLookupByLibrary.simpleMessage(
+            "當您的好友未加入我們的會員時您將搜尋不到該用戶，此時您可以使用\"加入電腦好友\"功能，此功能將會建立一個虛擬的好友用戶，您將可以透過這個帳戶管理你們之間的帳務。"),
         "alreadyFriend": MessageLookupByLibrary.simpleMessage("已加入好友"),
         "alreadyInvited": MessageLookupByLibrary.simpleMessage("邀請中，您無法重複寄送邀請"),
         "anonymouslyError": MessageLookupByLibrary.simpleMessage("訪客登入無法使用"),
@@ -96,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "removeFriendSuccess": MessageLookupByLibrary.simpleMessage("已刪除好友"),
         "resend": MessageLookupByLibrary.simpleMessage("重新寄送"),
         "results": MessageLookupByLibrary.simpleMessage("結果"),
+        "searchCustomer": MessageLookupByLibrary.simpleMessage("搜尋用戶"),
         "searchFriendInfo": MessageLookupByLibrary.simpleMessage("請輸入完整Email"),
         "send": MessageLookupByLibrary.simpleMessage("寄送"),
         "sendResetEmailInfo": MessageLookupByLibrary.simpleMessage(

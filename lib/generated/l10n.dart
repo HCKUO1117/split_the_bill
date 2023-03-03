@@ -900,11 +900,31 @@ class S {
     );
   }
 
-  /// `Add to computer friends`
+  /// `Add computer friend`
   String get addRobot {
     return Intl.message(
-      'Add to computer friends',
+      'Add computer friend',
       name: 'addRobot',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Customer`
+  String get searchCustomer {
+    return Intl.message(
+      'Search Customer',
+      name: 'searchCustomer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When your friend has not joined our membership, you will not be able to search for the user. At this time, you can use the "Add Computer Friend" function, which will create a virtual friend user, and you will You can manage your accounts through this account.`
+  String get addRobotInfo {
+    return Intl.message(
+      'When your friend has not joined our membership, you will not be able to search for the user. At this time, you can use the "Add Computer Friend" function, which will create a virtual friend user, and you will You can manage your accounts through this account.',
+      name: 'addRobotInfo',
       desc: '',
       args: [],
     );

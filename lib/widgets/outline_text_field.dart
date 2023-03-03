@@ -11,6 +11,7 @@ class OutlineTextField extends StatelessWidget {
   final String? errorText;
   final Function(String)? onChange;
   final Widget? suffixIcon;
+  final String? hint;
 
   const OutlineTextField({
     Key? key,
@@ -23,7 +24,7 @@ class OutlineTextField extends StatelessWidget {
     this.textInputAction,
     this.errorText,
     this.onChange,
-    this.suffixIcon,
+    this.suffixIcon, this.hint,
   }) : super(key: key);
 
   @override
@@ -37,6 +38,8 @@ class OutlineTextField extends StatelessWidget {
       textInputAction: textInputAction,
       onChanged: onChange,
       decoration: InputDecoration(
+        hintText: hint,
+          hintStyle: const TextStyle(color: Colors.grey),
           prefixIcon: iconData != null ? Icon(iconData) : null,
           contentPadding: const EdgeInsets.all(4),
           border: const OutlineInputBorder(),

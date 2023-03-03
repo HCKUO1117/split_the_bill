@@ -7,6 +7,7 @@ import 'package:split_the_bill/providers/home_provider.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
 import 'package:split_the_bill/screens/home_screen.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
+import 'package:split_the_bill/widgets/custom_dialog.dart';
 import 'package:split_the_bill/widgets/friend_title.dart';
 import 'package:split_the_bill/widgets/icon_title.dart';
 import 'package:split_the_bill/widgets/loading_cover.dart';
@@ -44,20 +45,63 @@ class _AddFriendPageState extends State<AddFriendPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      IconTitle(
-                        icon: Icons.smart_toy_outlined,
-                        title: S.of(context).addRobot,
-                        onTap: () {},
+                      Row(
+                        children: [
+                          Expanded(
+                            child: IconTitle(
+                              icon: Icons.smart_toy_outlined,
+                              title: S.of(context).addRobot,
+                              horizonPadding: 0,
+                              onTap: () {},
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) =>
+                                    CustomDialog(content: S.of(context).addRobotInfo),
+                              );
+                            },
+                            icon: const Icon(
+                              Icons.help_outline,
+                              color: Colors.black54,
+                            ),
+                          ),
+                        ],
                       ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              height: 1,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            S.of(context).or,
+                            style: const TextStyle(color: Colors.grey),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Container(
+                              height: 1,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 8),
                       Text(
-                        S.of(context).searchFriendInfo,
-                        style: const TextStyle(color: Colors.grey),
+                        S.of(context).searchCustomer,
                       ),
                       const SizedBox(height: 8),
                       OutlineTextField(
                         controller: provider.search,
                         textInputAction: TextInputAction.search,
                         textInputType: TextInputType.emailAddress,
+                        hint: S.of(context).searchFriendInfo,
                         onSubmit: (_) {
                           provider.onSearch();
                         },
@@ -82,9 +126,11 @@ class _AddFriendPageState extends State<AddFriendPage> {
                               Row(
                                 children: [
                                   Text(
-                                    S.of(context).results + ' (${provider.results.length}) ',
+                                    S.of(context).results,
+                                    // + ' (${provider.results.length}) ',
                                     style: const TextStyle(color: Colors.grey),
                                   ),
+                                  const SizedBox(width: 8),
                                   Expanded(
                                     child: Container(
                                       color: Colors.grey,

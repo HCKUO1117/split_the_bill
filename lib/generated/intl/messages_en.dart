@@ -32,8 +32,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "addFriendSuccess": MessageLookupByLibrary.simpleMessage(
             "Invitation successfully accepted"),
         "addGroup": MessageLookupByLibrary.simpleMessage("Add Group"),
-        "addRobot":
-            MessageLookupByLibrary.simpleMessage("Add to computer friends"),
+        "addRobot": MessageLookupByLibrary.simpleMessage("Add computer friend"),
+        "addRobotInfo": MessageLookupByLibrary.simpleMessage(
+            "When your friend has not joined our membership, you will not be able to search for the user. At this time, you can use the \"Add Computer Friend\" function, which will create a virtual friend user, and you will You can manage your accounts through this account."),
         "alreadyFriend": MessageLookupByLibrary.simpleMessage("Already Friend"),
         "alreadyInvited": MessageLookupByLibrary.simpleMessage(
             "Invitation, you cannot resend invitation"),
@@ -121,6 +122,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Friend removed"),
         "resend": MessageLookupByLibrary.simpleMessage("Resend"),
         "results": MessageLookupByLibrary.simpleMessage("result"),
+        "searchCustomer":
+            MessageLookupByLibrary.simpleMessage("Search Customer"),
         "searchFriendInfo": MessageLookupByLibrary.simpleMessage(
             "Please enter a complete Email"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),

@@ -4,12 +4,14 @@ class IconTitle extends StatelessWidget {
   final IconData icon;
   final String title;
   final Function() onTap;
+  final double? horizonPadding;
 
   const IconTitle({
     Key? key,
     required this.icon,
     required this.title,
     required this.onTap,
+    this.horizonPadding,
   }) : super(key: key);
 
   @override
@@ -20,7 +22,7 @@ class IconTitle extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
           children: [
-            const SizedBox(width: 16),
+            SizedBox(width: horizonPadding ?? 16),
             Icon(icon),
             const SizedBox(width: 8),
             Text(title),

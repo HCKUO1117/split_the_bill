@@ -84,5 +84,7 @@
   "removeFriendSuccess": "已刪除好友",
   "emailCopied": "已複製Email",
   "join": "加入",
-  "addRobot": "加入電腦好友"
+  "addRobot": "加入電腦好友",
+  "searchCustomer": "搜尋用戶",
+  "addRobotInfo": "當您的好友未加入我們的會員時您將搜尋不到該用戶，此時您可以使用\"加入電腦好友\"功能，此功能將會建立一個虛擬的好友用戶，您將可以透過這個帳戶管理你們之間的帳務。"
 }
