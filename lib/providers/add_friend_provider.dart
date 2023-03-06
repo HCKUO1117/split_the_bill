@@ -8,6 +8,7 @@ class AddFriendProvider with ChangeNotifier {
   bool searching = false;
   bool inviting = false;
   bool searched = false;
+  bool robotAdding = false;
   TextEditingController search = TextEditingController();
   FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
@@ -69,5 +70,47 @@ class AddFriendProvider with ChangeNotifier {
     }, onError: (e) {
       onError.call(e.toString());
     });
+  }
+
+  Future<void> addRobot(
+    String name,
+    String intro, {
+    required Function onSuccess,
+    required Function(String) onError,
+  }) async {
+    robotAdding = true;
+    notifyListeners();
+    try {
+      final robotResult = await fireStore.collection('users').add({
+        'name': name,
+        'email': '',
+        'avatar': '',
+        'background': '',
+        'intro': intro,
+        'real': false,
+        'founder': Preferences.getString(Constants.uid, ''),
+        'crateAt': DateTime.now().microsecondsSinceEpoch,
+        'updateAt': DateTime.now().microsecondsSinceEpoch,
+      });
+      final userRef = fireStore
+          .collection('users')
+          .doc(Preferences.getString(Constants.uid, ''))
+          .collection('friends')
+          .doc(robotResult.id);
+      final targetRef = fireStore
+          .collection('users')
+          .doc(robotResult.id)
+          .collection('friends')
+          .doc(Preferences.getString(Constants.uid, ''));
+      await fireStore.runTransaction((transaction) async {
+        transaction.set(userRef, {'1': 1});
+        transaction.set(targetRef, {'1': 1});
+      });
+      onSuccess.call();
+      robotAdding = false;
+      notifyListeners();
+    } catch (e) {
+      onError.call(e.toString());
+    }
   }
 }

@@ -83,6 +83,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                     ProfilePhoto(
                       background: provider.userModel.background,
                       profile: provider.userModel.avatar,
+                      real: widget.userModel.real,
                     ),
                     const SizedBox(height: 16),
                     Text(
@@ -116,6 +117,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
+                        if(widget.userModel.email.isNotEmpty)
                         Column(
                           children: [
                             ElevatedButton(
@@ -135,7 +137,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
                             const Text('Email'),
                           ],
                         ),
-                        if (widget.isFriend)
+                        if (widget.isFriend && widget.userModel.real)
                           Column(
                             children: [
                               ElevatedButton(

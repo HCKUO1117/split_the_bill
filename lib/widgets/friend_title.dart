@@ -37,31 +37,36 @@ class FriendTitle extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(100),
-            child: model.avatar.isEmpty
-                ? Image.asset(
-                    Constants.avatar,
-                    height: 50,
-                    width: 50,
-                  )
-                : Image.network(
-                    model.avatar,
-                    fit: BoxFit.cover,
-                    height: 50,
-                    width: 50,
-                    loadingBuilder: (context, child, progress) {
-                      if (progress == null) {
-                        return child;
-                      }
-                      return Shimmer.fromColors(
-                        baseColor: Colors.grey.shade300,
-                        highlightColor: Colors.grey.shade100,
-                        child: Container(
-                          color: Colors.white,
-                          height: 50,
-                          width: 50,
-                        ),
-                      );
-                    },
+            child: model.real
+                ? (model.avatar.isEmpty
+                    ? Image.asset(
+                        Constants.avatar,
+                        height: 50,
+                        width: 50,
+                      )
+                    : Image.network(
+                        model.avatar,
+                        fit: BoxFit.cover,
+                        height: 50,
+                        width: 50,
+                        loadingBuilder: (context, child, progress) {
+                          if (progress == null) {
+                            return child;
+                          }
+                          return Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            child: Container(
+                              color: Colors.white,
+                              height: 50,
+                              width: 50,
+                            ),
+                          );
+                        },
+                      ))
+                : const Icon(
+                    Icons.smart_toy_outlined,
+                    size: 50,
                   ),
           ),
           const SizedBox(width: 8),

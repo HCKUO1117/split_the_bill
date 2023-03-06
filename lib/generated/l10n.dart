@@ -929,6 +929,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Name your friend`
+  String get robotNameHint {
+    return Intl.message(
+      'Name your friend',
+      name: 'robotNameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write something`
+  String get robotIntroHint {
+    return Intl.message(
+      'Write something',
+      name: 'robotIntroHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Friends added successfully`
+  String get addRobotSuccess {
+    return Intl.message(
+      'Friends added successfully',
+      name: 'addRobotSuccess',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

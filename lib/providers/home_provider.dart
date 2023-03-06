@@ -93,7 +93,8 @@ class HomeProvider with ChangeNotifier {
             model.email = data['email'];
             model.background = data['background'];
             model.intro = data['intro'];
-            model.chatId = element.data()['chat'];
+            model.chatId = element.data()['chat'] ?? '';
+            model.real = data['real'] ?? true;
             if (friends.indexWhere((e) => e.uid == element.id) == -1) {
               friends.add(model);
             }

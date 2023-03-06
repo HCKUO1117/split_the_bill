@@ -5,6 +5,7 @@ import 'package:split_the_bill/models/user_model.dart';
 import 'package:split_the_bill/providers/add_friend_provider.dart';
 import 'package:split_the_bill/providers/home_provider.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
+import 'package:split_the_bill/screens/group/add_robot_page.dart';
 import 'package:split_the_bill/screens/home_screen.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/custom_dialog.dart';
@@ -52,7 +53,16 @@ class _AddFriendPageState extends State<AddFriendPage> {
                               icon: Icons.smart_toy_outlined,
                               title: S.of(context).addRobot,
                               horizonPadding: 0,
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => ChangeNotifierProvider.value(
+                                      value: provider,
+                                      child: const AddRobotPage(),
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                           IconButton(

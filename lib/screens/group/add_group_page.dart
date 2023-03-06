@@ -153,7 +153,7 @@ class _AddGroupPageState extends State<AddGroupPage> {
                           ),
                         );
                         setState(() {
-                          addGroupProvider.members = result;
+                          addGroupProvider.members = result ?? [];
                         });
                       },
                       child: Container(

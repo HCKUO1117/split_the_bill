@@ -86,5 +86,8 @@
   "join": "Join",
   "addRobot": "Add computer friend",
   "searchCustomer": "Search Customer",
-  "addRobotInfo": "When your friend has not joined our membership, you will not be able to search for the user. At this time, you can use the \"Add Computer Friend\" function, which will create a virtual friend user, and you will You can manage your accounts through this account."
+  "addRobotInfo": "When your friend has not joined our membership, you will not be able to search for the user. At this time, you can use the \"Add Computer Friend\" function, which will create a virtual friend user, and you will You can manage your accounts through this account.",
+  "robotNameHint": "Name your friend",
+  "robotIntroHint": "Write something",
+  "addRobotSuccess": "Friends added successfully"
 }

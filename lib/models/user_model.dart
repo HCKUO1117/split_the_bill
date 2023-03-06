@@ -8,5 +8,5 @@ class UserModel{
   String background = '';
   String intro = '';
   String chatId = '';
-
+  bool real = true;
 }
