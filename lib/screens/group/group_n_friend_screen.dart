@@ -6,19 +6,20 @@ import 'package:split_the_bill/providers/home_provider.dart';
 import 'package:split_the_bill/res/constants.dart';
 import 'package:split_the_bill/screens/group/add_friend_page.dart';
 import 'package:split_the_bill/screens/group/add_group_page.dart';
+import 'package:split_the_bill/screens/group/group_page.dart';
 import 'package:split_the_bill/screens/group/my_invite_page.dart';
 import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/custom_dialog.dart';
 import 'package:split_the_bill/widgets/friend_title.dart';
 
-class GroupNFriendPage extends StatefulWidget {
-  const GroupNFriendPage({Key? key}) : super(key: key);
+class GroupNFriendScreen extends StatefulWidget {
+  const GroupNFriendScreen({Key? key}) : super(key: key);
 
   @override
-  State<GroupNFriendPage> createState() => _GroupNFriendPageState();
+  State<GroupNFriendScreen> createState() => _GroupNFriendScreenState();
 }
 
-class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProviderStateMixin {
+class _GroupNFriendScreenState extends State<GroupNFriendScreen> with TickerProviderStateMixin {
   late final AnimationController memberController = AnimationController(
     duration: const Duration(milliseconds: 200),
     vsync: this,
@@ -254,11 +255,9 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
                   child: Text(S.of(context).inviting),
                 ),
                 isFriend: context
-                    .read<HomeProvider>()
-                    .friends
-                    .indexWhere((element) =>
-                provider.invitingList[index].uid ==
-                    element.uid) !=
+                        .read<HomeProvider>()
+                        .friends
+                        .indexWhere((element) => provider.invitingList[index].uid == element.uid) !=
                     -1,
               );
             },
@@ -276,11 +275,9 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
               return FriendTitle(
                 model: provider.friends[index],
                 isFriend: context
-                    .read<HomeProvider>()
-                    .friends
-                    .indexWhere((element) =>
-                provider.friends[index].uid ==
-                    element.uid) !=
+                        .read<HomeProvider>()
+                        .friends
+                        .indexWhere((element) => provider.friends[index].uid == element.uid) !=
                     -1,
               );
             },
@@ -294,27 +291,36 @@ class _GroupNFriendPageState extends State<GroupNFriendPage> with TickerProvider
   }
 
   Widget groupTitle(GroupModel model) {
-    return Row(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(50),
-          child: model.photo.isEmpty
-              ? Image.asset(
-                  Constants.background,
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
-                )
-              : Image.network(
-                  model.photo,
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
-                ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(child: Text(model.name + ' (${model.members.length}) '))
-      ],
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => GroupPage(model: model),
+          ),
+        );
+      },
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(50),
+            child: model.photo.isEmpty
+                ? Image.asset(
+                    Constants.background,
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  )
+                : Image.network(
+                    model.photo,
+                    width: 50,
+                    height: 50,
+                    fit: BoxFit.cover,
+                  ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(child: Text(model.name + ' (${model.members.length}) '))
+        ],
+      ),
     );
   }
 

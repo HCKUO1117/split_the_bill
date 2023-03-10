@@ -79,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailUsed":
             MessageLookupByLibrary.simpleMessage("Email has been used"),
         "error": MessageLookupByLibrary.simpleMessage("Error : "),
+        "events": MessageLookupByLibrary.simpleMessage("Events"),
         "forgetPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
         "friends": MessageLookupByLibrary.simpleMessage("Friends"),
@@ -102,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "nameNotFill":
             MessageLookupByLibrary.simpleMessage("Name must not be blank"),
+        "news": MessageLookupByLibrary.simpleMessage("News"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
         "noInvite": MessageLookupByLibrary.simpleMessage("No invitation"),
         "noResult": MessageLookupByLibrary.simpleMessage("No matching results"),

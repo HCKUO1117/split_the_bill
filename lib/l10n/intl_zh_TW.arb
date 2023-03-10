@@ -89,5 +89,7 @@
   "addRobotInfo": "當您的好友未加入我們的會員時您將搜尋不到該用戶，此時您可以使用\"加入電腦好友\"功能，此功能將會建立一個虛擬的好友用戶，您將可以透過這個帳戶管理你們之間的帳務。",
   "robotNameHint": "為您的好友命名吧",
   "robotIntroHint": "寫點什麼吧",
-  "addRobotSuccess": "好友加入成功"
+  "addRobotSuccess": "好友加入成功",
+  "news": "動態",
+  "events": "活動"
 }

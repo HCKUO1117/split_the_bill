@@ -959,6 +959,26 @@ class S {
       args: [],
     );
   }
+
+  /// `News`
+  String get news {
+    return Intl.message(
+      'News',
+      name: 'news',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Events`
+  String get events {
+    return Intl.message(
+      'Events',
+      name: 'events',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

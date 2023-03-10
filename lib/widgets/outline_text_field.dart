@@ -41,7 +41,7 @@ class OutlineTextField extends StatelessWidget {
       textInputAction: textInputAction,
       onChanged: onChange,
       minLines: minLine,
-      maxLines: null,
+      maxLines: obscure ? 1 :null,
       decoration: InputDecoration(
         hintText: hint,
         hintStyle: const TextStyle(color: Colors.grey),

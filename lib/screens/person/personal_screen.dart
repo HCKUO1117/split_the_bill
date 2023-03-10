@@ -11,14 +11,14 @@ import 'package:split_the_bill/utils/show_snack.dart';
 import 'package:split_the_bill/widgets/icon_title.dart';
 import 'package:split_the_bill/widgets/profile_photo.dart';
 
-class PersonalPage extends StatefulWidget {
-  const PersonalPage({Key? key}) : super(key: key);
+class PersonalScreen extends StatefulWidget {
+  const PersonalScreen({Key? key}) : super(key: key);
 
   @override
-  State<PersonalPage> createState() => _PersonalPageState();
+  State<PersonalScreen> createState() => _PersonalScreenState();
 }
 
-class _PersonalPageState extends State<PersonalPage> {
+class _PersonalScreenState extends State<PersonalScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

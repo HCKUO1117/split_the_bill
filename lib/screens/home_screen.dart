@@ -4,10 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:split_the_bill/generated/l10n.dart';
 import 'package:split_the_bill/providers/home_provider.dart';
 import 'package:split_the_bill/providers/user_provider.dart';
-import 'package:split_the_bill/screens/accounting/accounting_page.dart';
-import 'package:split_the_bill/screens/chart/chart_page.dart';
-import 'package:split_the_bill/screens/group/group_n_friend_page.dart';
-import 'package:split_the_bill/screens/person/personal_page.dart';
+import 'package:split_the_bill/screens/accounting/accounting_screen.dart';
+import 'package:split_the_bill/screens/chart/chart_screen.dart';
+import 'package:split_the_bill/screens/group/group_n_friend_screen.dart';
+import 'package:split_the_bill/screens/person/personal_screen.dart';
 import 'package:split_the_bill/widgets/custom_dialog.dart';
 
 class HomePage extends StatefulWidget {
@@ -92,10 +92,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               physics: const NeverScrollableScrollPhysics(),
               controller: tabController,
               children: const [
-                GroupNFriendPage(),
-                AccountingPage(),
-                ChartPage(),
-                PersonalPage(),
+                GroupNFriendScreen(),
+                AccountingScreen(),
+                ChartScreen(),
+                PersonalScreen(),
               ],
             ),
             bottomNavigationBar: BottomBarInspiredFancy(
