@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:connection_notifier/connection_notifier.dart';
+import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -49,44 +51,51 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider.value(value: userProvider),
       ],
-      child: MaterialApp(
-        navigatorKey: MyApp.navigatorKey,
-        debugShowCheckedModeBanner: false,
-        title: 'Split the bill',
-        theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            elevation: 0,
-            centerTitle: true,
-            color: Colors.white,
-            titleTextStyle: Theme.of(context).textTheme.titleMedium,
-            iconTheme: const IconThemeData(
-              color: Colors.black54,
+      child: ConnectionNotifier(
+          height: 30,
+          alignment: Alignment.bottomCenter,
+          disconnectedBackgroundColor: Colors.red.withOpacity(0.6),
+          connectedBackgroundColor: Colors.green.withOpacity(0.6),
+          disconnectedText: "No Internet connection",
+          child: MaterialApp(
+            navigatorKey: MyApp.navigatorKey,
+            debugShowCheckedModeBanner: false,
+            title: 'Split the bill',
+            theme: ThemeData(
+                appBarTheme: AppBarTheme(
+                  elevation: 0,
+                  centerTitle: true,
+                  color: Colors.white,
+                  titleTextStyle: Theme.of(context).textTheme.titleMedium,
+                  iconTheme: const IconThemeData(
+                    color: Colors.black54,
+                  ),
+                ),
+                scaffoldBackgroundColor: Colors.white
             ),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('en', ''),
+              Locale('ko', ''),
+              Locale('ja', ''),
+              Locale('ru', ''),
+              Locale('hi', ''),
+              Locale('vi', ''),
+              Locale('th', ''),
+              Locale('es', ''),
+              Locale('zh', 'TW'),
+            ],
+            locale: locale ?? const Locale('en', ''),
+            home: Preferences.getString(Constants.uid, '').isNotEmpty
+                ? const HomePage()
+                : const LoginScreen(),
           ),
-          scaffoldBackgroundColor: Colors.white
         ),
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('en', ''),
-          Locale('ko', ''),
-          Locale('ja', ''),
-          Locale('ru', ''),
-          Locale('hi', ''),
-          Locale('vi', ''),
-          Locale('th', ''),
-          Locale('es', ''),
-          Locale('zh', 'TW'),
-        ],
-        locale: locale ?? const Locale('en', ''),
-        home: Preferences.getString(Constants.uid, '').isNotEmpty
-            ? const HomePage()
-            : const LoginScreen(),
-      ),
     );
   }
 }

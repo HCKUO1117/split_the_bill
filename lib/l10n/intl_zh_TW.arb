@@ -91,5 +91,6 @@
   "robotIntroHint": "寫點什麼吧",
   "addRobotSuccess": "好友加入成功",
   "news": "動態",
-  "events": "活動"
+  "events": "活動",
+  "noInternet": "沒有網路連線"
 }

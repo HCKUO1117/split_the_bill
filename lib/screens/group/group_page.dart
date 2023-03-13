@@ -17,7 +17,7 @@ class _GroupPageState extends State<GroupPage> with TickerProviderStateMixin {
 
   @override
   void initState() {
-    tabController = TabController(length: 2, vsync: this);
+    tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -89,6 +89,9 @@ class _GroupPageState extends State<GroupPage> with TickerProviderStateMixin {
                   tabs: [
                     Tab(
                       text: S.of(context).news,
+                    ),
+                    Tab(
+                      text: S.of(context).accounting,
                     ),
                     Tab(
                       text: S.of(context).events,

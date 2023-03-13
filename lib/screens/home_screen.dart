@@ -15,8 +15,7 @@ class HomePage extends StatefulWidget {
 
   const HomePage({Key? key, this.firstAnonymous = false}) : super(key: key);
 
-  static GlobalKey<NavigatorState> navigatorKey =
-  GlobalKey<NavigatorState>();
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -58,17 +57,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             appBar: currentIndex == 3
                 ? null
                 : AppBar(
-                    // leading: Builder(
-                    //   builder: (context) => IconButton(
-                    //     onPressed: () {
-                    //       Scaffold.of(context).openDrawer();
-                    //     },
-                    //     icon: const Icon(
-                    //       Icons.person_outline,
-                    //       color: Colors.black54,
-                    //     ),
-                    //   ),
-                    // ),
                     actions: [
                       IconButton(
                         color: Colors.white,

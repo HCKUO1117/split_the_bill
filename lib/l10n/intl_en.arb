@@ -91,5 +91,6 @@
   "robotIntroHint": "Write something",
   "addRobotSuccess": "Friends added successfully",
   "news": "News",
-  "events": "Events"
+  "events": "Events",
+  "noInternet": "No Internet connection"
 }

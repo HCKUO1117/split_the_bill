@@ -105,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Name must not be blank"),
         "news": MessageLookupByLibrary.simpleMessage("News"),
         "noAccount": MessageLookupByLibrary.simpleMessage("No account"),
+        "noInternet":
+            MessageLookupByLibrary.simpleMessage("No Internet connection"),
         "noInvite": MessageLookupByLibrary.simpleMessage("No invitation"),
         "noResult": MessageLookupByLibrary.simpleMessage("No matching results"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(

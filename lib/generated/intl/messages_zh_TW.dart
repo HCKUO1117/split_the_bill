@@ -85,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameNotFill": MessageLookupByLibrary.simpleMessage("名稱請勿空白"),
         "news": MessageLookupByLibrary.simpleMessage("動態"),
         "noAccount": MessageLookupByLibrary.simpleMessage("沒有帳號"),
+        "noInternet": MessageLookupByLibrary.simpleMessage("沒有網路連線"),
         "noInvite": MessageLookupByLibrary.simpleMessage("沒有邀請"),
         "noResult": MessageLookupByLibrary.simpleMessage("沒有符合的結果"),
         "notGetMailInfo": MessageLookupByLibrary.simpleMessage(

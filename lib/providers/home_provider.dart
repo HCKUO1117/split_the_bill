@@ -47,8 +47,7 @@ class HomeProvider with ChangeNotifier {
       var groupRef = await fireStore.collection('groups').get();
       groups = [];
       for (var element in groupRef.docs) {
-        if (groupList.contains(element.id) &&
-            groups.indexWhere((e) => e.id == element.id) == -1) {
+        if (groupList.contains(element.id) && groups.indexWhere((e) => e.id == element.id) == -1) {
           Map<String, dynamic> data = element.data();
           List<String> member = [];
           await element.reference.collection('members').get().then((value) {
@@ -64,8 +63,7 @@ class HomeProvider with ChangeNotifier {
                 intro: data['intro'] ?? '',
                 photo: data['avatar'] ?? '',
                 host: data['admin'] ?? '',
-                createAt:
-                    DateTime.fromMicrosecondsSinceEpoch(data['createAt'] ?? 0),
+                createAt: DateTime.fromMicrosecondsSinceEpoch(data['createAt'] ?? 0),
                 members: member,
               ),
             );
@@ -167,8 +165,7 @@ class HomeProvider with ChangeNotifier {
         .listen((event) async {
       groups = [];
       for (var element in event.docs) {
-        if (groupList.contains(element.id) &&
-            groups.indexWhere((e) => e.id == element.id) == -1) {
+        if (groupList.contains(element.id) && groups.indexWhere((e) => e.id == element.id) == -1) {
           Map<String, dynamic> data = element.data();
           List<String> member = [];
           await element.reference.collection('members').get().then((value) {
@@ -185,8 +182,7 @@ class HomeProvider with ChangeNotifier {
                 intro: data['intro'] ?? '',
                 photo: data['avatar'] ?? '',
                 host: data['admin'] ?? '',
-                createAt:
-                    DateTime.fromMicrosecondsSinceEpoch(data['createAt'] ?? 0),
+                createAt: DateTime.fromMicrosecondsSinceEpoch(data['createAt'] ?? 0),
                 members: member,
               ),
             );
